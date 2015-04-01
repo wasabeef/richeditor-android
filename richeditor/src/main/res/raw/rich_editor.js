@@ -21,8 +21,12 @@ RE.currentSelection;
 RE.editor = document.getElementById('editor');
 
 RE.editor.addEventListener("input", function() {
-    window.location.href = "re-callback://" + RE.getHtml();
+    RE.callback()
 });
+
+RE.callback = function() {
+    window.location.href = "re-callback://" + RE.getHtml();
+}
 
 RE.setHtml = function(contents) {
     RE.editor.innerHTML = contents;
@@ -148,6 +152,7 @@ RE.insertLink = function(url, title) {
             sel.addRange(range);
         }
     }
+    RE.callback();
 }
 
 RE.prepareInsert = function() {
