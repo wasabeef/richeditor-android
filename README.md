@@ -49,25 +49,25 @@ dependencies {
 
 ### Functions
 
-** Bold **
+**Bold**
 ```java
 RichEditor editor = (RichEditor) findViewById(R.id.editor);
 editor.setBold();
 ```
 
-** Italic **
+**Italic**
 ```java
 RichEditor editor = (RichEditor) findViewById(R.id.editor);
 editor.setItalic();
 ```
 
-** Insert Image **
+**Insert Image**
 ```java
 RichEditor editor = (RichEditor) findViewById(R.id.editor);
 editor.insertImage("https://raw.githubusercontent.com/wasabeef/art/master/twitter.png","twitter");
 ```
 
-** Others **
+**Others**  
 Please refer the [samples](https://github.com/wasabeef/richeditor-android/blob/master/sample/src/main/java/jp/wasabeef/sample/MainActivity.java) for usage.
 
 Requirements
