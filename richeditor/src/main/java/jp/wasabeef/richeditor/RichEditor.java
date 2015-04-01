@@ -97,7 +97,7 @@ public class RichEditor extends WebView {
     }
 
     public void setHtml(String contents) {
-        exec("javascript:setContents('" + contents + "');");
+        exec("javascript:RE.setHtml('" + contents + "');");
     }
 
     public String getHtml() {
