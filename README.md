@@ -1,5 +1,7 @@
 RichText for Android
 =============
+[![License](https://img.shields.io/badge/license-Apache%202-blue.svg)](https://www.apache.org/licenses/LICENSE-2.0)
+[![Download](https://api.bintray.com/packages/wasabeef/maven/richeditor-android/images/download.svg)](https://bintray.com/wasabeef/maven/richeditor-android/_latestVersion)
 
 `RichText for Android` is a beautiful Rich Text `WYSIWYG Editor` for `Android`.
 
@@ -44,6 +46,7 @@ repositories {
 }
 
 dependencies {
+    compile 'jp.wasabeef:richeditor-android:0.0.1@aar'
 }
 ```
 
