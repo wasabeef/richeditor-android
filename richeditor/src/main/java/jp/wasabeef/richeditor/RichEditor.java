@@ -159,6 +159,10 @@ public class RichEditor extends WebView {
         exec("javascript:RE.setTextBackgroundColor('" + hex + "');");
     }
 
+    public void setHeading(int heading) {
+        exec("javascript:RE.setHeading('" + heading + "');");
+    }
+
     public void setIndent() {
         exec("javascript:RE.setIndent();");
     }

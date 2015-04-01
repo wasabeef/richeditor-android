@@ -94,6 +94,10 @@ RE.setTextBackgroundColor = function(color) {
     document.execCommand("styleWithCSS", null, false);
 }
 
+RE.setHeading = function(heading) {
+    document.execCommand('formatBlock', false, '<h'+heading+'>');
+}
+
 RE.setIndent = function() {
     document.execCommand('indent', false, null);
 }
