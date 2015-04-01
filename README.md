@@ -7,6 +7,9 @@ RichText for Android
 
 Supported Functions
 ---
+
+![Toolbar](./art/demo.gif)
+
 *   Bold
 *   Italic
 *   Subscript
@@ -33,6 +36,8 @@ Supported Functions
 
 Demo
 ---
+
+![Demo](./art/demo2.gif)
 
 How do I use it?
 ---
