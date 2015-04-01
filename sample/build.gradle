@@ -1,0 +1,39 @@
+apply plugin: 'com.android.application'
+
+android {
+    compileSdkVersion COMPILE_SDK_VERSION as int
+    buildToolsVersion BUILD_TOOLS_VERSION
+
+    defaultConfig {
+        minSdkVersion MIN_SDK_VERSION as int
+        targetSdkVersion TARGET_SDK_VERSION as int
+        versionCode VERSION_CODE as int
+        versionName VERSION_NAME
+    }
+
+    signingConfigs {
+        release {
+            storeFile file(WASABEEF_KEYSTORE)
+            keyAlias WASABEEF_KEYALIAS
+            storePassword WASABEEF_KEYSTOREPASSWORD
+            keyPassword WASABEEF_KEYALIASPASSWORD
+        }
+    }
+
+    buildTypes {
+        debug {
+            debuggable true
+            zipAlignEnabled true
+        }
+        release {
+            debuggable false
+            zipAlignEnabled true
+            signingConfig signingConfigs.release
+        }
+    }
+}
+
+dependencies {
+    compile project(':richeditor')
+    compile 'com.android.support:appcompat-v7:22.0.0'
+}
