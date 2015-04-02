@@ -32,7 +32,14 @@ Supported Functions
 - [x] Insert Image
 - [x] Insert Link
 - [x] Text Color
+- [x] Text Background Color
+
+Attribute change of editor 
+---
+- [x] Font Size
 - [x] Background Color
+- [x] Width
+- [x] Height
 
 Demo
 ---
@@ -78,6 +85,18 @@ editor.setItalic();
 ```java
 RichEditor editor = (RichEditor) findViewById(R.id.editor);
 editor.insertImage("https://raw.githubusercontent.com/wasabeef/art/master/twitter.png","twitter");
+```
+
+**Text Change Listener**
+```java
+RichEditor editor = (RichEditor) findViewById(R.id.editor);
+editor. setOnTextChangeListener(new RichEditor.OnTextChangeListener() {
+  @Override
+  public void onTextChange(String text) {
+    // Do omething
+     Log.d("RichEditor", "Preview " + text);
+  }
+});
 ```
 
 **Others**  
