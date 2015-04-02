@@ -109,6 +109,10 @@ public class RichEditor extends WebView {
         exec("javascript:RE.setBackgroundColor('" + hex + "');");
     }
 
+    public void setEditorWidth(int px) {
+        exec("javascript:RE.setWidth('" + px + "px');");
+    }
+
     public void setEditorHeight(int px) {
         exec("javascript:RE.setHeight('" + px + "px');");
     }
