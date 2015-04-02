@@ -34,6 +34,8 @@ Supported Functions
 - [x] Text Color
 - [x] Text Background Color
 
+- [ ] Blockquote
+
 Attribute change of editor 
 ---
 - [x] Font Size
