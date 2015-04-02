@@ -10,29 +10,29 @@ Supported Functions
 
 ![Toolbar](./art/demo.gif)
 
-*   Bold
-*   Italic
-*   Subscript
-*   Superscript
-*   Strikethrough
-*   Underline
-*   Justify Left
-*   Justify Center
-*   Justify Right
-*   Heading 1
-*   Heading 2
-*   Heading 3
-*   Heading 4
-*   Heading 5
-*   Heading 6
-*   Undo
-*   Redo
-*   Indent
-*   Outdent
-*   Insert Image
-*   Insert Link
-*   Text Color
-*   Background Color
+- [x] Bold
+- [x] Italic
+- [x] Subscript
+- [x] Superscript
+- [x] Strikethrough
+- [x] Underline
+- [x] Justify Left
+- [x] Justify Center
+- [x] Justify Right
+- [x] Heading 1
+- [x] Heading 2
+- [x] Heading 3
+- [x] Heading 4
+- [x] Heading 5
+- [x] Heading 6
+- [x] Undo
+- [x] Redo
+- [x] Indent
+- [x] Outdent
+- [x] Insert Image
+- [x] Insert Link
+- [x] Text Color
+- [x] Background Color
 
 Demo
 ---
