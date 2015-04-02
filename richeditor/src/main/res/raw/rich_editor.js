@@ -54,12 +54,10 @@ RE.setBackgroundColor = function(color) {
 
 RE.setWidth = function(size) {
     RE.editor.style.minWidth = size;
-    RE.editor.style.width = size;
 }
 
 RE.setHeight = function(size) {
     RE.editor.style.minHeight = size;
-    RE.editor.style.height = size;
 }
 
 RE.undo = function() {
