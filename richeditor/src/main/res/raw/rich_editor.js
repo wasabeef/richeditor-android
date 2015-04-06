@@ -23,14 +23,10 @@ RE.editor = document.getElementById('editor');
 // Initializations
 RE.editor.style.minWidth = window.outerWidth + 'px';
 RE.editor.style.minHeight = window.outerHeight + 'px';
-
-RE.editor.addEventListener("input", function() {
-    RE.callback()
-});
-
 RE.callback = function() {
-    window.location.href = "re-callback://" + RE.getHtml();
+    window.location.href = "re-callback://" + encodeURI(RE.getHtml());
 }
+RE.editor.addEventListener("input", RE.callback);
 
 RE.setHtml = function(contents) {
     RE.editor.innerHTML = contents;
