@@ -20,11 +20,11 @@ body {
         overflow: hidden;
 }
 
-#input_box {
+#editor {
         -webkit-user-select: auto !important;
         -webkit-user-modify: read-write !important;
 }
 
-#input_box:focus {
+#editor:focus {
         outline: 0px solid transparent;
 }

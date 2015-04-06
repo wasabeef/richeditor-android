@@ -21,8 +21,6 @@ RE.currentSelection;
 RE.editor = document.getElementById('editor');
 
 // Initializations
-RE.editor.style.minWidth = window.outerWidth + 'px';
-RE.editor.style.minHeight = window.outerHeight + 'px';
 RE.callback = function() {
     window.location.href = "re-callback://" + encodeURI(RE.getHtml());
 }
