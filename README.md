@@ -97,7 +97,7 @@ RichEditor editor = (RichEditor) findViewById(R.id.editor);
 editor. setOnTextChangeListener(new RichEditor.OnTextChangeListener() {
   @Override
   public void onTextChange(String text) {
-    // Do omething
+    // Do Something
      Log.d("RichEditor", "Preview " + text);
   }
 });
@@ -113,7 +113,7 @@ Android 4+
 Applications using RichEditor for Android
 ---
 
-Please [ping](dadadada.chop@gmail.com) me or send a pull request if you would like to be added here.
+Please [ping](mailto:dadadada.chop@gmail.com) me or send a pull request if you would like to be added here.
 
 Icon | Application
 ------------ | -------------
