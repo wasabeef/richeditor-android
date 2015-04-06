@@ -47,6 +47,10 @@ Attribute change of editor
 - [x] Width
 - [x] Height
 
+**Milestone**
+
+- [ ] Font
+
 Demo
 ---
 
@@ -69,7 +73,7 @@ repositories {
 }
 
 dependencies {
-    compile 'jp.wasabeef:richeditor-android:0.0.2@aar'
+    compile 'jp.wasabeef:richeditor-android:0.0.4@aar'
 }
 ```
 
