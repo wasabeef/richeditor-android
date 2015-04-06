@@ -5,6 +5,8 @@ RichEditor for Android
 
 `RichEditor for Android` is a beautiful Rich Text `WYSIWYG Editor` for `Android`.
 
+- _Looking for iOS? Check out_ [cjwirth/RichEditorView](https://github.com/cjwirth/RichEditorView)
+
 Supported Functions
 ---
 
