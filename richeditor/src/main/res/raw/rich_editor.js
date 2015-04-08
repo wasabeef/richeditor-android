@@ -124,13 +124,13 @@ RE.setJustifyRight = function() {
     document.execCommand('justifyRight', false, null);
 }
 
+RE.setBlockquote = function() {
+    document.execCommand('formatBlock', false, '<blockquote>');
+}
+
 RE.insertImage = function(url, alt) {
     var html = '<img src="' + url + '" alt="' + alt + '" />';
     RE.insertHTML(html);
-}
-
-RE.setBlockquote = function() {
-    document.execCommand('formatBlock', false, '<blockquote>');
 }
 
 RE.insertHTML = function(html) {
