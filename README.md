@@ -49,7 +49,7 @@ Attribute change of editor
 
 **Milestone**
 
-- [ ] Font
+- [ ] Font Family
 
 Demo
 ---
