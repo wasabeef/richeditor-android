@@ -21,6 +21,7 @@ Supported Functions
 - [x] Justify Left
 - [x] Justify Center
 - [x] Justify Right
+- [x] Blockquote
 - [x] Heading 1
 - [x] Heading 2
 - [x] Heading 3
@@ -36,11 +37,7 @@ Supported Functions
 - [x] Text Color
 - [x] Text Background Color
 
-**Milestone**
-
-- [ ] Blockquote
-
-Attribute change of editor 
+Attribute change of editor
 ---
 - [x] Font Size
 - [x] Background Color
@@ -73,7 +70,7 @@ repositories {
 }
 
 dependencies {
-    compile 'jp.wasabeef:richeditor-android:0.0.4@aar'
+    compile 'jp.wasabeef:richeditor-android:0.0.5@aar'
 }
 ```
 
