@@ -47,6 +47,7 @@ Attribute change of editor
 **Milestone**
 
 - [ ] Font Family
+- [ ] Placeholder
 
 Demo
 ---
