@@ -43,11 +43,11 @@ Attribute change of editor
 - [x] Background Color
 - [x] Width
 - [x] Height
+- [x] Placeholder
 
 **Milestone**
 
 - [ ] Font Family
-- [ ] Placeholder
 
 Demo
 ---
@@ -71,7 +71,7 @@ repositories {
 }
 
 dependencies {
-    compile 'jp.wasabeef:richeditor-android:0.0.5@aar'
+    compile 'jp.wasabeef:richeditor-android:0.0.6@aar'
 }
 ```
 
