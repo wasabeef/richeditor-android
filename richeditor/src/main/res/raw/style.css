@@ -25,6 +25,11 @@ body {
         -webkit-user-modify: read-write !important;
 }
 
+#editor[placeholder]:empty:before {
+    content: attr(placeholder);
+    opacity: .2;
+}
+
 #editor:focus {
         outline: 0px solid transparent;
 }

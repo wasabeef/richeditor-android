@@ -105,7 +105,7 @@ public class RichEditor extends WebView {
     }
 
     public void setEditorBackgroundColor(int color) {
-        String hex = String.format("#%06X", (0xFFFFFF & color));
+        String hex = convertHexColorString(color);
         exec("javascript:RE.setBackgroundColor('" + hex + "');");
     }
 
@@ -115,6 +115,10 @@ public class RichEditor extends WebView {
 
     public void setEditorHeight(int px) {
         exec("javascript:RE.setHeight('" + px + "px');");
+    }
+
+    public void setPlaceholder(String placeholder) {
+        exec("javascript:RE.setPlaceholder('" + placeholder + "');");
     }
 
     public void undo() {
@@ -152,14 +156,14 @@ public class RichEditor extends WebView {
     public void setTextColor(int color) {
         exec("javascript:RE.prepareInsert();");
 
-        String hex = String.format("#%06X", (0xFFFFFF & color));
+        String hex = convertHexColorString(color);
         exec("javascript:RE.setTextColor('" + hex + "');");
     }
 
     public void setTextBackgroundColor(int color) {
         exec("javascript:RE.prepareInsert();");
 
-        String hex = String.format("#%06X", (0xFFFFFF & color));
+        String hex = convertHexColorString(color);
         exec("javascript:RE.setTextBackgroundColor('" + hex + "');");
     }
 
@@ -202,11 +206,16 @@ public class RichEditor extends WebView {
     }
 
     public void focusEditor() {
+        requestFocus();
         exec("javascript:RE.focus();");
     }
 
     public void clearFocusEditor() {
         exec("javascript:RE.blurFocus();");
+    }
+
+    private String convertHexColorString(int color) {
+        return String.format("#%06X", (0xFFFFFF & color));
     }
 
     private void exec(String trigger) {

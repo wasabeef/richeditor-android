@@ -54,6 +54,10 @@ RE.setHeight = function(size) {
     RE.editor.style.minHeight = size;
 }
 
+RE.setPlaceholder = function(placeholder) {
+    RE.editor.setAttribute("placeholder", placeholder);
+}
+
 RE.undo = function() {
     document.execCommand('undo', false, null);
 }
