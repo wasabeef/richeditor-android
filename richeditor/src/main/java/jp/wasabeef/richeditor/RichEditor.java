@@ -35,11 +35,16 @@ public class RichEditor extends WebView {
         void onTextChange(String text);
     }
 
+    public interface AfterInitialLoadListener {
+        void afterInitialLoad(boolean isReady);
+    }
+
     private static final String SETUP_HTML = "file:///android_res/raw/editor.html";
     private static final String CALLBACK_SCHEME = "re-callback://";
     private boolean isReady = false;
     private String mContents;
     private OnTextChangeListener mListener;
+    private AfterInitialLoadListener mloadListener;
 
     public RichEditor(Context context) {
         this(context, null);
@@ -61,6 +66,9 @@ public class RichEditor extends WebView {
             @Override
             public void onPageFinished(WebView view, String url) {
                 isReady = url.equalsIgnoreCase(SETUP_HTML);
+                if (mloadListener != null) {
+                    mloadListener.afterInitialLoad(isReady);
+                }
             }
 
             @Override
@@ -79,6 +87,11 @@ public class RichEditor extends WebView {
     public void setOnTextChangeListener(OnTextChangeListener listener) {
         mListener = listener;
     }
+
+    public void setOnInitialLoadListener(AfterInitialLoadListener listener) {
+        mloadListener = listener;
+    }
+
 
     public void callback(String text) {
         try {
@@ -123,6 +136,20 @@ public class RichEditor extends WebView {
 
     public void setPlaceholder(String placeholder) {
         exec("javascript:RE.setPlaceholder('" + placeholder + "');");
+    }
+
+    public void loadCSS(String cssFile) {
+        String jsCSSImport =
+                "(function() {" +
+                        "    var head  = document.getElementsByTagName(\"head\")[0];" +
+                        "    var link  = document.createElement(\"link\");" +
+                        "    link.rel  = \"stylesheet\";" +
+                        "    link.type = \"text/css\";" +
+                        "    link.href = \"" + cssFile + "\";" +
+                        "    link.media = \"all\";" +
+                        "    head.appendChild(link);" +
+                        "}) ();";
+        exec("javascript:" + jsCSSImport + "");
     }
 
     public void undo() {
