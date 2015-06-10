@@ -44,6 +44,7 @@ Attribute change of editor
 - [x] Width
 - [x] Height
 - [x] Placeholder
+- [x] Load CSS
 
 **Milestone**
 
