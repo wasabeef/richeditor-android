@@ -27,7 +27,7 @@ RE.callback = function() {
 RE.editor.addEventListener("input", RE.callback);
 
 RE.setHtml = function(contents) {
-    RE.editor.innerHTML = contents;
+    RE.editor.innerHTML = decodeURIComponent(contents.replace(/\+/g, '%20'));
 }
 
 RE.getHtml = function() {

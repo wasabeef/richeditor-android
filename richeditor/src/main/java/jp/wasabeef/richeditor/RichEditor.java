@@ -12,6 +12,7 @@ import android.webkit.WebViewClient;
 
 import java.io.UnsupportedEncodingException;
 import java.net.URLDecoder;
+import java.net.URLEncoder;
 
 /**
  * Copyright (C) 2015 Wasabeef
@@ -113,7 +114,11 @@ public class RichEditor extends WebView {
         if (contents == null) {
             contents = "";
         }
-        exec("javascript:RE.setHtml('" + contents + "');");
+        try {
+            exec("javascript:RE.setHtml('" + URLEncoder.encode(contents, "UTF-8") + "');");
+        } catch (UnsupportedEncodingException e) {
+            // No handling
+        }
         mContents = contents;
     }
 
