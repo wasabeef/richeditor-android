@@ -45,6 +45,7 @@ Attribute change of editor
 - [x] Height
 - [x] Placeholder
 - [x] Load CSS
+- [x] State Callback
 
 **Milestone**
 
@@ -72,7 +73,7 @@ repositories {
 }
 
 dependencies {
-    compile 'jp.wasabeef:richeditor-android:0.0.8@aar'
+    compile 'jp.wasabeef:richeditor-android:0.1@aar'
 }
 ```
 

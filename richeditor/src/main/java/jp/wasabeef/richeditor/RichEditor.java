@@ -13,6 +13,9 @@ import android.webkit.WebViewClient;
 import java.io.UnsupportedEncodingException;
 import java.net.URLDecoder;
 import java.net.URLEncoder;
+import java.util.ArrayList;
+import java.util.List;
+import java.util.Locale;
 
 /**
  * Copyright (C) 2015 Wasabeef
@@ -31,21 +34,44 @@ import java.net.URLEncoder;
  */
 public class RichEditor extends WebView {
 
+    public enum Type {
+        BOLD,
+        ITALIC,
+        SUBSCRIPT,
+        SUPERSCRIPT,
+        STRIKETHROUGH,
+        UNDERLINE,
+        H1,
+        H2,
+        H3,
+        H4,
+        H5,
+        H6
+    }
+
     public interface OnTextChangeListener {
 
         void onTextChange(String text);
     }
 
+    public interface OnDecorationStateListener {
+
+        void onStateChangeListener(String text, List<Type> types);
+    }
+
     public interface AfterInitialLoadListener {
-        void afterInitialLoad(boolean isReady);
+
+        void onAfterInitialLoad(boolean isReady);
     }
 
     private static final String SETUP_HTML = "file:///android_res/raw/editor.html";
     private static final String CALLBACK_SCHEME = "re-callback://";
+    private static final String STATE_SCHEME = "re-state://";
     private boolean isReady = false;
     private String mContents;
-    private OnTextChangeListener mListener;
-    private AfterInitialLoadListener mloadListener;
+    private OnTextChangeListener mTextChangeListener;
+    private OnDecorationStateListener mDecorationStateListener;
+    private AfterInitialLoadListener mLoadListener;
 
     public RichEditor(Context context) {
         this(context, null);
@@ -67,15 +93,26 @@ public class RichEditor extends WebView {
             @Override
             public void onPageFinished(WebView view, String url) {
                 isReady = url.equalsIgnoreCase(SETUP_HTML);
-                if (mloadListener != null) {
-                    mloadListener.afterInitialLoad(isReady);
+                if (mLoadListener != null) {
+                    mLoadListener.onAfterInitialLoad(isReady);
                 }
             }
 
             @Override
             public boolean shouldOverrideUrlLoading(WebView view, String url) {
+                String decode;
+                try {
+                    decode = URLDecoder.decode(url, "UTF-8");
+                } catch (UnsupportedEncodingException e) {
+                    // No handling
+                    return false;
+                }
+
                 if (TextUtils.indexOf(url, CALLBACK_SCHEME) == 0) {
-                    callback(url);
+                    callback(decode);
+                    return true;
+                } else if (TextUtils.indexOf(url, STATE_SCHEME) == 0) {
+                    stateCheck(decode);
                     return true;
                 }
 
@@ -86,23 +123,35 @@ public class RichEditor extends WebView {
     }
 
     public void setOnTextChangeListener(OnTextChangeListener listener) {
-        mListener = listener;
+        mTextChangeListener = listener;
+    }
+
+    public void setOnDecorationChangeListener(OnDecorationStateListener listener) {
+        mDecorationStateListener = listener;
     }
 
     public void setOnInitialLoadListener(AfterInitialLoadListener listener) {
-        mloadListener = listener;
+        mLoadListener = listener;
     }
 
+    private void callback(String text) {
+        mContents = text.replaceFirst(CALLBACK_SCHEME, "");
+        if (mTextChangeListener != null) {
+            mTextChangeListener.onTextChange(mContents);
+        }
+    }
 
-    public void callback(String text) {
-        try {
-            String decode = URLDecoder.decode(text, "UTF-8");
-            mContents = decode.replaceFirst(CALLBACK_SCHEME, "");
-            if (mListener != null) {
-                mListener.onTextChange(mContents);
+    private void stateCheck(String text) {
+        String state = text.replaceFirst(STATE_SCHEME, "").toUpperCase(Locale.ENGLISH);
+        List<Type> types = new ArrayList<>();
+        for (Type type : Type.values()) {
+            if (TextUtils.indexOf(state, type.name()) != -1) {
+                types.add(type);
             }
-        } catch (UnsupportedEncodingException e) {
-            // No handling
+        }
+
+        if (mDecorationStateListener != null) {
+            mDecorationStateListener.onStateChangeListener(state, types);
         }
     }
 
