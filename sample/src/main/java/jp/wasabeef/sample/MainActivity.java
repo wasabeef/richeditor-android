@@ -3,12 +3,13 @@ package jp.wasabeef.sample;
 import android.graphics.Color;
 import android.os.Bundle;
 import android.support.v7.app.ActionBarActivity;
+import android.support.v7.app.AppCompatActivity;
 import android.view.View;
 import android.widget.TextView;
 
 import jp.wasabeef.richeditor.RichEditor;
 
-public class MainActivity extends ActionBarActivity {
+public class MainActivity extends AppCompatActivity {
 
     private RichEditor mEditor;
     private TextView mPreview;
