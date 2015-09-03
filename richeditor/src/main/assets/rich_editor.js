@@ -16,9 +16,15 @@
 
 var RE = {};
 
-RE.currentSelection;
+RE.currentSelection = {
+    "startContainer": 0,
+    "startOffset": 0,
+    "endContainer": 0,
+    "endOffset": 0};
 
 RE.editor = document.getElementById('editor');
+
+document.addEventListener("selectionchange", function() { RE.backuprange(); });
 
 // Initializations
 RE.callback = function() {
@@ -42,7 +48,7 @@ RE.setFontSize = function(size) {
 }
 
 RE.setBackgroundColor = function(color) {
-    RE.editor.style.backgroundColor = color;
+    document.body.style.backgroundColor = color;
 }
 
 RE.setWidth = function(size) {
@@ -50,11 +56,15 @@ RE.setWidth = function(size) {
 }
 
 RE.setHeight = function(size) {
-    RE.editor.style.minHeight = size;
+    document.body.style.minHeight = size;
 }
 
 RE.setTextAlign = function(align) {
     RE.editor.style.textAlign = align;
+}
+
+RE.setVerticalAlign = function(align) {
+    RE.editor.style.verticalAlign = align;
 }
 
 RE.setPlaceholder = function(placeholder) {
@@ -170,12 +180,14 @@ RE.prepareInsert = function() {
 
 RE.backuprange = function(){
     var selection = window.getSelection();
-    var range = selection.getRangeAt(0);
-    RE.currentSelection = {
-        "startContainer": range.startContainer,
-        "startOffset": range.startOffset,
-        "endContainer": range.endContainer,
-        "endOffset": range.endOffset};
+    if (selection.rangeCount > 0) {
+      var range = selection.getRangeAt(0);
+      RE.currentSelection = {
+          "startContainer": range.startContainer,
+          "startOffset": range.startOffset,
+          "endContainer": range.endContainer,
+          "endOffset": range.endOffset};
+    }
 }
 
 RE.restorerange = function(){

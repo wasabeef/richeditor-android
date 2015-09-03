@@ -76,8 +76,7 @@ public class RichEditor extends WebView {
   private OnDecorationStateListener mDecorationStateListener;
   private AfterInitialLoadListener mLoadListener;
 
-  private static ExecutorService sThreadPool =
-      Executors.newFixedThreadPool(Math.max(1, Runtime.getRuntime().availableProcessors()));
+  private static ExecutorService sThreadPool = Executors.newSingleThreadExecutor();
 
   public RichEditor(Context context) {
     this(context, null);
@@ -175,8 +174,20 @@ public class RichEditor extends WebView {
       case Gravity.RIGHT:
         exec("javascript:RE.setTextAlign(\"right\")");
         break;
+      case Gravity.TOP:
+        exec("javascript:RE.setVerticalAlign(\"top\")");
+        break;
+      case Gravity.BOTTOM:
+        exec("javascript:RE.setVerticalAlign(\"bottom\")");
+        break;
+      case Gravity.CENTER_VERTICAL:
+        exec("javascript:RE.setVerticalAlign(\"middle\")");
+        break;
       case Gravity.CENTER_HORIZONTAL:
+        exec("javascript:RE.setTextAlign(\"center\")");
+        break;
       case Gravity.CENTER:
+        exec("javascript:RE.setVerticalAlign(\"middle\")");
         exec("javascript:RE.setTextAlign(\"center\")");
         break;
     }

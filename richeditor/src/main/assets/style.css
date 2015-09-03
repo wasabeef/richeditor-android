@@ -23,15 +23,19 @@ html {
 
 body {
   overflow: hidden;
+  display: table;
+  width: 100%;
 }
 
 #editor {
+  display: table-cell;
   -webkit-user-select: auto !important;
   -webkit-user-modify: read-write !important;
   outline: 0px solid transparent;
+  width: 100%;
 }
 
-#editor[placeholder]:not(:focus):not([data-div-placeholder-content]):before {
+#editor[placeholder]:empty:not(:focus):before {
   content: attr(placeholder);
   opacity: .2;
 }}
