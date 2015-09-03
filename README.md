@@ -73,7 +73,7 @@ repositories {
 }
 
 dependencies {
-    compile 'jp.wasabeef:richeditor-android:0.2.2'
+    compile 'jp.wasabeef:richeditor-android:0.2.3'
 }
 ```
 
