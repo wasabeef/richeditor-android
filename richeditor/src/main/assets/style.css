@@ -30,10 +30,10 @@ body {
         -webkit-user-modify: read-write !important;
 }
 
-#editor[placeholder]:empty:before {
+#editor[placeholder]:not(:focus):not([data-div-placeholder-content]):before {
     content: attr(placeholder);
     opacity: .2;
-}
+}}
 
 #editor:focus {
         outline: 0px solid transparent;

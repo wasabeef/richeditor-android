@@ -2,10 +2,12 @@ package jp.wasabeef.richeditor;
 
 import android.annotation.SuppressLint;
 import android.content.Context;
+import android.content.res.TypedArray;
 import android.os.AsyncTask;
 import android.os.Build;
 import android.text.TextUtils;
 import android.util.AttributeSet;
+import android.view.Gravity;
 import android.webkit.WebChromeClient;
 import android.webkit.WebView;
 import android.webkit.WebViewClient;
@@ -117,6 +119,8 @@ public class RichEditor extends WebView {
       }
     });
     loadUrl(SETUP_HTML);
+
+    applyAttributes(context, attrs);
   }
 
   public void setOnTextChangeListener(OnTextChangeListener listener) {
@@ -150,6 +154,29 @@ public class RichEditor extends WebView {
     if (mDecorationStateListener != null) {
       mDecorationStateListener.onStateChangeListener(state, types);
     }
+  }
+
+  private void applyAttributes(Context context, AttributeSet attrs) {
+    final int[] attrsArray = new int[] {
+        android.R.attr.gravity
+    };
+    TypedArray ta = context.obtainStyledAttributes(attrs, attrsArray);
+
+    int gravity = ta.getInt(0, NO_ID);
+    switch (gravity) {
+      case Gravity.LEFT:
+        exec("javascript:RE.setTextAlign(\"left\")");
+        break;
+      case Gravity.RIGHT:
+        exec("javascript:RE.setTextAlign(\"right\")");
+        break;
+      case Gravity.CENTER_HORIZONTAL:
+      case Gravity.CENTER:
+        exec("javascript:RE.setTextAlign(\"center\")");
+        break;
+    }
+
+    ta.recycle();
   }
 
   public void setEditorFontSize(int px) {

@@ -53,6 +53,10 @@ RE.setHeight = function(size) {
     RE.editor.style.minHeight = size;
 }
 
+RE.setTextAlign = function(align) {
+    RE.editor.style.textAlign = align;
+}
+
 RE.setPlaceholder = function(placeholder) {
     RE.editor.setAttribute("placeholder", placeholder);
 }
