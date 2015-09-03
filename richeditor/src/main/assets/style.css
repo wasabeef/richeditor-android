@@ -18,23 +18,23 @@
 
 
 html {
-        height: 100%;
+  height: 100%;
 }
 
 body {
-        overflow: hidden;
+  overflow: hidden;
 }
 
 #editor {
-        -webkit-user-select: auto !important;
-        -webkit-user-modify: read-write !important;
+  -webkit-user-select: auto !important;
+  -webkit-user-modify: read-write !important;
 }
 
 #editor[placeholder]:not(:focus):not([data-div-placeholder-content]):before {
-    content: attr(placeholder);
-    opacity: .2;
+  content: attr(placeholder);
+  opacity: .2;
 }}
 
 #editor:focus {
-        outline: 0px solid transparent;
+  outline: 0px solid transparent;
 }
