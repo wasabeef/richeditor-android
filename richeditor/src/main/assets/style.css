@@ -28,13 +28,10 @@ body {
 #editor {
   -webkit-user-select: auto !important;
   -webkit-user-modify: read-write !important;
+  outline: 0px solid transparent;
 }
 
 #editor[placeholder]:not(:focus):not([data-div-placeholder-content]):before {
   content: attr(placeholder);
   opacity: .2;
 }}
-
-#editor:focus {
-  outline: 0px solid transparent;
-}
