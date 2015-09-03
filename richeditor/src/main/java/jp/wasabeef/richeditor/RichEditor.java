@@ -17,6 +17,8 @@ import java.net.URLEncoder;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Locale;
+import java.util.concurrent.ExecutorService;
+import java.util.concurrent.Executors;
 
 /**
  * Copyright (C) 2015 Wasabeef
@@ -73,6 +75,9 @@ public class RichEditor extends WebView {
   private OnTextChangeListener mTextChangeListener;
   private OnDecorationStateListener mDecorationStateListener;
   private AfterInitialLoadListener mLoadListener;
+
+  private static ExecutorService sThreadPool =
+      Executors.newFixedThreadPool(Math.max(1, Runtime.getRuntime().availableProcessors()));
 
   public RichEditor(Context context) {
     this(context, null);
@@ -330,7 +335,7 @@ public class RichEditor extends WebView {
     if (isReady) {
       load(trigger);
     } else {
-      new waitLoad(trigger).execute();
+      new WaitLoad(trigger).executeOnExecutor(sThreadPool);
     }
   }
 
@@ -342,11 +347,11 @@ public class RichEditor extends WebView {
     }
   }
 
-  private class waitLoad extends AsyncTask<Void, Void, Void> {
+  private class WaitLoad extends AsyncTask<Void, Void, Void> {
 
     private String mTrigger;
 
-    public waitLoad(String trigger) {
+    public WaitLoad(String trigger) {
       super();
       mTrigger = trigger;
     }
