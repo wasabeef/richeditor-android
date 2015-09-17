@@ -262,6 +262,10 @@ RE.blurFocus = function() {
     RE.editor.blur();
 }
 
+RE.removeFormat = function() {
+    execCommand('removeFormat', false, null);
+}
+
 // Event Listeners
 RE.editor.addEventListener("input", RE.callback);
 RE.editor.addEventListener("keyup", function(e) {
