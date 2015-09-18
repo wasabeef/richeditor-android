@@ -3,6 +3,8 @@ package jp.wasabeef.richeditor;
 import android.annotation.SuppressLint;
 import android.content.Context;
 import android.content.res.TypedArray;
+import android.graphics.Bitmap;
+import android.graphics.drawable.Drawable;
 import android.os.AsyncTask;
 import android.os.Build;
 import android.text.TextUtils;
@@ -35,6 +37,7 @@ import java.util.concurrent.Executors;
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
+
 public class RichEditor extends WebView {
 
   public enum Type {
@@ -216,8 +219,31 @@ public class RichEditor extends WebView {
   }
 
   public void setEditorBackgroundColor(int color) {
-    String hex = convertHexColorString(color);
-    exec("javascript:RE.setBackgroundColor('" + hex + "');");
+    setBackgroundColor(color);
+  }
+
+  @Override public void setBackgroundColor(int color) {
+    super.setBackgroundColor(color);
+  }
+
+  @Override public void setBackgroundResource(int resid) {
+    Bitmap bitmap = Utils.decodeResource(getContext(), resid);
+    String base64 = Utils.toBase64(bitmap);
+    bitmap.recycle();
+
+    exec("javascript:RE.setBackgroundImage('url(data:image/png;base64," + base64 + ")');");
+  }
+
+  @Override public void setBackground(Drawable background) {
+    Bitmap bitmap = Utils.toBitmap(background);
+    String base64 = Utils.toBase64(bitmap);
+    bitmap.recycle();
+
+    exec("javascript:RE.setBackgroundImage('url(data:image/png;base64," + base64 + ")');");
+  }
+
+  public void setBackground(String url) {
+    exec("javascript:RE.setBackgroundImage('url(" + url + ")');");
   }
 
   public void setEditorWidth(int px) {
