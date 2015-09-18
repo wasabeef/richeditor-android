@@ -52,9 +52,10 @@ RE.setBackgroundColor = function(color) {
 }
 
 RE.setBackgroundImage = function(image) {
-    document.body.style.backgroundImage = image;
-    document.body.style.backgroundSize = "100%"
-    document.body.style.backgroundRepeat = "no-repeat"
+    RE.editor.style.backgroundImage = image;
+    RE.editor.style.backgroundRepeat = "no-repeat";
+    RE.editor.style.backgroundPosition = "center bottom";
+    RE.editor.style.backgroundSize = "cover";
 }
 
 RE.setWidth = function(size) {
