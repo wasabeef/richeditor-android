@@ -23,7 +23,7 @@ public class MainActivity extends AppCompatActivity {
     //mEditor.setBackgroundColor(Color.BLUE);
     //mEditor.setBackgroundResource(R.drawable.bg);
     mEditor.setPadding(10, 10, 10, 10);
-    //mEditor.setBackground("http://d2b3zk1w1e6d7a.cloudfront.net/wp-content/uploads/2013/10/twitter-bg.png");
+    mEditor.setBackground("https://raw.githubusercontent.com/wasabeef/art/master/chip.jpg");
     mEditor.setPlaceholder("Insert text here...");
 
     mPreview = (TextView) findViewById(R.id.preview);
