@@ -53,9 +53,6 @@ RE.setBackgroundColor = function(color) {
 
 RE.setBackgroundImage = function(image) {
     RE.editor.style.backgroundImage = image;
-    RE.editor.style.backgroundRepeat = "no-repeat";
-    RE.editor.style.backgroundPosition = "center bottom";
-    RE.editor.style.backgroundSize = "cover";
 }
 
 RE.setWidth = function(size) {

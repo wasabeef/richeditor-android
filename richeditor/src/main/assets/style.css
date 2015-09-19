@@ -33,6 +33,9 @@ body {
   -webkit-user-modify: read-write !important;
   outline: 0px solid transparent;
   width: 100%;
+  background-repeat: no-repeat;
+  background-position: center bottom;
+  background-size: cover;
 }
 
 #editor[placeholder]:empty:not(:focus):before {
