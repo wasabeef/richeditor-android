@@ -198,10 +198,6 @@ public class RichEditor extends WebView {
     ta.recycle();
   }
 
-  public void setEditorFontSize(int px) {
-    exec("javascript:RE.setFontSize('" + px + "px');");
-  }
-
   public void setHtml(String contents) {
     if (contents == null) {
       contents = "";
@@ -216,6 +212,21 @@ public class RichEditor extends WebView {
 
   public String getHtml() {
     return mContents;
+  }
+
+  public void setEditorFontSize(int px) {
+    exec("javascript:RE.setFontSize('" + px + "px');");
+  }
+
+  @Override public void setPadding(int left, int top, int right, int bottom) {
+    super.setPadding(left, top, right, bottom);
+    exec("javascript:RE.setPadding('" + left + "px', '" + top + "px', '" + right + "px', '" + bottom
+        + "px');");
+  }
+
+  @Override public void setPaddingRelative(int start, int top, int end, int bottom) {
+    // still not support RTL.
+    setPadding(start, top, end, bottom);
   }
 
   public void setEditorBackgroundColor(int color) {
