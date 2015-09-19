@@ -1,5 +1,6 @@
 RichEditor for Android
 =============
+[![Android Arsenal](https://img.shields.io/badge/Android%20Arsenal-richeditor--android-brightgreen.svg?style=flat)](https://android-arsenal.com/details/1/1696)
 [![License](https://img.shields.io/badge/license-Apache%202-blue.svg)](https://www.apache.org/licenses/LICENSE-2.0)
 [![Download](https://api.bintray.com/packages/wasabeef/maven/richeditor-android/images/download.svg)](https://bintray.com/wasabeef/maven/richeditor-android/_latestVersion)
 
@@ -73,27 +74,59 @@ repositories {
 }
 
 dependencies {
-    compile 'jp.wasabeef:richeditor-android:0.2.3'
+    compile 'jp.wasabeef:richeditor-android:0.3.0'
 }
 ```
+### Default Setting for Editor
+---
 
-### Functions
+**Height**
+```java
+editor.setEditorHeight(200);
+```
+
+**Font**
+```java
+editor.setEditorFontSize(22);
+editor.setEditorFontColor(Color.RED);
+```
+
+**Background**
+```java
+editor.setEditorBackgroundColor(Color.BLUE);
+editor.setBackgroundColor(Color.BLUE);
+editor.setBackgroundResource(R.drawable.bg);
+editor.setBackground("https://raw.githubusercontent.com/wasabeef/art/master/chip.jpg");
+```
+
+**Padding**
+```java
+editor.setPadding(10, 10, 10, 10);
+```
+
+**Placeholder**
+```java
+editor.setPlaceholder("Insert text here...");
+```
+
+**Others**  
+Please refer the [samples](https://github.com/wasabeef/richeditor-android/blob/master/sample/src/main/java/jp/wasabeef/sample/MainActivity.java) for usage.
+
+### Functions for ContentEditable
+---
 
 **Bold**
 ```java
-RichEditor editor = (RichEditor) findViewById(R.id.editor);
 editor.setBold();
 ```
 
 **Italic**
 ```java
-RichEditor editor = (RichEditor) findViewById(R.id.editor);
 editor.setItalic();
 ```
 
 **Insert Image**
 ```java
-RichEditor editor = (RichEditor) findViewById(R.id.editor);
 editor.insertImage("https://raw.githubusercontent.com/wasabeef/art/master/twitter.png","twitter");
 ```
 
