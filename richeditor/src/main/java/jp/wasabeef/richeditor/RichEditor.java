@@ -214,8 +214,13 @@ public class RichEditor extends WebView {
     return mContents;
   }
 
+  public void setEditorFontColor(int color) {
+    String hex = convertHexColorString(color);
+    exec("javascript:RE.setBaseTextColor('" + hex + "');");
+  }
+
   public void setEditorFontSize(int px) {
-    exec("javascript:RE.setFontSize('" + px + "px');");
+    exec("javascript:RE.setBaseFontSize('" + px + "px');");
   }
 
   @Override public void setPadding(int left, int top, int right, int bottom) {

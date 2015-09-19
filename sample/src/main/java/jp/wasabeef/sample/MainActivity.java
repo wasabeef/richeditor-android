@@ -18,6 +18,7 @@ public class MainActivity extends AppCompatActivity {
     mEditor = (RichEditor) findViewById(R.id.editor);
     mEditor.setEditorHeight(200);
     mEditor.setEditorFontSize(22);
+    mEditor.setEditorFontColor(Color.RED);
     //mEditor.setEditorBackgroundColor(Color.BLUE);
     //mEditor.setBackgroundColor(Color.BLUE);
     //mEditor.setBackgroundResource(R.drawable.bg);
