@@ -18,7 +18,12 @@ public class MainActivity extends AppCompatActivity {
     mEditor = (RichEditor) findViewById(R.id.editor);
     mEditor.setEditorHeight(200);
     mEditor.setEditorFontSize(22);
-    mEditor.setEditorBackgroundColor(Color.BLUE);
+    mEditor.setEditorFontColor(Color.RED);
+    //mEditor.setEditorBackgroundColor(Color.BLUE);
+    //mEditor.setBackgroundColor(Color.BLUE);
+    //mEditor.setBackgroundResource(R.drawable.bg);
+    mEditor.setPadding(10, 10, 10, 10);
+    mEditor.setBackground("https://raw.githubusercontent.com/wasabeef/art/master/chip.jpg");
     mEditor.setPlaceholder("Insert text here...");
 
     mPreview = (TextView) findViewById(R.id.preview);

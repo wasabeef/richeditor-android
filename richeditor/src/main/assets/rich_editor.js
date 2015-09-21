@@ -43,12 +43,27 @@ RE.getText = function() {
     return RE.editor.innerText;
 }
 
-RE.setFontSize = function(size) {
+RE.setBaseTextColor = function(color) {
+    RE.editor.style.color  = color;
+}
+
+RE.setBaseFontSize = function(size) {
     RE.editor.style.fontSize = size;
+}
+
+RE.setPadding = function(left, top, right, bottom) {
+  RE.editor.style.paddingLeft = left;
+  RE.editor.style.paddingTop = top;
+  RE.editor.style.paddingRight = right;
+  RE.editor.style.paddingBottom = bottom;
 }
 
 RE.setBackgroundColor = function(color) {
     document.body.style.backgroundColor = color;
+}
+
+RE.setBackgroundImage = function(image) {
+    RE.editor.style.backgroundImage = image;
 }
 
 RE.setWidth = function(size) {
