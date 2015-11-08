@@ -232,6 +232,16 @@
         android:contentDescription="@null"
         android:src="@drawable/insert_link"
         />
+
+       <ImageButton
+        android:id="@+id/action_insert_checkbox"
+        android:layout_width="48dp"
+        android:layout_height="48dp"
+        android:background="@null"
+        android:contentDescription="@null"
+        android:src="@android:drawable/checkbox_on_background"
+        />
+
     </LinearLayout>
   </HorizontalScrollView>
 
