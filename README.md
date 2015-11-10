@@ -35,6 +35,7 @@ Supported Functions
 - [x] Outdent
 - [x] Insert Image
 - [x] Insert Link
+- [x] Checkbox
 - [x] Text Color
 - [x] Text Background Color
 
@@ -74,7 +75,7 @@ repositories {
 }
 
 dependencies {
-    compile 'jp.wasabeef:richeditor-android:0.3.0'
+    compile 'jp.wasabeef:richeditor-android:1.0.0'
 }
 ```
 ### Default Setting for Editor
