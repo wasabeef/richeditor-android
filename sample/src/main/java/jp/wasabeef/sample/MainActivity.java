@@ -23,7 +23,7 @@ public class MainActivity extends AppCompatActivity {
     //mEditor.setBackgroundColor(Color.BLUE);
     //mEditor.setBackgroundResource(R.drawable.bg);
     mEditor.setPadding(10, 10, 10, 10);
-    mEditor.setBackground("https://raw.githubusercontent.com/wasabeef/art/master/chip.jpg");
+//    mEditor.setBackground("https://raw.githubusercontent.com/wasabeef/art/master/chip.jpg");
     mEditor.setPlaceholder("Insert text here...");
 
     mPreview = (TextView) findViewById(R.id.preview);
@@ -174,13 +174,19 @@ public class MainActivity extends AppCompatActivity {
     findViewById(R.id.action_insert_image).setOnClickListener(new View.OnClickListener() {
       @Override public void onClick(View v) {
         mEditor.insertImage("http://www.1honeywan.com/dachshund/image/7.21/7.21_3_thumb.JPG",
-            "dachshund");
+                "dachshund");
       }
     });
 
     findViewById(R.id.action_insert_link).setOnClickListener(new View.OnClickListener() {
       @Override public void onClick(View v) {
         mEditor.insertLink("https://github.com/wasabeef", "wasabeef");
+      }
+    });
+    findViewById(R.id.action_insert_checkbox).setOnClickListener(new View.OnClickListener() {
+      @Override
+      public void onClick(View v) {
+        mEditor.insertTodo();
       }
     });
   }
