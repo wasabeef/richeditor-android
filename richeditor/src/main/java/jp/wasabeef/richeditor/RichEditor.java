@@ -5,7 +5,6 @@ import android.content.Context;
 import android.content.res.TypedArray;
 import android.graphics.Bitmap;
 import android.graphics.drawable.Drawable;
-import android.os.AsyncTask;
 import android.os.Build;
 import android.text.TextUtils;
 import android.util.AttributeSet;
@@ -19,8 +18,6 @@ import java.net.URLEncoder;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Locale;
-import java.util.concurrent.ExecutorService;
-import java.util.concurrent.Executors;
 
 /**
  * Copyright (C) 2015 Wasabeef
@@ -79,8 +76,6 @@ public class RichEditor extends WebView {
   private OnDecorationStateListener mDecorationStateListener;
   private AfterInitialLoadListener mLoadListener;
 
-  private static ExecutorService sThreadPool = Executors.newSingleThreadExecutor();
-
   public RichEditor(Context context) {
     this(context, null);
   }
@@ -97,37 +92,14 @@ public class RichEditor extends WebView {
     setHorizontalScrollBarEnabled(false);
     getSettings().setJavaScriptEnabled(true);
     setWebChromeClient(new WebChromeClient());
-    setWebViewClient(new WebViewClient() {
-      @Override public void onPageFinished(WebView view, String url) {
-        isReady = url.equalsIgnoreCase(SETUP_HTML);
-        if (mLoadListener != null) {
-          mLoadListener.onAfterInitialLoad(isReady);
-        }
-      }
-
-      @Override public boolean shouldOverrideUrlLoading(WebView view, String url) {
-        String decode;
-        try {
-          decode = URLDecoder.decode(url, "UTF-8");
-        } catch (UnsupportedEncodingException e) {
-          // No handling
-          return false;
-        }
-
-        if (TextUtils.indexOf(url, CALLBACK_SCHEME) == 0) {
-          callback(decode);
-          return true;
-        } else if (TextUtils.indexOf(url, STATE_SCHEME) == 0) {
-          stateCheck(decode);
-          return true;
-        }
-
-        return super.shouldOverrideUrlLoading(view, url);
-      }
-    });
+    setWebViewClient(createWebviewClient());
     loadUrl(SETUP_HTML);
 
     applyAttributes(context, attrs);
+  }
+
+  protected EditorWebViewClient createWebviewClient() {
+    return new EditorWebViewClient();
   }
 
   public void setOnTextChangeListener(OnTextChangeListener listener) {
@@ -165,7 +137,7 @@ public class RichEditor extends WebView {
 
   private void applyAttributes(Context context, AttributeSet attrs) {
     final int[] attrsArray = new int[] {
-        android.R.attr.gravity
+            android.R.attr.gravity
     };
     TypedArray ta = context.obtainStyledAttributes(attrs, attrsArray);
 
@@ -226,7 +198,7 @@ public class RichEditor extends WebView {
   @Override public void setPadding(int left, int top, int right, int bottom) {
     super.setPadding(left, top, right, bottom);
     exec("javascript:RE.setPadding('" + left + "px', '" + top + "px', '" + right + "px', '" + bottom
-        + "px');");
+            + "px');");
   }
 
   @Override public void setPaddingRelative(int start, int top, int end, int bottom) {
@@ -276,14 +248,14 @@ public class RichEditor extends WebView {
 
   public void loadCSS(String cssFile) {
     String jsCSSImport = "(function() {" +
-        "    var head  = document.getElementsByTagName(\"head\")[0];" +
-        "    var link  = document.createElement(\"link\");" +
-        "    link.rel  = \"stylesheet\";" +
-        "    link.type = \"text/css\";" +
-        "    link.href = \"" + cssFile + "\";" +
-        "    link.media = \"all\";" +
-        "    head.appendChild(link);" +
-        "}) ();";
+            "    var head  = document.getElementsByTagName(\"head\")[0];" +
+            "    var link  = document.createElement(\"link\");" +
+            "    link.rel  = \"stylesheet\";" +
+            "    link.type = \"text/css\";" +
+            "    link.href = \"" + cssFile + "\";" +
+            "    link.media = \"all\";" +
+            "    head.appendChild(link);" +
+            "}) ();";
     exec("javascript:" + jsCSSImport + "");
   }
 
@@ -365,6 +337,14 @@ public class RichEditor extends WebView {
     exec("javascript:RE.setBlockquote();");
   }
 
+  public void setBullets() {
+    exec("javascript:RE.setBullets();");
+  }
+
+  public void setNumbers() {
+    exec("javascript:RE.setNumbers();");
+  }
+
   public void insertImage(String url, String alt) {
     exec("javascript:RE.prepareInsert();");
     exec("javascript:RE.insertImage('" + url + "', '" + alt + "');");
@@ -393,11 +373,16 @@ public class RichEditor extends WebView {
     return String.format("#%06X", (0xFFFFFF & color));
   }
 
-  private void exec(String trigger) {
+  protected void exec(final String trigger) {
     if (isReady) {
       load(trigger);
     } else {
-      new WaitLoad(trigger).executeOnExecutor(sThreadPool);
+      postDelayed(new Runnable() {
+        @Override
+        public void run() {
+          exec(trigger);
+        }
+      }, 100);
     }
   }
 
@@ -409,31 +394,32 @@ public class RichEditor extends WebView {
     }
   }
 
-  private class WaitLoad extends AsyncTask<Void, Void, Void> {
-
-    private String mTrigger;
-
-    public WaitLoad(String trigger) {
-      super();
-      mTrigger = trigger;
-    }
-
-    @Override protected Void doInBackground(Void... params) {
-      while (!RichEditor.this.isReady) {
-        sleep(100);
+  protected class EditorWebViewClient extends WebViewClient {
+    @Override public void onPageFinished(WebView view, String url) {
+      isReady = url.equalsIgnoreCase(SETUP_HTML);
+      if (mLoadListener != null) {
+        mLoadListener.onAfterInitialLoad(isReady);
       }
-      return null;
     }
 
-    @Override protected void onPostExecute(Void aVoid) {
-      load(mTrigger);
-    }
-
-    private synchronized void sleep(long ms) {
+    @Override public boolean shouldOverrideUrlLoading(WebView view, String url) {
+      String decode;
       try {
-        wait(ms);
-      } catch (InterruptedException ignore) {
+        decode = URLDecoder.decode(url, "UTF-8");
+      } catch (UnsupportedEncodingException e) {
+        // No handling
+        return false;
       }
+
+      if (TextUtils.indexOf(url, CALLBACK_SCHEME) == 0) {
+        callback(decode);
+        return true;
+      } else if (TextUtils.indexOf(url, STATE_SCHEME) == 0) {
+        stateCheck(decode);
+        return true;
+      }
+
+      return super.shouldOverrideUrlLoading(view, url);
     }
   }
 }

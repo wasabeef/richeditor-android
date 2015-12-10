@@ -118,6 +118,14 @@ RE.setUnderline = function() {
     document.execCommand('underline', false, null);
 }
 
+RE.setBullets = function() {
+    document.execCommand('InsertUnorderedList', false, null);
+}
+
+RE.setNumbers = function() {
+    document.execCommand('InsertOrderedList', false, null);
+}
+
 RE.setTextColor = function(color) {
     RE.restorerange();
     document.execCommand("styleWithCSS", null, true);
@@ -173,19 +181,18 @@ RE.insertHTML = function(html) {
 RE.insertLink = function(url, title) {
     RE.restorerange();
     var sel = document.getSelection();
-    if (sel.toString().length != 0) {
-        if (sel.rangeCount) {
+    if (sel.toString().length == 0) {
+        document.execCommand("insertHTML",false,"<a href='"+url+"'>"+title+"</a>");
+    } else if (sel.rangeCount) {
+       var el = document.createElement("a");
+       el.setAttribute("href", url);
+       el.setAttribute("title", title);
 
-            var el = document.createElement("a");
-            el.setAttribute("href", url);
-            el.setAttribute("title", title);
-
-            var range = sel.getRangeAt(0).cloneRange();
-            range.surroundContents(el);
-            sel.removeAllRanges();
-            sel.addRange(range);
-        }
-    }
+       var range = sel.getRangeAt(0).cloneRange();
+       range.surroundContents(el);
+       sel.removeAllRanges();
+       sel.addRange(range);
+   }
     RE.callback();
 }
 
