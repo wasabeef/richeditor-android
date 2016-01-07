@@ -38,6 +38,8 @@ Supported Functions
 - [x] Checkbox
 - [x] Text Color
 - [x] Text Background Color
+- [x] Unordered List (Bullets)
+- [x] Ordered List (Numbers)
 
 Attribute change of editor
 ---
