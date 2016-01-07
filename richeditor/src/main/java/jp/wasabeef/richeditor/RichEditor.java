@@ -378,8 +378,7 @@ public class RichEditor extends WebView {
       load(trigger);
     } else {
       postDelayed(new Runnable() {
-        @Override
-        public void run() {
+        @Override public void run() {
           exec(trigger);
         }
       }, 100);
