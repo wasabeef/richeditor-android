@@ -75,7 +75,7 @@ repositories {
 }
 
 dependencies {
-    compile 'jp.wasabeef:richeditor-android:1.0.0'
+    compile 'jp.wasabeef:richeditor-android:1.1.0'
 }
 ```
 ### Default Setting for Editor
