@@ -299,18 +299,18 @@ public class RichEditor extends WebView {
     exec("javascript:RE.setTextColor('" + hex + "');");
   }
 
-  public void setFontSize(int fontSize) {
-    if(fontSize > 7 || fontSize < 1) {
-      Log.e("RichEditor","Font size should have a value between 1-7");
-    }
-    exec("javascript:RE.setFontSize('" + fontSize + "');");
-  }
-
   public void setTextBackgroundColor(int color) {
     exec("javascript:RE.prepareInsert();");
 
     String hex = convertHexColorString(color);
     exec("javascript:RE.setTextBackgroundColor('" + hex + "');");
+  }
+
+  public void setFontSize(int fontSize) {
+    if (fontSize > 7 || fontSize < 1) {
+      Log.e("RichEditor", "Font size should have a value between 1-7");
+    }
+    exec("javascript:RE.setFontSize('" + fontSize + "');");
   }
 
   public void removeFormat() {

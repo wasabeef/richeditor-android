@@ -133,15 +133,15 @@ RE.setTextColor = function(color) {
     document.execCommand("styleWithCSS", null, false);
 }
 
-RE.setFontSize = function(fontSize){
-    document.execCommand("fontSize", false, fontSize);
-}
-
 RE.setTextBackgroundColor = function(color) {
     RE.restorerange();
     document.execCommand("styleWithCSS", null, true);
     document.execCommand('hiliteColor', false, color);
     document.execCommand("styleWithCSS", null, false);
+}
+
+RE.setFontSize = function(fontSize){
+    document.execCommand("fontSize", false, fontSize);
 }
 
 RE.setHeading = function(heading) {

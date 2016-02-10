@@ -38,6 +38,7 @@ Supported Functions
 - [x] Checkbox
 - [x] Text Color
 - [x] Text Background Color
+- [x] Text Font Size
 - [x] Unordered List (Bullets)
 - [x] Ordered List (Numbers)
 
@@ -77,7 +78,7 @@ repositories {
 }
 
 dependencies {
-    compile 'jp.wasabeef:richeditor-android:1.1.0'
+    compile 'jp.wasabeef:richeditor-android:1.2.0'
 }
 ```
 ### Default Setting for Editor
