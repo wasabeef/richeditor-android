@@ -298,6 +298,14 @@ public class RichEditor extends WebView {
     exec("javascript:RE.setTextColor('" + hex + "');");
   }
 
+  /**
+   *
+   * @param textSize should be an int value from 1-7
+   */
+  public void setTextSize(int textSize){
+      exec("javascript:RE.setTextSize('" + textSize + "');");
+  }
+
   public void setTextBackgroundColor(int color) {
     exec("javascript:RE.prepareInsert();");
 
