@@ -8,6 +8,7 @@ import android.graphics.drawable.Drawable;
 import android.os.Build;
 import android.text.TextUtils;
 import android.util.AttributeSet;
+import android.util.Log;
 import android.view.Gravity;
 import android.webkit.WebChromeClient;
 import android.webkit.WebView;
@@ -296,6 +297,13 @@ public class RichEditor extends WebView {
 
     String hex = convertHexColorString(color);
     exec("javascript:RE.setTextColor('" + hex + "');");
+  }
+
+  public void setFontSize(int fontSize) {
+    if(fontSize > 7 || fontSize < 1) {
+      Log.e("RichEditor","Font size should have a value between 1-7");
+    }
+    exec("javascript:RE.setFontSize('" + fontSize + "');");
   }
 
   public void setTextBackgroundColor(int color) {
