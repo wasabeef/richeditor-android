@@ -27,6 +27,10 @@ import java.io.ByteArrayOutputStream;
 
 public final class Utils {
 
+  private Utils() throws InstantiationException {
+    throw new InstantiationException("This class is not for instantiation");
+  }
+
   public static String toBase64(Bitmap bitmap) {
     ByteArrayOutputStream baos = new ByteArrayOutputStream();
     bitmap.compress(Bitmap.CompressFormat.PNG, 100, baos);
