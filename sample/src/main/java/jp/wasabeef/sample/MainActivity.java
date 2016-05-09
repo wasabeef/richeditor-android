@@ -118,7 +118,7 @@ public class MainActivity extends AppCompatActivity {
     });
 
     findViewById(R.id.action_txt_color).setOnClickListener(new View.OnClickListener() {
-      boolean isChanged;
+      private boolean isChanged;
 
       @Override public void onClick(View v) {
         mEditor.setTextColor(isChanged ? Color.BLACK : Color.RED);
@@ -127,7 +127,7 @@ public class MainActivity extends AppCompatActivity {
     });
 
     findViewById(R.id.action_bg_color).setOnClickListener(new View.OnClickListener() {
-      boolean isChanged;
+      private boolean isChanged;
 
       @Override public void onClick(View v) {
         mEditor.setTextBackgroundColor(isChanged ? Color.TRANSPARENT : Color.YELLOW);
