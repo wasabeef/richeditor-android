@@ -71,7 +71,7 @@ RE.setWidth = function(size) {
 }
 
 RE.setHeight = function(size) {
-    document.body.style.minHeight = size;
+    RE.editor.style.height = size;
 }
 
 RE.setTextAlign = function(align) {
