@@ -22,7 +22,7 @@ html {
 }
 
 body {
-  overflow: hidden;
+  overflow: scroll;
   display: table;
   table-layout: fixed;
   width: 100%;
