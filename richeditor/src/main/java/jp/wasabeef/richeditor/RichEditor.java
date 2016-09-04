@@ -50,7 +50,13 @@ public class RichEditor extends WebView {
     H3,
     H4,
     H5,
-    H6
+    H6,
+    ORDEREDLIST,
+    UNORDEREDLIST,
+    JUSTIFYCENTER,
+    JUSTIFYFULL,
+    JUSTUFYLEFT,
+    JUSTIFYRIGHT
   }
 
   public interface OnTextChangeListener {
