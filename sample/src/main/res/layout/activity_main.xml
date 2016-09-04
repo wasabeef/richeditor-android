@@ -207,6 +207,24 @@
         />
 
       <ImageButton
+        android:id="@+id/action_insert_bullets"
+        android:layout_width="48dp"
+        android:layout_height="48dp"
+        android:background="@null"
+        android:contentDescription="@null"
+        android:src="@drawable/bullets"
+        />
+
+      <ImageButton
+        android:id="@+id/action_insert_numbers"
+        android:layout_width="48dp"
+        android:layout_height="48dp"
+        android:background="@null"
+        android:contentDescription="@null"
+        android:src="@drawable/numbers"
+        />
+
+      <ImageButton
         android:id="@+id/action_blockquote"
         android:layout_width="48dp"
         android:layout_height="48dp"
@@ -240,24 +258,6 @@
         android:background="@null"
         android:contentDescription="@null"
         android:src="@android:drawable/checkbox_on_background"
-        />
-
-      <ImageButton
-        android:id="@+id/action_insert_bullets"
-        android:layout_width="48dp"
-        android:layout_height="48dp"
-        android:background="@null"
-        android:contentDescription="@null"
-        android:src="@drawable/bullets"
-        />
-
-      <ImageButton
-        android:id="@+id/action_insert_numbers"
-        android:layout_width="48dp"
-        android:layout_height="48dp"
-        android:background="@null"
-        android:contentDescription="@null"
-        android:src="@drawable/numbers"
         />
 
     </LinearLayout>
