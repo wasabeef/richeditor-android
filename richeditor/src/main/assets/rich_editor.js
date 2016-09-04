@@ -119,11 +119,11 @@ RE.setUnderline = function() {
 }
 
 RE.setBullets = function() {
-    document.execCommand('InsertUnorderedList', false, null);
+    document.execCommand('insertUnorderedList', false, null);
 }
 
 RE.setNumbers = function() {
-    document.execCommand('InsertOrderedList', false, null);
+    document.execCommand('insertOrderedList', false, null);
 }
 
 RE.setTextColor = function(color) {
