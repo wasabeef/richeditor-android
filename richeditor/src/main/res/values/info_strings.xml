@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="define_RichEditor"></string>
+    <string name="library_RichEditor_author">Daichi Furiya</string>
+    <string name="library_RichEditor_authorWebsite">https://wasabeef.jp/</string>
+    <string name="library_RichEditor_libraryName">RichEditor</string>
+    <string name="library_RichEditor_libraryDescription">RichEditor for Android is a beautiful Rich Text WYSIWYG Editor for Android</string>
+    <string name="library_RichEditor_libraryVersion">1.2.1</string>
+    <string name="library_RichEditor_libraryWebsite">https://github.com/wasabeef/richeditor-android</string>
+    <string name="library_RichEditor_licenseId">apache_2_0</string>
+    <string name="library_RichEditor_isOpenSource">true</string>
+    <string name="library_RichEditor_repositoryLink">https://github.com/wasabeef/richeditor-android</string>
+</resources>
