@@ -23,8 +23,9 @@ public class MainActivity extends AppCompatActivity {
     //mEditor.setBackgroundColor(Color.BLUE);
     //mEditor.setBackgroundResource(R.drawable.bg);
     mEditor.setPadding(10, 10, 10, 10);
-    //    mEditor.setBackground("https://raw.githubusercontent.com/wasabeef/art/master/chip.jpg");
+    //mEditor.setBackground("https://raw.githubusercontent.com/wasabeef/art/master/chip.jpg");
     mEditor.setPlaceholder("Insert text here...");
+    //mEditor.setInputEnabled(false);
 
     mPreview = (TextView) findViewById(R.id.preview);
     mEditor.setOnTextChangeListener(new RichEditor.OnTextChangeListener() {
