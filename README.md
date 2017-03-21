@@ -78,7 +78,7 @@ repositories {
 }
 
 dependencies {
-    compile 'jp.wasabeef:richeditor-android:1.2.1'
+    compile 'jp.wasabeef:richeditor-android:1.2.2'
 }
 ```
 ### Default Setting for Editor
@@ -180,7 +180,7 @@ Thanks
 License
 -------
 
-    Copyright 2015 Wasabeef
+    Copyright 2017 Wasabeef
 
     Licensed under the Apache License, Version 2.0 (the "License");
     you may not use this file except in compliance with the License.
