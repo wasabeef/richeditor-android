@@ -31,10 +31,6 @@ body {
 
 #editor {
   display: table-cell;
-
-  -webkit-user-select: auto !important;
-  -webkit-user-modify: read-write !important;
-
   outline: 0px solid transparent;
   background-repeat: no-repeat;
   background-position: center;

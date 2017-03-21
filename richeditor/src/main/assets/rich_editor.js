@@ -86,6 +86,10 @@ RE.setPlaceholder = function(placeholder) {
     RE.editor.setAttribute("placeholder", placeholder);
 }
 
+RE.setInputEnabled = function(inputEnabled) {
+    RE.editor.contentEditable = String(inputEnabled);
+}
+
 RE.undo = function() {
     document.execCommand('undo', false, null);
 }
