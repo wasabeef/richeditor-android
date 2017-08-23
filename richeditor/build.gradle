@@ -13,6 +13,13 @@ android {
   }
 }
 
+
+dependencies {
+  testCompile "junit:junit:4.12"
+  testCompile "org.robolectric:robolectric:3.1.4"
+}
+
+
 publish {
   userOrg = POM_DEVELOPER_ID
   groupId = GROUP
