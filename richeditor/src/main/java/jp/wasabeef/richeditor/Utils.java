@@ -39,6 +39,21 @@ public final class Utils {
     return Base64.encodeToString(bytes, Base64.NO_WRAP);
   }
 
+  public static String toBase64(Bitmap bitmap, String type) {
+    ByteArrayOutputStream baos = new ByteArrayOutputStream();
+    switch (type) {
+      case 'jpg': case 'jpeg':
+        bitmap.compress(Bitmap.CompressFormat.JPEG, 100, baos);
+        break;
+      case 'png':
+        bitmap.compress(Bitmap.CompressFormat.PNG, 100, baos);
+        break;
+    }
+    byte[] bytes = baos.toByteArray();
+
+    return Base64.encodeToString(bytes, Base64.NO_WRAP);
+  }
+
   public static Bitmap toBitmap(Drawable drawable) {
     if (drawable instanceof BitmapDrawable) {
       return ((BitmapDrawable) drawable).getBitmap();
@@ -63,5 +78,13 @@ public final class Utils {
 
   public static long getCurrentTime() {
     return System.currentTimeMillis();
+  }
+
+  public static String convertUriToPath(Uri uri) {
+    String[] data = { MediaStore.Images.Media.DATA };
+    Cursor cursor = getContentResolver().query(uri, project, null, null, null);
+    int index = cursor.getColumnIndexOrThrow(MediaStore.Images.Media.DATA);
+    cursor.moveToFirst();
+    return cursor.getString(index);
   }
 }
