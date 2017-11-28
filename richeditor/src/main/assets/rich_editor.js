@@ -28,7 +28,7 @@ document.addEventListener("selectionchange", function() { RE.backuprange(); });
 
 // Initializations
 RE.callback = function() {
-    window.location.href = "re-callback://" + encodeURI(RE.getHtml());
+    window.location.href = "re-callback://" + encodeURIComponent(RE.getHtml());
 }
 
 RE.setHtml = function(contents) {
