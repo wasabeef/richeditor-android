@@ -20,7 +20,7 @@ publish {
   publishVersion = VERSION_NAME
   desc = POM_DESCRIPTION
   website = POM_URL
-  bintrayUser = BINTRAY_USER
-  bintrayKey = BINTRAY_API_KEY
+  //bintrayUser = BINTRAY_USER
+  //bintrayKey = BINTRAY_API_KEY
   autoPublish = false
 }
