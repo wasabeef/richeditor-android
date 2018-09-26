@@ -181,6 +181,16 @@ RE.insertImage = function(url, alt) {
     RE.insertHTML(html);
 }
 
+RE.insertVideo = function(url, alt) {
+    var html = '<video src="' + url + '" controls/>';
+    RE.insertHTML(html);
+}
+
+RE.insertAudio = function(url, alt) {
+    var html = '<audio src="' + url + '" controls/>';
+    RE.insertHTML(html);
+}
+
 RE.insertHTML = function(html) {
     RE.restorerange();
     document.execCommand('insertHTML', false, html);
