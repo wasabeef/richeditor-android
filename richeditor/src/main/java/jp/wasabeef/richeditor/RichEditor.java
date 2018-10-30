@@ -55,7 +55,7 @@ public class RichEditor extends WebView {
     UNORDEREDLIST,
     JUSTIFYCENTER,
     JUSTIFYFULL,
-    JUSTUFYLEFT,
+    JUSTIFYLEFT,
     JUSTIFYRIGHT
   }
 
