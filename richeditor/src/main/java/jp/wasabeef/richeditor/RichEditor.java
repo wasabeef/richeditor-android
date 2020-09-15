@@ -370,7 +370,7 @@ public class RichEditor extends WebView {
     exec("javascript:RE.prepareInsert();");
     exec("javascript:RE.insertImage('" + url + "', '" + alt + "');");
   }
-
+  
   /**
    * {@link RichEditor#insertImage(String, String)} will show the original size of the image.
    * So this method can manually process the image by adjusting specific width and height to fit into different mobile screens.
@@ -393,7 +393,29 @@ public class RichEditor extends WebView {
   public void insertImage(String url, String alt, int width) {
     exec("javascript:RE.prepareInsert();");
     exec("javascript:RE.insertImage('" + url + "', '" + alt + "','" + width + "');");
+
   }
+
+  public void insertVideo(String url) {
+    exec("javascript:RE.prepareInsert();");
+    exec("javascript:RE.insertVideo('" + url + "');");
+  }
+
+  public void insertAudio(String url) {
+    exec("javascript:RE.prepareInsert();");
+    exec("javascript:RE.insertAudio('" + url + "');");
+  }
+
+  public void insertYoutubeVideo(String url) {
+    exec("javascript:RE.prepareInsert();");
+    exec("javascript:RE.insertYoutubeVideo('" + url + "');");
+  }
+
+  public void insertCode(String code) {
+      exec("javascript:RE.prepareInsert();");
+      exec("javascript:RE.insertCode('" + code + "');");
+
+
 
   public void insertLink(String href, String title) {
     exec("javascript:RE.prepareInsert();");

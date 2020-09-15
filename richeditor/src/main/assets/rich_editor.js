@@ -177,7 +177,27 @@ RE.setBlockquote = function() {
 }
 
 RE.insertImage = function(url, alt) {
-    var html = '<img src="' + url + '" alt="' + alt + '" />';
+    var html = '<img style="width:100%" src="' + url + '" alt="' + alt + '"></img><br><br>';
+    RE.insertHTML(html);
+}
+
+RE.insertVideo = function(url, alt) {
+    var html = '<video src="' + url + '" controls></video><br><br>';
+    RE.insertHTML(html);
+}
+
+RE.insertAudio = function(url, alt) {
+    var html = '<audio src="' + url + '" controls></audio><br><br>';
+    RE.insertHTML(html);
+}
+
+RE.insertYoutubeVideo = function(url) {
+    var html = '<iframe height="245" style="width:100%" src="' + url + '" frameborder="0" allow="autoplay; encrypted-media" allowfullscreen></iframe><br><br>'
+    RE.insertHTML(html);
+}
+
+RE.insertCode = function(code) {
+    var html = '<code>' + code + '</code>';
     RE.insertHTML(html);
 }
 
