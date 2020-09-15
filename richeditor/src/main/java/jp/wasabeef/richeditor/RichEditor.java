@@ -16,8 +16,8 @@ import android.webkit.WebChromeClient;
 import android.webkit.WebResourceRequest;
 import android.webkit.WebView;
 import android.webkit.WebViewClient;
+
 import java.io.UnsupportedEncodingException;
-import java.net.URLDecoder;
 import java.net.URLEncoder;
 import java.util.ArrayList;
 import java.util.List;
@@ -25,13 +25,13 @@ import java.util.Locale;
 
 /**
  * Copyright (C) 2017 Wasabeef
- *
+ * <p>
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
  * You may obtain a copy of the License at
- *
+ * <p>
  * http://www.apache.org/licenses/LICENSE-2.0
- *
+ * <p>
  * Unless required by applicable law or agreed to in writing, software
  * distributed under the License is distributed on an "AS IS" BASIS,
  * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
@@ -146,8 +146,8 @@ public class RichEditor extends WebView {
   }
 
   private void applyAttributes(Context context, AttributeSet attrs) {
-    final int[] attrsArray = new int[] {
-        android.R.attr.gravity
+    final int[] attrsArray = new int[]{
+      android.R.attr.gravity
     };
     TypedArray ta = context.obtainStyledAttributes(attrs, attrsArray);
 
@@ -205,13 +205,15 @@ public class RichEditor extends WebView {
     exec("javascript:RE.setBaseFontSize('" + px + "px');");
   }
 
-  @Override public void setPadding(int left, int top, int right, int bottom) {
+  @Override
+  public void setPadding(int left, int top, int right, int bottom) {
     super.setPadding(left, top, right, bottom);
     exec("javascript:RE.setPadding('" + left + "px', '" + top + "px', '" + right + "px', '" + bottom
-        + "px');");
+      + "px');");
   }
 
-  @Override public void setPaddingRelative(int start, int top, int end, int bottom) {
+  @Override
+  public void setPaddingRelative(int start, int top, int end, int bottom) {
     // still not support RTL.
     setPadding(start, top, end, bottom);
   }
@@ -220,11 +222,13 @@ public class RichEditor extends WebView {
     setBackgroundColor(color);
   }
 
-  @Override public void setBackgroundColor(int color) {
+  @Override
+  public void setBackgroundColor(int color) {
     super.setBackgroundColor(color);
   }
 
-  @Override public void setBackgroundResource(int resid) {
+  @Override
+  public void setBackgroundResource(int resid) {
     Bitmap bitmap = Utils.decodeResource(getContext(), resid);
     String base64 = Utils.toBase64(bitmap);
     bitmap.recycle();
@@ -232,7 +236,8 @@ public class RichEditor extends WebView {
     exec("javascript:RE.setBackgroundImage('url(data:image/png;base64," + base64 + ")');");
   }
 
-  @Override public void setBackground(Drawable background) {
+  @Override
+  public void setBackground(Drawable background) {
     Bitmap bitmap = Utils.toBitmap(background);
     String base64 = Utils.toBase64(bitmap);
     bitmap.recycle();
@@ -262,14 +267,14 @@ public class RichEditor extends WebView {
 
   public void loadCSS(String cssFile) {
     String jsCSSImport = "(function() {" +
-        "    var head  = document.getElementsByTagName(\"head\")[0];" +
-        "    var link  = document.createElement(\"link\");" +
-        "    link.rel  = \"stylesheet\";" +
-        "    link.type = \"text/css\";" +
-        "    link.href = \"" + cssFile + "\";" +
-        "    link.media = \"all\";" +
-        "    head.appendChild(link);" +
-        "}) ();";
+      "    var head  = document.getElementsByTagName(\"head\")[0];" +
+      "    var link  = document.createElement(\"link\");" +
+      "    link.rel  = \"stylesheet\";" +
+      "    link.type = \"text/css\";" +
+      "    link.href = \"" + cssFile + "\";" +
+      "    link.media = \"all\";" +
+      "    head.appendChild(link);" +
+      "}) ();";
     exec("javascript:" + jsCSSImport + "");
   }
 
@@ -370,10 +375,23 @@ public class RichEditor extends WebView {
     exec("javascript:RE.prepareInsert();");
     exec("javascript:RE.insertImage('" + url + "', '" + alt + "');");
   }
-  
+
+  /**
+   * the image according to the specific width of the image automatically
+   *
+   * @param url
+   * @param alt
+   * @param width
+   */
+  public void insertImage(String url, String alt, int width) {
+    exec("javascript:RE.prepareInsert();");
+    exec("javascript:RE.insertImageW('" + url + "', '" + alt + "','" + width + "');");
+  }
+
   /**
    * {@link RichEditor#insertImage(String, String)} will show the original size of the image.
    * So this method can manually process the image by adjusting specific width and height to fit into different mobile screens.
+   *
    * @param url
    * @param alt
    * @param width
@@ -381,19 +399,7 @@ public class RichEditor extends WebView {
    */
   public void insertImage(String url, String alt, int width, int height) {
     exec("javascript:RE.prepareInsert();");
-    exec("javascript:RE.insertImage('" + url + "', '" + alt + "','" + width + "', '" + height + "');");
-  }
-
-  /**
-   * Scale the image according to the specific width of the image automatically
-   * @param url
-   * @param alt
-   * @param width
-   */
-  public void insertImage(String url, String alt, int width) {
-    exec("javascript:RE.prepareInsert();");
-    exec("javascript:RE.insertImage('" + url + "', '" + alt + "','" + width + "');");
-
+    exec("javascript:RE.insertImageWH('" + url + "', '" + alt + "','" + width + "', '" + height + "');");
   }
 
   public void insertVideo(String url) {
@@ -411,11 +417,15 @@ public class RichEditor extends WebView {
     exec("javascript:RE.insertYoutubeVideo('" + url + "');");
   }
 
+  public void insertYoutubeVideo(String url, int width, int height) {
+    exec("javascript:RE.prepareInsert();");
+    exec("javascript:RE.insertYoutubeVideoWH('" + url + "', '" + width + "', '" + height + "');");
+  }
+
   public void insertCode(String code) {
-      exec("javascript:RE.prepareInsert();");
-      exec("javascript:RE.insertCode('" + code + "');");
-
-
+    exec("javascript:RE.prepareInsert();");
+    exec("javascript:RE.insertCode('" + code + "');");
+  }
 
   public void insertLink(String href, String title) {
     exec("javascript:RE.prepareInsert();");
@@ -445,7 +455,8 @@ public class RichEditor extends WebView {
       load(trigger);
     } else {
       postDelayed(new Runnable() {
-        @Override public void run() {
+        @Override
+        public void run() {
           exec(trigger);
         }
       }, 100);
@@ -461,14 +472,16 @@ public class RichEditor extends WebView {
   }
 
   protected class EditorWebViewClient extends WebViewClient {
-    @Override public void onPageFinished(WebView view, String url) {
+    @Override
+    public void onPageFinished(WebView view, String url) {
       isReady = url.equalsIgnoreCase(SETUP_HTML);
       if (mLoadListener != null) {
         mLoadListener.onAfterInitialLoad(isReady);
       }
     }
 
-    @Override public boolean shouldOverrideUrlLoading(WebView view, String url) {
+    @Override
+    public boolean shouldOverrideUrlLoading(WebView view, String url) {
       String decode = Uri.decode(url);
 
       if (TextUtils.indexOf(url, CALLBACK_SCHEME) == 0) {
@@ -486,13 +499,7 @@ public class RichEditor extends WebView {
     @Override
     public boolean shouldOverrideUrlLoading(WebView view, WebResourceRequest request) {
       final String url = request.getUrl().toString();
-      String decode;
-      try {
-        decode = URLDecoder.decode(url, "UTF-8");
-      } catch (UnsupportedEncodingException e) {
-        // No handling
-        return false;
-      }
+      String decode = Uri.decode(url);
 
       if (TextUtils.indexOf(url, CALLBACK_SCHEME) == 0) {
         callback(decode);

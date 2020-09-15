@@ -177,37 +177,43 @@ RE.setBlockquote = function() {
 }
 
 RE.insertImage = function(url, alt) {
-    var html = '<img style="width:100%" src="' + url + '" alt="' + alt + '"></img><br><br>';
+    var html = '<img src="' + url + '" alt="' + alt + '" />';
     RE.insertHTML(html);
 }
 
-RE.insertVideo = function(url, alt) {
-    var html = '<video src="' + url + '" controls></video><br><br>';
+RE.insertImageW = function(url, alt, width) {
+    var html = '<img src="' + url + '" alt="' + alt + '" width="'+width+'"/>';
     RE.insertHTML(html);
 }
 
-RE.insertAudio = function(url, alt) {
-    var html = '<audio src="' + url + '" controls></audio><br><br>';
-    RE.insertHTML(html);
-}
-
-RE.insertYoutubeVideo = function(url) {
-    var html = '<iframe height="245" style="width:100%" src="' + url + '" frameborder="0" allow="autoplay; encrypted-media" allowfullscreen></iframe><br><br>'
-    RE.insertHTML(html);
-}
-
-RE.insertCode = function(code) {
-    var html = '<code>' + code + '</code>';
-    RE.insertHTML(html);
-}
-
-RE.insertImage = function(url, alt, width, height) {
+RE.insertImageWH = function(url, alt, width, height) {
     var html = '<img src="' + url + '" alt="' + alt + '" width="'+width+'" height="'+height+'"/>';
     RE.insertHTML(html);
 }
 
-RE.insertImage = function(url, alt, width) {
-    var html = '<img src="' + url + '" alt="' + alt + '" width="'+width+'"/>';
+RE.insertVideo = function(url, alt) {
+    var html = '<video src="' + url + '" controls></video>';
+    RE.insertHTML(html);
+}
+
+RE.insertAudio = function(url, alt) {
+    var html = '<audio src="' + url + '" controls></audio>';
+    RE.insertHTML(html);
+}
+
+RE.insertYoutubeVideo = function(url) {
+    var html = '<iframe width="100%" height="100%" src="' + url + '" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>'
+    RE.insertHTML(html);
+}
+
+RE.insertYoutubeVideoWH = function(url, width, height) {
+    var html = '<iframe width="'+width+'" height="'+height+'" src="' + url + '" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>'
+    RE.insertHTML(html);
+}
+
+
+RE.insertCode = function(code) {
+    var html = '<code>' + code + '</code>';
     RE.insertHTML(html);
 }
 

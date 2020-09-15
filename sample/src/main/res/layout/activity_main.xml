@@ -243,6 +243,15 @@
         />
 
       <ImageButton
+        android:id="@+id/action_insert_youtube"
+        android:layout_width="48dp"
+        android:layout_height="48dp"
+        android:background="@null"
+        android:contentDescription="@null"
+        android:src="@drawable/youtube"
+        />
+
+      <ImageButton
         android:id="@+id/action_insert_link"
         android:layout_width="48dp"
         android:layout_height="48dp"
