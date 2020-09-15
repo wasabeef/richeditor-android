@@ -1,6 +1,7 @@
 package jp.wasabeef.richeditor;
 
 import android.annotation.SuppressLint;
+import android.annotation.TargetApi;
 import android.content.Context;
 import android.content.res.TypedArray;
 import android.graphics.Bitmap;
@@ -11,6 +12,7 @@ import android.util.AttributeSet;
 import android.util.Log;
 import android.view.Gravity;
 import android.webkit.WebChromeClient;
+import android.webkit.WebResourceRequest;
 import android.webkit.WebView;
 import android.webkit.WebViewClient;
 import java.io.UnsupportedEncodingException;
@@ -461,6 +463,28 @@ public class RichEditor extends WebView {
       }
 
       return super.shouldOverrideUrlLoading(view, url);
+    }
+
+    @TargetApi(Build.VERSION_CODES.LOLLIPOP)
+    @Override
+    public boolean shouldOverrideUrlLoading(WebView view, WebResourceRequest request) {
+      final String url = request.getUrl().toString();
+      String decode;
+      try {
+        decode = URLDecoder.decode(url, "UTF-8");
+      } catch (UnsupportedEncodingException e) {
+        // No handling
+        return false;
+      }
+
+      if (TextUtils.indexOf(url, CALLBACK_SCHEME) == 0) {
+        callback(decode);
+        return true;
+      } else if (TextUtils.indexOf(url, STATE_SCHEME) == 0) {
+        stateCheck(decode);
+        return true;
+      }
+      return super.shouldOverrideUrlLoading(view, request);
     }
   }
 }
