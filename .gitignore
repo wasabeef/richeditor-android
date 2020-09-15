@@ -51,6 +51,7 @@ captures/
 .idea/jarRepositories.xml
 .idea/inspectionProfiles/Project_Default.xml
 .idea/compiler.xml
+.idea/vcs.xml
 projectFilesBackup/
 
 # Keystore files
