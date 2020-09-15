@@ -181,6 +181,16 @@ RE.insertImage = function(url, alt) {
     RE.insertHTML(html);
 }
 
+RE.insertImage = function(url, alt, width, height) {
+    var html = '<img src="' + url + '" alt="' + alt + '" width="'+width+'" height="'+height+'"/>';
+    RE.insertHTML(html);
+}
+
+RE.insertImage = function(url, alt, width) {
+    var html = '<img src="' + url + '" alt="' + alt + '" width="'+width+'"/>';
+    RE.insertHTML(html);
+}
+
 RE.insertHTML = function(html) {
     RE.restorerange();
     document.execCommand('insertHTML', false, html);
