@@ -6,6 +6,7 @@ import android.content.Context;
 import android.content.res.TypedArray;
 import android.graphics.Bitmap;
 import android.graphics.drawable.Drawable;
+import android.net.Uri;
 import android.os.Build;
 import android.text.TextUtils;
 import android.util.AttributeSet;
@@ -446,13 +447,7 @@ public class RichEditor extends WebView {
     }
 
     @Override public boolean shouldOverrideUrlLoading(WebView view, String url) {
-      String decode;
-      try {
-        decode = URLDecoder.decode(url, "UTF-8");
-      } catch (UnsupportedEncodingException e) {
-        // No handling
-        return false;
-      }
+      String decode = Uri.decode(url);
 
       if (TextUtils.indexOf(url, CALLBACK_SCHEME) == 0) {
         callback(decode);
