@@ -220,6 +220,11 @@ RE.insertYoutubeVideo = function(url) {
     RE.insertHTML(html);
 }
 
+RE.insertYoutubeVideoW = function(url, width) {
+    var html = '<iframe width="' + width + '" src="' + url + '" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe><br>'
+    RE.insertHTML(html);
+}
+
 RE.insertYoutubeVideoWH = function(url, width, height) {
     var html = '<iframe width="' + width + '" height="' + height + '" src="' + url + '" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe><br>'
     RE.insertHTML(html);

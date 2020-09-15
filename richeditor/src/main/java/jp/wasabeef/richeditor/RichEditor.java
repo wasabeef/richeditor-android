@@ -427,6 +427,11 @@ public class RichEditor extends WebView {
     exec("javascript:RE.insertYoutubeVideo('" + url + "');");
   }
 
+  public void insertYoutubeVideo(String url, int width) {
+    exec("javascript:RE.prepareInsert();");
+    exec("javascript:RE.insertYoutubeVideoW('" + url + "', '" + width + "');");
+  }
+
   public void insertYoutubeVideo(String url, int width, int height) {
     exec("javascript:RE.prepareInsert();");
     exec("javascript:RE.insertYoutubeVideoWH('" + url + "', '" + width + "', '" + height + "');");
