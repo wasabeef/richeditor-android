@@ -407,6 +407,16 @@ public class RichEditor extends WebView {
     exec("javascript:RE.insertVideo('" + url + "');");
   }
 
+  public void insertVideo(String url, int width) {
+    exec("javascript:RE.prepareInsert();");
+    exec("javascript:RE.insertVideoW('" + url + "', '" + width + "');");
+  }
+
+  public void insertVideo(String url, int width, int height) {
+    exec("javascript:RE.prepareInsert();");
+    exec("javascript:RE.insertVideoWH('" + url + "', '" + width + "', '" + height + "');");
+  }
+
   public void insertAudio(String url) {
     exec("javascript:RE.prepareInsert();");
     exec("javascript:RE.insertAudio('" + url + "');");
@@ -420,11 +430,6 @@ public class RichEditor extends WebView {
   public void insertYoutubeVideo(String url, int width, int height) {
     exec("javascript:RE.prepareInsert();");
     exec("javascript:RE.insertYoutubeVideoWH('" + url + "', '" + width + "', '" + height + "');");
-  }
-
-  public void insertCode(String code) {
-    exec("javascript:RE.prepareInsert();");
-    exec("javascript:RE.insertCode('" + code + "');");
   }
 
   public void insertLink(String href, String title) {

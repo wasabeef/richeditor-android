@@ -14,6 +14,10 @@
  * limitations under the License.
  */
 
+/**
+ * See about document.execCommand: https://developer.mozilla.org/en-US/docs/Web/API/Document/execCommand
+ */
+
 var RE = {};
 
 RE.currentSelection = {
@@ -182,38 +186,42 @@ RE.insertImage = function(url, alt) {
 }
 
 RE.insertImageW = function(url, alt, width) {
-    var html = '<img src="' + url + '" alt="' + alt + '" width="'+width+'"/>';
+    var html = '<img src="' + url + '" alt="' + alt + '" width="' + width + '"/>';
     RE.insertHTML(html);
 }
 
 RE.insertImageWH = function(url, alt, width, height) {
-    var html = '<img src="' + url + '" alt="' + alt + '" width="'+width+'" height="'+height+'"/>';
+    var html = '<img src="' + url + '" alt="' + alt + '" width="' + width + '" height="' + height +'"/>';
     RE.insertHTML(html);
 }
 
 RE.insertVideo = function(url, alt) {
-    var html = '<video src="' + url + '" controls></video>';
+    var html = '<video src="' + url + '" controls></video><br>';
+    RE.insertHTML(html);
+}
+
+RE.insertVideoW = function(url, width) {
+    var html = '<video src="' + url + '" width="' + width + '" controls></video><br>';
+    RE.insertHTML(html);
+}
+
+RE.insertVideoWH = function(url, width, height) {
+    var html = '<video src="' + url + '" width="' + width + '" height="' + height + '" controls></video><br>';
     RE.insertHTML(html);
 }
 
 RE.insertAudio = function(url, alt) {
-    var html = '<audio src="' + url + '" controls></audio>';
+    var html = '<audio src="' + url + '" controls></audio><br>';
     RE.insertHTML(html);
 }
 
 RE.insertYoutubeVideo = function(url) {
-    var html = '<iframe width="100%" height="100%" src="' + url + '" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>'
+    var html = '<iframe width="100%" height="100%" src="' + url + '" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe><br>'
     RE.insertHTML(html);
 }
 
 RE.insertYoutubeVideoWH = function(url, width, height) {
-    var html = '<iframe width="'+width+'" height="'+height+'" src="' + url + '" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>'
-    RE.insertHTML(html);
-}
-
-
-RE.insertCode = function(code) {
-    var html = '<code>' + code + '</code>';
+    var html = '<iframe width="' + width + '" height="' + height + '" src="' + url + '" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe><br>'
     RE.insertHTML(html);
 }
 

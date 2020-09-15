@@ -227,6 +227,20 @@ public class MainActivity extends AppCompatActivity {
       }
     });
 
+    findViewById(R.id.action_insert_audio).setOnClickListener(new View.OnClickListener() {
+      @Override
+      public void onClick(View v) {
+        mEditor.insertAudio("https://file-examples-com.github.io/uploads/2017/11/file_example_MP3_5MG.mp3");
+      }
+    });
+
+    findViewById(R.id.action_insert_video).setOnClickListener(new View.OnClickListener() {
+      @Override
+      public void onClick(View v) {
+        mEditor.insertVideo("https://test-videos.co.uk/vids/bigbuckbunny/mp4/h264/1080/Big_Buck_Bunny_1080_10s_10MB.mp4", 360);
+      }
+    });
+
     findViewById(R.id.action_insert_link).setOnClickListener(new View.OnClickListener() {
       @Override
       public void onClick(View v) {

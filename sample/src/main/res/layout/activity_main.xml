@@ -215,6 +215,22 @@
         android:src="@drawable/insert_image" />
 
       <ImageButton
+        android:id="@+id/action_insert_audio"
+        android:layout_width="48dp"
+        android:layout_height="48dp"
+        android:background="@null"
+        android:contentDescription="@null"
+        android:src="@drawable/music" />
+
+      <ImageButton
+        android:id="@+id/action_insert_video"
+        android:layout_width="48dp"
+        android:layout_height="48dp"
+        android:background="@null"
+        android:contentDescription="@null"
+        android:src="@drawable/video" />
+
+      <ImageButton
         android:id="@+id/action_insert_youtube"
         android:layout_width="48dp"
         android:layout_height="48dp"
