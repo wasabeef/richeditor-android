@@ -73,12 +73,8 @@ How do I use it?
 
 ##### Gradle
 ```groovy
-repositories {
-    jcenter()
-}
-
 dependencies {
-    compile 'jp.wasabeef:richeditor-android:1.2.2'
+  implementation 'jp.wasabeef:richeditor-android:2.x.x'
 }
 ```
 ### Default Setting for Editor

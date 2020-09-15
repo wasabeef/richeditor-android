@@ -1,6 +1,24 @@
 Change Log
 ==========
 
+Version 2.0.0 *(2020-09-16)*
+----------------------------
+
+Feature:
+- Supported Image can set size params [#176](https://github.com/wasabeef/richeditor-android/pull/176)
+- Supported Youtube, Video, Audio tag [#189](https://github.com/wasabeef/richeditor-android/pull/189)
+
+Update:
+- Compile / Target SDK Version 25 -> 30
+- [Normalize.css](https://necolas.github.io/normalize.css/) to 8.0.1
+
+Bugfix:
+- Fixed placeholder [#240](https://github.com/wasabeef/richeditor-android/pull/240)
+- Fixed typp [#194](https://github.com/wasabeef/richeditor-android/pull/194)
+- Fixed Url decoding [#123](https://github.com/wasabeef/richeditor-android/pull/123)
+- Fixed shouldOverrideUrlLoading [#133](https://github.com/wasabeef/richeditor-android/pull/133)
+- Use encodeURIComponent() [#145](https://github.com/wasabeef/richeditor-android/pull/145)
+
 Version 1.2.2 *(2017-03-21)*
 ----------------------------
 
