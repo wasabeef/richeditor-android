@@ -1,0 +1,14 @@
+signingConfigs {
+  release {
+    storeFile file("release.keystore")
+    storePassword "takttakt"
+    keyAlias "dummy"
+    keyPassword "takttakt"
+  }
+}
+
+// $ keytool -v -list -keystore
+// Certificate fingerprints:
+// MD5:  E8:AB:EB:87:91:DA:8C:C1:0B:15:5C:0F:55:17:66:83
+// SHA1: 6C:EA:F9:AA:87:9E:4E:7F:98:EF:DE:EA:95:91:B5:82:82:F2:E7:61
+// SHA256: 2A:E7:56:DF:EB:4E:A6:F6:52:A3:9D:6B:50:BE:10:E8:40:4A:DA:0A:7C:76:58:1F:FD:A6:50:05:0B:D1:68:3D
