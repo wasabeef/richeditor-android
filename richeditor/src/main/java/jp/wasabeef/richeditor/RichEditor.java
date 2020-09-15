@@ -417,6 +417,15 @@ public class RichEditor extends WebView {
 
 
 
+  public void insertImageAsBase64(Uri imageURI) {
+    String path = Utils.convertUriToPath(imageURI);
+    Bitmap bitmap = BitmapFactory.decodeFile(path);
+    String format = getContentResolver().getType(imageURI).toLowerCase();
+    String tag = "data:image/" + format + ";base64, ";
+    exec("javascript:RE.prepareInsert();");
+    exec("javascript:RE.insertImage('" + tag + Utils.toBase64(bitmap, format) + "','');");
+  }
+
   public void insertLink(String href, String title) {
     exec("javascript:RE.prepareInsert();");
     exec("javascript:RE.insertLink('" + href + "', '" + title + "');");
