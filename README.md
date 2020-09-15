@@ -1,8 +1,21 @@
 RichEditor for Android
 =============
-[![Android Arsenal](https://img.shields.io/badge/Android%20Arsenal-richeditor--android-brightgreen.svg?style=flat)](https://android-arsenal.com/details/1/1696)
-[![License](https://img.shields.io/badge/license-Apache%202-blue.svg)](https://www.apache.org/licenses/LICENSE-2.0)
-[![Download](https://api.bintray.com/packages/wasabeef/maven/richeditor-android/images/download.svg)](https://bintray.com/wasabeef/maven/richeditor-android/_latestVersion)
+<p align="center">
+  <a href="https://pub.dev/packages/flutter_gen">
+    <img src="https://github.com/wasabeef/richeditor-android/raw/master/art/logo.png" width="480px"/>
+  </a>
+</p>
+<p align="center">
+  <a href="https://android-arsenal.com/details/1/1696">
+    <img src="https://img.shields.io/badge/Android%20Arsenal-richeditor--android-brightgreen.svg?style=flat">
+  </a>
+  <a href="https://www.apache.org/licenses/LICENSE-2.0">
+    <img src="https://img.shields.io/badge/license-Apache%202-blue.svg" />
+  </a>
+  <a href="https://bintray.com/wasabeef/maven/richeditor-android/_latestVersion">
+    <img src="https://api.bintray.com/packages/wasabeef/maven/richeditor-android/images/download.svg" />
+  </a>
+</p>
 
 `RichEditor for Android` is a beautiful Rich Text `WYSIWYG Editor` for `Android`.
 
