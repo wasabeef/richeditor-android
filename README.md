@@ -1,5 +1,3 @@
-RichEditor for Android
-=============
 <p align="center">
   <a href="https://pub.dev/packages/flutter_gen">
     <img src="https://github.com/wasabeef/richeditor-android/raw/master/art/logo.png" width="480px"/>
