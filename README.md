@@ -75,11 +75,6 @@ Demo
 
 ![Demo](./art/demo2.gif)
 
-Samples
----
-
-<a href="https://play.google.com/store/apps/details?id=jp.wasabeef.sample"><img src="http://www.android.com/images/brand/get_it_on_play_logo_large.png"/></a>
-
 How do I use it?
 ---
 
