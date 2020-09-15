@@ -223,7 +223,7 @@ public class MainActivity extends AppCompatActivity {
     findViewById(R.id.action_insert_youtube).setOnClickListener(new View.OnClickListener() {
       @Override
       public void onClick(View v) {
-        mEditor.insertYoutubeVideo("https://www.youtube.com/embed/hNEC1NEfqLA");
+        mEditor.insertYoutubeVideo("https://www.youtube.com/embed/pS5peqApgUA");
       }
     });
 
