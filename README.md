@@ -34,6 +34,9 @@ Supported Functions
 - [x] Indent
 - [x] Outdent
 - [x] Insert Image
+- [x] Insert Youtube
+- [x] Insert Video
+- [x] Insert Audio
 - [x] Insert Link
 - [x] Checkbox
 - [x] Text Color
