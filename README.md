@@ -34,6 +34,9 @@ Supported Functions
 - [x] Indent
 - [x] Outdent
 - [x] Insert Image
+- [x] Insert Youtube
+- [x] Insert Video
+- [x] Insert Audio
 - [x] Insert Link
 - [x] Checkbox
 - [x] Text Color
@@ -73,12 +76,8 @@ How do I use it?
 
 ##### Gradle
 ```groovy
-repositories {
-    jcenter()
-}
-
 dependencies {
-    compile 'jp.wasabeef:richeditor-android:1.2.2'
+  implementation 'jp.wasabeef:richeditor-android:2.x.x'
 }
 ```
 ### Default Setting for Editor
@@ -180,7 +179,7 @@ Thanks
 License
 -------
 
-    Copyright 2017 Wasabeef
+    Copyright (C) 2020 Wasabeef
 
     Licensed under the Apache License, Version 2.0 (the "License");
     you may not use this file except in compliance with the License.
