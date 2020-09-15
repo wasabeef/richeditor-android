@@ -1,16 +1,19 @@
 package jp.wasabeef.richeditor;
 
 import android.annotation.SuppressLint;
+import android.annotation.TargetApi;
 import android.content.Context;
 import android.content.res.TypedArray;
 import android.graphics.Bitmap;
 import android.graphics.drawable.Drawable;
+import android.net.Uri;
 import android.os.Build;
 import android.text.TextUtils;
 import android.util.AttributeSet;
 import android.util.Log;
 import android.view.Gravity;
 import android.webkit.WebChromeClient;
+import android.webkit.WebResourceRequest;
 import android.webkit.WebView;
 import android.webkit.WebViewClient;
 import java.io.UnsupportedEncodingException;
@@ -55,7 +58,7 @@ public class RichEditor extends WebView {
     UNORDEREDLIST,
     JUSTIFYCENTER,
     JUSTIFYFULL,
-    JUSTUFYLEFT,
+    JUSTIFYLEFT,
     JUSTIFYRIGHT
   }
 
@@ -367,6 +370,31 @@ public class RichEditor extends WebView {
     exec("javascript:RE.prepareInsert();");
     exec("javascript:RE.insertImage('" + url + "', '" + alt + "');");
   }
+  
+  /**
+   * {@link RichEditor#insertImage(String, String)} will show the original size of the image.
+   * So this method can manually process the image by adjusting specific width and height to fit into different mobile screens.
+   * @param url
+   * @param alt
+   * @param width
+   * @param height
+   */
+  public void insertImage(String url, String alt, int width, int height) {
+    exec("javascript:RE.prepareInsert();");
+    exec("javascript:RE.insertImage('" + url + "', '" + alt + "','" + width + "', '" + height + "');");
+  }
+
+  /**
+   * Scale the image according to the specific width of the image automatically
+   * @param url
+   * @param alt
+   * @param width
+   */
+  public void insertImage(String url, String alt, int width) {
+    exec("javascript:RE.prepareInsert();");
+    exec("javascript:RE.insertImage('" + url + "', '" + alt + "','" + width + "');");
+
+  }
 
   public void insertVideo(String url) {
     exec("javascript:RE.prepareInsert();");
@@ -386,7 +414,8 @@ public class RichEditor extends WebView {
   public void insertCode(String code) {
       exec("javascript:RE.prepareInsert();");
       exec("javascript:RE.insertCode('" + code + "');");
-  }
+
+
 
   public void insertLink(String href, String title) {
     exec("javascript:RE.prepareInsert();");
@@ -440,6 +469,23 @@ public class RichEditor extends WebView {
     }
 
     @Override public boolean shouldOverrideUrlLoading(WebView view, String url) {
+      String decode = Uri.decode(url);
+
+      if (TextUtils.indexOf(url, CALLBACK_SCHEME) == 0) {
+        callback(decode);
+        return true;
+      } else if (TextUtils.indexOf(url, STATE_SCHEME) == 0) {
+        stateCheck(decode);
+        return true;
+      }
+
+      return super.shouldOverrideUrlLoading(view, url);
+    }
+
+    @TargetApi(Build.VERSION_CODES.LOLLIPOP)
+    @Override
+    public boolean shouldOverrideUrlLoading(WebView view, WebResourceRequest request) {
+      final String url = request.getUrl().toString();
       String decode;
       try {
         decode = URLDecoder.decode(url, "UTF-8");
@@ -455,8 +501,7 @@ public class RichEditor extends WebView {
         stateCheck(decode);
         return true;
       }
-
-      return super.shouldOverrideUrlLoading(view, url);
+      return super.shouldOverrideUrlLoading(view, request);
     }
   }
 }

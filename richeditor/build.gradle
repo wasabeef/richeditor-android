@@ -13,6 +13,13 @@ android {
   }
 }
 
+
+dependencies {
+  testCompile "junit:junit:4.12"
+  testCompile "org.robolectric:robolectric:3.1.4"
+}
+
+
 publish {
   userOrg = POM_DEVELOPER_ID
   groupId = GROUP
@@ -20,7 +27,7 @@ publish {
   publishVersion = VERSION_NAME
   desc = POM_DESCRIPTION
   website = POM_URL
-  bintrayUser = BINTRAY_USER
-  bintrayKey = BINTRAY_API_KEY
+  //bintrayUser = BINTRAY_USER
+  //bintrayKey = BINTRAY_API_KEY
   autoPublish = false
 }
