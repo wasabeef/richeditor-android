@@ -31,6 +31,10 @@ android {
   }
 }
 
+repositories {
+//  maven { url = "https://oss.sonatype.org/content/repositories/snapshots"}
+}
+
 dependencies {
   implementation project(':richeditor')
   implementation "androidx.appcompat:appcompat:1.2.0"
