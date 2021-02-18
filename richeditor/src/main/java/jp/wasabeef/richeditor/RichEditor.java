@@ -331,6 +331,10 @@ public class RichEditor extends WebView {
     exec("javascript:RE.setFontSize('" + fontSize + "');");
   }
 
+  public void setFontFamily(String fontFamily) {
+    exec("javascript:RE.setFontFamily('" + fontFamily + "');");
+  }
+
   public void removeFormat() {
     exec("javascript:RE.removeFormat();");
   }

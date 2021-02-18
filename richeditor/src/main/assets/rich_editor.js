@@ -152,6 +152,10 @@ RE.setFontSize = function(fontSize){
     document.execCommand("fontSize", false, fontSize);
 }
 
+RE.setFontFamily = function(fontName){
+    document.execCommand('fontName', false, fontName);
+}
+
 RE.setHeading = function(heading) {
     document.execCommand('formatBlock', false, '<h'+heading+'>');
 }
