@@ -153,7 +153,8 @@ RE.setFontSize = function(fontSize){
 }
 
 RE.setHeading = function(heading) {
-    document.execCommand('formatBlock', false, '<h'+heading+'>');
+    var sel = document.getSelection().getRangeAt(0).startContainer.parentNode;
+    document.execCommand('formatBlock', false, sel.tagName === `H${heading}` ? '<p>' : `<h${heading}>`);
 }
 
 RE.setIndent = function() {
