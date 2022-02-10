@@ -340,6 +340,7 @@ RE.focus = function() {
     selection.removeAllRanges();
     selection.addRange(range);
     RE.editor.focus();
+    RE.enabledEditingItems(null);
 }
 
 RE.blurFocus = function() {
