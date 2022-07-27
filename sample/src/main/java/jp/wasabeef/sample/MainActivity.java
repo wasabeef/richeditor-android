@@ -30,6 +30,10 @@ public class MainActivity extends AppCompatActivity {
     mEditor.setPlaceholder("Insert text here...");
     //mEditor.setInputEnabled(false);
 
+    mEditor.setOnDecorationChangeListener((text, types) -> {
+      Log.d("MainActivity","states:"+types);
+    });
+
     mPreview = (TextView) findViewById(R.id.preview);
     mEditor.setOnTextChangeListener(new RichEditor.OnTextChangeListener() {
       @Override

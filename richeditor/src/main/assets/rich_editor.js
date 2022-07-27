@@ -156,6 +156,10 @@ RE.setHeading = function(heading) {
     document.execCommand('formatBlock', false, '<h'+heading+'>');
 }
 
+RE.setParagraph = function() {
+    document.execCommand('formatBlock', false, '<div>');
+}
+
 RE.setIndent = function() {
     document.execCommand('indent', false, null);
 }
@@ -351,7 +355,11 @@ RE.removeFormat = function() {
 }
 
 // Event Listeners
-RE.editor.addEventListener("input", RE.callback);
+RE.editor.addEventListener("input", function(e) {
+    RE.callback()
+    RE.enabledEditingItems(e);
+});
+
 RE.editor.addEventListener("keyup", function(e) {
     var KEY_LEFT = 37, KEY_RIGHT = 39;
     if (e.which == KEY_LEFT || e.which == KEY_RIGHT) {
