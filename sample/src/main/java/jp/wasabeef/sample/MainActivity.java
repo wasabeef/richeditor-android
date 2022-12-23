@@ -141,8 +141,19 @@ public class MainActivity extends AppCompatActivity {
 
       @Override
       public void onClick(View v) {
-        mEditor.setTextColor(isChanged ? Color.BLACK : Color.RED);
-        isChanged = !isChanged;
+        // 1. get the selected text via callback
+        // 2. set the text color of the selection. the color is the selection it self
+        //    so the selected text is for example 'green', the colored green
+        mEditor.setOnJSDataListener(new RichEditor.onJSDataListener() {
+          @Override public void onDataReceived(String value) {
+            if(!value.isEmpty())
+                mEditor.setTextColor(value);
+            }
+        });
+
+        mEditor.getSelectedText();
+        //mEditor.setTextColor(isChanged ? Color.BLACK : Color.RED);
+        //isChanged = !isChanged;
       }
     });
 
