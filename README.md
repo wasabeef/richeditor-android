@@ -15,6 +15,8 @@
   </a>
 </p>
 
+This is a fork, which tries to merge changes from [Andrew-Chen-Wang/RichEditorView](https://github.com/Andrew-Chen-Wang/RichEditorView) 
+
 `RichEditor for Android` is a beautiful Rich Text `WYSIWYG Editor` for `Android`.
 
 - _Looking for iOS? Check out_ [cjwirth/RichEditorView](https://github.com/cjwirth/RichEditorView)
