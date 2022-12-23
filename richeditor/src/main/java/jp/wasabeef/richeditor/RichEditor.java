@@ -12,6 +12,7 @@ import android.text.TextUtils;
 import android.util.AttributeSet;
 import android.util.Log;
 import android.view.Gravity;
+import android.webkit.ValueCallback;
 import android.webkit.WebChromeClient;
 import android.webkit.WebResourceRequest;
 import android.webkit.WebView;
@@ -22,8 +23,10 @@ import java.net.URLEncoder;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Locale;
+import java.util.concurrent.atomic.AtomicBoolean;
 
 /**
+ * Copyright (C) 2020 niendo
  * Copyright (C) 2020 Wasabeef
  * <p>
  * Licensed under the Apache License, Version 2.0 (the "License");
@@ -39,27 +42,17 @@ import java.util.Locale;
  * limitations under the License.
  */
 
-public class RichEditor extends WebView {
+public class RichEditor extends WebView implements ValueCallback<String> {
 
   public enum Type {
-    BOLD,
-    ITALIC,
-    SUBSCRIPT,
-    SUPERSCRIPT,
-    STRIKETHROUGH,
-    UNDERLINE,
-    H1,
-    H2,
-    H3,
-    H4,
-    H5,
-    H6,
-    ORDEREDLIST,
-    UNORDEREDLIST,
-    JUSTIFYCENTER,
-    JUSTIFYFULL,
-    JUSTIFYLEFT,
-    JUSTIFYRIGHT
+    BOLD, ITALIC, SUBSCRIPT, SUPERSCRIPT, STRIKETHROUGH, UNDERLINE, H1, H2, H3, H4, H5, H6, ORDEREDLIST, UNORDEREDLIST, JUSTIFYCENTER, JUSTIFYFULL, JUSTIFYLEFT, JUSTIFYRIGHT
+  }
+
+  private final AtomicBoolean mEvaluateFinished = new AtomicBoolean(false);
+
+  public interface onJSDataListener  {
+    public void onDataReceived(String value);
+    //public void onActionFailure(Throwable throwableError);
   }
 
   public interface OnTextChangeListener {
@@ -77,12 +70,13 @@ public class RichEditor extends WebView {
     void onAfterInitialLoad(boolean isReady);
   }
 
-  private static final String SETUP_HTML = "file:///android_asset/editor.html";
+  private static final String SETUP_HTML = "file:///android_asset/rich_editor.html";
   private static final String CALLBACK_SCHEME = "re-callback://";
   private static final String STATE_SCHEME = "re-state://";
   private boolean isReady = false;
   private String mContents;
   private OnTextChangeListener mTextChangeListener;
+  private onJSDataListener mJSDataListener;
   private OnDecorationStateListener mDecorationStateListener;
   private AfterInitialLoadListener mLoadListener;
 
@@ -116,6 +110,10 @@ public class RichEditor extends WebView {
     mTextChangeListener = listener;
   }
 
+  public void setOnJSDataListener(onJSDataListener listener) {
+    mJSDataListener = listener;
+  }
+
   public void setOnDecorationChangeListener(OnDecorationStateListener listener) {
     mDecorationStateListener = listener;
   }
@@ -124,7 +122,23 @@ public class RichEditor extends WebView {
     mLoadListener = listener;
   }
 
-  private void callback(String text) {
+  @Override public void onReceiveValue(String value) {
+
+    String unescaped="";
+    if ("null".equals(value)) {
+
+    } else {
+       unescaped = value.substring(1, value.length() - 1)  // remove wrapping quotes
+        .replace("\\\\", "\\")        // unescape \\ -> \
+        .replace("\\\"", "\"");       // unescape \" -> "
+    }
+
+    if (mJSDataListener != null) {
+      mJSDataListener.onDataReceived(unescaped);
+    }
+  }
+  
+   private void callback(String text) {
     mContents = text.replaceFirst(CALLBACK_SCHEME, "");
     if (mTextChangeListener != null) {
       mTextChangeListener.onTextChange(mContents);
@@ -146,7 +160,7 @@ public class RichEditor extends WebView {
   }
 
   private void applyAttributes(Context context, AttributeSet attrs) {
-    final int[] attrsArray = new int[]{
+    final int[] attrsArray = new int[] {
       android.R.attr.gravity
     };
     TypedArray ta = context.obtainStyledAttributes(attrs, attrsArray);
@@ -266,15 +280,11 @@ public class RichEditor extends WebView {
   }
 
   public void loadCSS(String cssFile) {
-    String jsCSSImport = "(function() {" +
-      "    var head  = document.getElementsByTagName(\"head\")[0];" +
-      "    var link  = document.createElement(\"link\");" +
-      "    link.rel  = \"stylesheet\";" +
-      "    link.type = \"text/css\";" +
-      "    link.href = \"" + cssFile + "\";" +
-      "    link.media = \"all\";" +
-      "    head.appendChild(link);" +
-      "}) ();";
+    String jsCSSImport =
+      "(function() {" + "    var head  = document.getElementsByTagName(\"head\")[0];"
+        + "    var link  = document.createElement(\"link\");" + "    link.rel  = \"stylesheet\";"
+        + "    link.type = \"text/css\";" + "    link.href = \"" + cssFile + "\";"
+        + "    link.media = \"all\";" + "    head.appendChild(link);" + "}) ();";
     exec("javascript:" + jsCSSImport + "");
   }
 
@@ -465,9 +475,8 @@ public class RichEditor extends WebView {
       load(trigger);
     } else {
       postDelayed(new Runnable() {
-        @Override
-        public void run() {
-          exec(trigger);
+        @Override public void run() {
+           exec(trigger);
         }
       }, 100);
     }
@@ -479,6 +488,14 @@ public class RichEditor extends WebView {
     } else {
       loadUrl(trigger);
     }
+  }
+
+  public boolean requestJSData(String cmdJS) {
+    // https://stackoverflow.com/questions/38380246/espresso-how-to-call-evaluatejavascript-on-a-webview
+    mEvaluateFinished.set(false);
+
+     evaluateJavascript(cmdJS, this);
+     return true;
   }
 
   protected class EditorWebViewClient extends WebViewClient {
