@@ -53,7 +53,9 @@ Supported Functions
 - [x] Insert Link
 - [x] Checkbox
 - [x] Text Color
+- [x] (new) Text Color (String)
 - [x] Text Background Color
+- [x] (new) Text Background Color (String)
 - [x] Text Font Size
 - [x] Unordered List (Bullets)
 - [x] Ordered List (Numbers)

@@ -321,17 +321,22 @@ public class RichEditor extends WebView implements ValueCallback<String> {
   }
 
   public void setTextColor(int color) {
-    exec("javascript:RE.prepareInsert();");
+    setTextColor(convertHexColorString(color));
+  }
 
-    String hex = convertHexColorString(color);
-    exec("javascript:RE.setTextColor('" + hex + "');");
+  public void setTextColor(String color) {
+    exec("javascript:RE.prepareInsert();");
+    exec("javascript:RE.setTextColor('" + color + "');");
   }
 
   public void setTextBackgroundColor(int color) {
-    exec("javascript:RE.prepareInsert();");
 
-    String hex = convertHexColorString(color);
-    exec("javascript:RE.setTextBackgroundColor('" + hex + "');");
+    setTextBackgroundColor(convertHexColorString(color));
+  }
+
+  public void setTextBackgroundColor(String color) {
+    exec("javascript:RE.prepareInsert();");
+    exec("javascript:RE.setTextBackgroundColor('" + color + "');");
   }
 
   public void setFontSize(int fontSize) {
