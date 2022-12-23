@@ -59,6 +59,8 @@ Supported Functions
 - [x] Text Font Size
 - [x] Unordered List (Bullets)
 - [x] Ordered List (Numbers)
+- [x] (new) Get Selected Text
+- [x] (new) Get Selected Href
 
 Attribute change of editor
 ---

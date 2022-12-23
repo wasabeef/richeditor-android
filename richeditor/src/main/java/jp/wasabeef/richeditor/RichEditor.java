@@ -210,6 +210,36 @@ public class RichEditor extends WebView implements ValueCallback<String> {
     return mContents;
   }
 
+  /// Text representation of the data that has been input into the editor view, if it has been loaded.
+  public boolean getText() {
+    return requestJSData("RE.getText()");
+  }
+
+  /// Returns selected text
+  public boolean getSelectedText() {
+    return requestJSData("RE.selectedText()");
+  }
+
+  /// The href of the current selection, if the current selection's parent is an anchor tag.
+  /// Will be nil if there is no href, or it is an empty string.
+  public boolean getSelectedHref() {
+    if (!hasRangeSelection()) {
+      return false;
+    } else {
+      return requestJSData("RE.getSelectedHref()");
+    }
+  }
+
+  /// Whether or not the selection has a type specifically of "Range".
+  public boolean hasRangeSelection() {
+    return requestJSData("RE.rangeSelectionExists()");
+  }
+
+  /// Whether or not the selection has a type specifically of "Range" or "Caret".
+  public boolean hasRangeOrCaretSelection() {
+    return requestJSData("RE.rangeOrCaretSelectionExists()");
+  }
+
   public void setEditorFontColor(int color) {
     String hex = convertHexColorString(color);
     exec("javascript:RE.setBaseTextColor('" + hex + "');");
