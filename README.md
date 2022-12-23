@@ -46,6 +46,8 @@ Supported Functions
 - [x] Redo
 - [x] Indent
 - [x] Outdent
+- [x] (new) Insert HTML Code
+- [x] (new) Insert Horizontal Line
 - [x] Insert Image
 - [x] Insert Youtube
 - [x] Insert Video

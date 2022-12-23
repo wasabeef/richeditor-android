@@ -45,7 +45,7 @@ import java.util.concurrent.atomic.AtomicBoolean;
 public class RichEditor extends WebView implements ValueCallback<String> {
 
   public enum Type {
-    BOLD, ITALIC, SUBSCRIPT, SUPERSCRIPT, STRIKETHROUGH, UNDERLINE, H1, H2, H3, H4, H5, H6, ORDEREDLIST, UNORDEREDLIST, JUSTIFYCENTER, JUSTIFYFULL, JUSTIFYLEFT, JUSTIFYRIGHT
+    BOLD, ITALIC, SUBSCRIPT, SUPERSCRIPT, STRIKETHROUGH, UNDERLINE, H1, H2, H3, H4, H5, H6, HTML, HR, ORDEREDLIST, UNORDEREDLIST, JUSTIFYCENTER, JUSTIFYFULL, JUSTIFYLEFT, JUSTIFYRIGHT
   }
 
   private final AtomicBoolean mEvaluateFinished = new AtomicBoolean(false);
@@ -415,6 +415,17 @@ public class RichEditor extends WebView implements ValueCallback<String> {
   public void setNumbers() {
     exec("javascript:RE.setNumbers();");
   }
+
+  public void insertHTML(String text) {
+    exec("javascript:RE.prepareInsert();");
+    exec("javascript:RE.insertHTML('" + text + "')");
+  }
+
+  public void insertHR_Line() {
+    exec("javascript:RE.prepareInsert();");
+    exec("javascript:RE.insertHTML('<hr>')");
+  }
+
 
   public void insertImage(String url, String alt) {
     exec("javascript:RE.prepareInsert();");

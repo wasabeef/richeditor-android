@@ -14,6 +14,12 @@ public class MainActivity extends AppCompatActivity {
   private RichEditor mEditor;
   private TextView mPreview;
 
+  public boolean onReceiveValue(String value) {
+    String test = value;
+    test=test+" ";
+    return true;
+  }
+
   @Override
   protected void onCreate(Bundle savedInstanceState) {
     super.onCreate(savedInstanceState);
@@ -220,6 +226,20 @@ public class MainActivity extends AppCompatActivity {
       @Override
       public void onClick(View v) {
         mEditor.setNumbers();
+      }
+    });
+
+    findViewById(R.id.action_insert_html).setOnClickListener(new View.OnClickListener() {
+      @Override
+      public void onClick(View v) {
+        mEditor.insertHTML("&#11088;");
+      }
+    });
+
+    findViewById(R.id.action_insert_hrline).setOnClickListener(new View.OnClickListener() {
+      @Override
+      public void onClick(View v) {
+        mEditor.insertHR_Line();
       }
     });
 
