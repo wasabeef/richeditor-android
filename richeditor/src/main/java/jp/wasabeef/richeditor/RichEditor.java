@@ -537,6 +537,33 @@ public class RichEditor extends WebView implements ValueCallback<String> {
     }
   }
 
+  // MARK: Table functionalities
+  public void insertTable(Integer col, Integer row) {
+    exec("javascript:RE.prepareInsert()");
+    exec("javascript:RE.insertTable("+ col.toString() + "," + row.toString() + ")");
+  }
+
+  /// Checks if cursor is in a table element. If so, return true so that you can add menu items accordingly.
+  public void isCursorInTable() {
+    requestJSData("javascript:RE.isCursorInTable");
+  }
+
+  public void addRowToTable() {
+    exec("javascript:RE.addRowToTable()");
+  }
+
+  public void deleteRowFromTable() {
+    exec("javascript:RE.deleteRowFromTable()");
+  }
+
+  public void addColumnToTable() {
+    exec("javascript:RE.addColumnToTable()");
+  }
+
+  public void deleteColumnFromTable() {
+    exec("javascript:RE.deleteColumnFromTable()");
+  }
+
   private void load(String trigger) {
     if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.KITKAT) {
       evaluateJavascript(trigger, null);

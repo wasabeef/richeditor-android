@@ -278,10 +278,44 @@ public class MainActivity extends AppCompatActivity {
         mEditor.insertLink("https://github.com/wasabeef", "wasabeef");
       }
     });
+
     findViewById(R.id.action_insert_checkbox).setOnClickListener(new View.OnClickListener() {
       @Override
       public void onClick(View v) {
         mEditor.insertCheckbox("");
+      }
+    });
+
+    findViewById(R.id.action_insert_table_2x2).setOnClickListener(new View.OnClickListener() {
+      @Override
+      public void onClick(View v) { mEditor.insertTable(2,2);
+      }
+    });
+
+    findViewById(R.id.action_insert_row).setOnClickListener(new View.OnClickListener() {
+      @Override
+      public void onClick(View v) {
+        mEditor.addRowToTable();
+      }
+    });
+
+    findViewById(R.id.action_insert_column).setOnClickListener(new View.OnClickListener() {
+      @Override
+      public void onClick(View v) { mEditor.addColumnToTable();
+      }
+    });
+
+    findViewById(R.id.action_delete_row).setOnClickListener(new View.OnClickListener() {
+      @Override
+      public void onClick(View v) {
+        mEditor.deleteRowFromTable();
+      }
+    });
+
+    findViewById(R.id.action_delete_column).setOnClickListener(new View.OnClickListener() {
+      @Override
+      public void onClick(View v) {
+        mEditor.deleteColumnFromTable();
       }
     });
   }

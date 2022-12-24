@@ -270,6 +270,46 @@
         android:contentDescription="@null"
         android:src="@android:drawable/checkbox_on_background" />
 
+      <ImageButton
+        android:id="@+id/action_insert_table_2x2"
+        android:layout_width="48dp"
+        android:layout_height="48dp"
+        android:background="@null"
+        android:contentDescription="@null"
+        android:src="@drawable/insert_table_2x2" />
+
+      <ImageButton
+        android:id="@+id/action_insert_row"
+        android:layout_width="48dp"
+        android:layout_height="48dp"
+        android:background="@null"
+        android:contentDescription="@null"
+        android:src="@drawable/insert_row" />
+
+      <ImageButton
+        android:id="@+id/action_insert_column"
+        android:layout_width="48dp"
+        android:layout_height="48dp"
+        android:background="@null"
+        android:contentDescription="@null"
+        android:src="@drawable/insert_column" />
+
+      <ImageButton
+        android:id="@+id/action_delete_row"
+        android:layout_width="48dp"
+        android:layout_height="48dp"
+        android:background="@null"
+        android:contentDescription="@null"
+        android:src="@drawable/delete_row" />
+
+      <ImageButton
+        android:id="@+id/action_delete_column"
+        android:layout_width="48dp"
+        android:layout_height="48dp"
+        android:background="@null"
+        android:contentDescription="@null"
+        android:src="@drawable/delete_column" />
+
     </LinearLayout>
   </HorizontalScrollView>
 

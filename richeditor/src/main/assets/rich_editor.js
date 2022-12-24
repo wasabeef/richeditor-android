@@ -1,4 +1,5 @@
 /**
+ * Copyright (C) 2022 niendo
  * Copyright (C) 2015 Wasabeef
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
@@ -404,8 +405,15 @@ RE.addRowToTable = function() {
     // Add row below current cursor's
     var elements = document.querySelectorAll(":hover");
     let rowIndex = elements[elements.length - 2].rowIndex;
+    let columnIndex = elements[elements.length - 1].cellIndex;
     let table = getNearestTableAncestor(elements[elements.length - 1]);
-    table.insertRow(rowIndex + 1);
+    var row = table.insertRow(rowIndex + 1);
+            for (let j = 0; j < columnIndex + 1; j++) {
+                var cell = row.insertCell();
+            }
+    // this is not working:
+    // table.insertRow(rowIndex + 1);
+    // and table.length also doesn't..
 };
 
 RE.deleteRowFromTable = function() {

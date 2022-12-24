@@ -63,6 +63,7 @@ Supported Functions
 - [x] Ordered List (Numbers)
 - [x] (new) Get Selected Text
 - [x] (new) Get Selected Href
+- [x] (new) Insert Table
 
 Attribute change of editor
 ---
