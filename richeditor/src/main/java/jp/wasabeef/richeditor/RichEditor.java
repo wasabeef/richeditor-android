@@ -508,6 +508,11 @@ public class RichEditor extends WebView implements ValueCallback<String> {
     exec("javascript:RE.focus();");
   }
 
+  public void focus(Integer x, Integer y) {
+    requestFocus();
+    exec("javascript:RE.focusAtPoint("+ x.toString() + ", "+ y.toString() + ")");
+  }
+
   public void clearFocusEditor() {
     exec("javascript:RE.blurFocus();");
   }
