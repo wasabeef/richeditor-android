@@ -281,7 +281,7 @@ public class MainActivity extends AppCompatActivity {
     findViewById(R.id.action_insert_checkbox).setOnClickListener(new View.OnClickListener() {
       @Override
       public void onClick(View v) {
-        mEditor.insertTodo();
+        mEditor.insertCheckbox("");
       }
     });
   }
