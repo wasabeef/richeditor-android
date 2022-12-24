@@ -121,6 +121,17 @@ RE.setBaseTextColor = function(color) {
     RE.editor.style.color  = color;
 };
 
+RE.setBaseFontSize = function(size) {
+    RE.editor.style.fontSize = size;
+}
+
+RE.setPadding = function(left, top, right, bottom) {
+  RE.editor.style.paddingLeft = left;
+  RE.editor.style.paddingTop = top;
+  RE.editor.style.paddingRight = right;
+  RE.editor.style.paddingBottom = bottom;
+}
+
 RE.setPlaceholderText = function(text) {
     RE.editor.setAttribute("placeholder", text);
 };

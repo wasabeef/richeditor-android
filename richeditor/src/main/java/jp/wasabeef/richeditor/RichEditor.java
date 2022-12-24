@@ -303,7 +303,7 @@ public class RichEditor extends WebView implements ValueCallback<String> {
   }
 
   public void setPlaceholder(String placeholder) {
-    exec("javascript:RE.setPlaceholder('" + placeholder + "');");
+    exec("javascript:RE.setPlaceholderText('" + placeholder + "');");
   }
 
   public void setInputEnabled(Boolean inputEnabled) {
