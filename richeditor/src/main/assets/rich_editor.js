@@ -405,15 +405,12 @@ RE.addRowToTable = function() {
     // Add row below current cursor's
     var elements = document.querySelectorAll(":hover");
     let rowIndex = elements[elements.length - 2].rowIndex;
-    let columnIndex = elements[elements.length - 1].cellIndex;
     let table = getNearestTableAncestor(elements[elements.length - 1]);
+    let columns = table.rows[rowIndex].cells.length;
     var row = table.insertRow(rowIndex + 1);
-            for (let j = 0; j < columnIndex + 1; j++) {
-                var cell = row.insertCell();
-            }
-    // this is not working:
-    // table.insertRow(rowIndex + 1);
-    // and table.length also doesn't..
+    for (let j = 0; j < columns ; j++) {
+        var cell = row.insertCell();
+    }
 };
 
 RE.deleteRowFromTable = function() {
