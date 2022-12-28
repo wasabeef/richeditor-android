@@ -466,12 +466,12 @@ public class RichEditor extends WebView implements ValueCallback<String> {
 
   public void insertVideo(String url, int width) {
     exec("javascript:RE.prepareInsert();");
-    exec("javascript:RE.insertVideoW('" + url + "', '" + width + "');");
+    exec("javascript:RE.insertVideo('" + url + "', '" + width + "');");
   }
 
   public void insertVideo(String url, int width, int height) {
     exec("javascript:RE.prepareInsert();");
-    exec("javascript:RE.insertVideoWH('" + url + "', '" + width + "', '" + height + "');");
+    exec("javascript:RE.insertVideo('" + url + "', '" + width + "', '" + height + "');");
   }
 
   public void insertAudio(String url) {
@@ -486,12 +486,12 @@ public class RichEditor extends WebView implements ValueCallback<String> {
 
   public void insertYoutubeVideo(String url, int width) {
     exec("javascript:RE.prepareInsert();");
-    exec("javascript:RE.insertYoutubeVideoW('" + url + "', '" + width + "');");
+    exec("javascript:RE.insertYoutubeVideo('" + url + "', '" + width + "');");
   }
 
   public void insertYoutubeVideo(String url, int width, int height) {
     exec("javascript:RE.prepareInsert();");
-    exec("javascript:RE.insertYoutubeVideoWH('" + url + "', '" + width + "', '" + height + "');");
+    exec("javascript:RE.insertYoutubeVideo('" + url + "', '" + width + "', '" + height + "');");
   }
 
   public void insertLink(String href, String title) {

@@ -14,6 +14,11 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
+
+ /**
+  * See about document.execCommand: https://developer.mozilla.org/en-US/docs/Web/API/Document/execCommand
+  */
+
  "use strict";
 
 var RE = {};
@@ -341,13 +346,13 @@ RE.prepareInsert = function() {
 RE.backuprange = function() {
     var selection = window.getSelection();
     if (selection.rangeCount > 0) {
-        var range = selection.getRangeAt(0);
-        RE.currentSelection = {
-            "startContainer": range.startContainer,
-            "startOffset": range.startOffset,
-            "endContainer": range.endContainer,
-            "endOffset": range.endOffset
-        };
+      var range = selection.getRangeAt(0);
+      RE.currentSelection = {
+          "startContainer": range.startContainer,
+          "startOffset": range.startOffset,
+          "endContainer": range.endContainer,
+          "endOffset": range.endOffset
+      };
     }
 };
 
@@ -548,3 +553,63 @@ RE.getRelativeCaretYPosition = function() {
 window.onload = function() {
     RE.callback("ready");
 };
+
+RE.enabledEditingItems = function(e) {
+    var items = [];
+    if (document.queryCommandState('bold')) {
+        items.push('bold');
+    }
+    if (document.queryCommandState('italic')) {
+        items.push('italic');
+    }
+    if (document.queryCommandState('subscript')) {
+        items.push('subscript');
+    }
+    if (document.queryCommandState('superscript')) {
+        items.push('superscript');
+    }
+    if (document.queryCommandState('strikeThrough')) {
+        items.push('strikeThrough');
+    }
+    if (document.queryCommandState('underline')) {
+        items.push('underline');
+    }
+    if (document.queryCommandState('insertOrderedList')) {
+        items.push('orderedList');
+    }
+    if (document.queryCommandState('insertUnorderedList')) {
+        items.push('unorderedList');
+    }
+    if (document.queryCommandState('justifyCenter')) {
+        items.push('justifyCenter');
+    }
+    if (document.queryCommandState('justifyFull')) {
+        items.push('justifyFull');
+    }
+    if (document.queryCommandState('justifyLeft')) {
+        items.push('justifyLeft');
+    }
+    if (document.queryCommandState('justifyRight')) {
+        items.push('justifyRight');
+    }
+    if (document.queryCommandState('insertHorizontalRule')) {
+        items.push('horizontalRule');
+    }
+    var formatBlock = document.queryCommandValue('formatBlock');
+    if (formatBlock.length > 0) {
+        items.push(formatBlock);
+    }
+
+    window.location.href = "re-state://" + encodeURI(items.join(','));
+}
+
+
+// Event Listeners
+RE.editor.addEventListener("input", RE.callback);
+RE.editor.addEventListener("keyup", function(e) {
+    var KEY_LEFT = 37, KEY_RIGHT = 39;
+    if (e.which == KEY_LEFT || e.which == KEY_RIGHT) {
+        RE.enabledEditingItems(e);
+    }
+});
+RE.editor.addEventListener("click", RE.enabledEditingItems);
