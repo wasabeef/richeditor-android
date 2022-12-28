@@ -5,6 +5,7 @@ import android.annotation.TargetApi;
 import android.content.Context;
 import android.content.res.TypedArray;
 import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
 import android.graphics.drawable.Drawable;
 import android.net.Uri;
 import android.os.Build;
@@ -18,6 +19,8 @@ import android.webkit.WebResourceRequest;
 import android.webkit.WebView;
 import android.webkit.WebViewClient;
 
+import java.io.FileNotFoundException;
+import java.io.InputStream;
 import java.io.UnsupportedEncodingException;
 import java.net.URLEncoder;
 import java.util.ArrayList;
@@ -275,7 +278,7 @@ public class RichEditor extends WebView implements ValueCallback<String> {
   @Override
   public void setBackgroundResource(int resid) {
     Bitmap bitmap = Utils.decodeResource(getContext(), resid);
-    String base64 = Utils.toBase64(bitmap);
+    String base64 = Utils.toBase64(bitmap, "png");
     bitmap.recycle();
 
     exec("javascript:RE.setBackgroundImage('url(data:image/png;base64," + base64 + ")');");
@@ -284,7 +287,7 @@ public class RichEditor extends WebView implements ValueCallback<String> {
   @Override
   public void setBackground(Drawable background) {
     Bitmap bitmap = Utils.toBitmap(background);
-    String base64 = Utils.toBase64(bitmap);
+    String base64 = Utils.toBase64(bitmap,"png");
     bitmap.recycle();
 
     exec("javascript:RE.setBackgroundImage('url(data:image/png;base64," + base64 + ")');");
@@ -460,6 +463,23 @@ public class RichEditor extends WebView implements ValueCallback<String> {
   public void insertImage(String url, String alt, int width, int height) {
     exec("javascript:RE.prepareInsert();");
     exec("javascript:RE.insertImage('" + url + "', '" + alt + "','" + width + "', '" + height + "');");
+  }
+
+    public void insertImageAsBase64(Uri imageURI, String alt) {
+    InputStream inputStream= null;
+    try {
+      inputStream = getContext().getContentResolver().openInputStream(imageURI);
+    } catch (FileNotFoundException e) {
+      e.printStackTrace();
+    }
+
+    Bitmap bitmap = BitmapFactory.decodeStream(inputStream);
+    //String format = getContext().getContentResolver().getType(imageURI).toLowerCase();
+    String format="png";
+    String tag = "data:image/" + format + ";charset=utf-8;base64,";
+    exec("javascript:RE.prepareInsert();");
+    exec("javascript:RE.insertImage('" + tag + Utils.toBase64(bitmap, format) + "',"+alt+");");
+    //exec("javascript:RE.insertImage('data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAUAAAAFCAYAAACNbyblAAAAHElEQVQI12P4//8/w38GIAXDIBKE0DHxgljNBAAO9TXL0Y4OHwAAAABJRU5ErkJggg==','alt');");
   }
 
   public void insertVideo(String url) {

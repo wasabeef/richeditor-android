@@ -32,12 +32,16 @@ public final class Utils {
     throw new InstantiationException("This class is not for instantiation");
   }
 
-  public static String toBase64(Bitmap bitmap) {
+  public static String toBase64(Bitmap bitmap, String type) {
     ByteArrayOutputStream baos = new ByteArrayOutputStream();
-    bitmap.compress(Bitmap.CompressFormat.PNG, 100, baos);
-    byte[] bytes = baos.toByteArray();
+    if (type.equals("jpg") || type.equals("jpeg") )
+        bitmap.compress(Bitmap.CompressFormat.JPEG, 100, baos);
+    else if(type.equals("png"))
+        bitmap.compress(Bitmap.CompressFormat.PNG, 100, baos);
+    else if(type.equals("webp"))
+        bitmap.compress(Bitmap.CompressFormat.WEBP, 100, baos);
 
-    return Base64.encodeToString(bytes, Base64.NO_WRAP);
+    return Base64.encodeToString(baos.toByteArray(), Base64.NO_WRAP);
   }
 
   public static Bitmap toBitmap(Drawable drawable) {
@@ -62,7 +66,4 @@ public final class Utils {
     return BitmapFactory.decodeResource(context.getResources(), resId);
   }
 
-  public static long getCurrentTime() {
-    return System.currentTimeMillis();
-  }
 }

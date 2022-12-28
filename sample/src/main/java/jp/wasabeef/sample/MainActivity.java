@@ -1,6 +1,7 @@
 package jp.wasabeef.sample;
 
 import android.graphics.Color;
+import android.net.Uri;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.TextView;
@@ -13,12 +14,6 @@ public class MainActivity extends AppCompatActivity {
 
   private RichEditor mEditor;
   private TextView mPreview;
-
-  public boolean onReceiveValue(String value) {
-    String test = value;
-    test=test+" ";
-    return true;
-  }
 
   @Override
   protected void onCreate(Bundle savedInstanceState) {
@@ -254,8 +249,14 @@ public class MainActivity extends AppCompatActivity {
     findViewById(R.id.action_insert_image).setOnClickListener(new View.OnClickListener() {
       @Override
       public void onClick(View v) {
-        mEditor.insertImage("https://raw.githubusercontent.com/wasabeef/art/master/chip.jpg",
-          "dachshund", 320);
+        String image;
+        image=getContentResolver().SCHEME_ANDROID_RESOURCE +
+          "://" + getResources().getResourcePackageName(R.drawable.insert_image)
+          + '/' + getResources().getResourceTypeName(R.drawable.insert_image) + '/' + getResources().getResourceEntryName(R.drawable.bg_color);
+       //  image="https://upload.wikimedia.org/wikipedia/commons/thumb/d/d4/Hyoscyamus_niger_0003.JPG/449px-Hyoscyamus_niger_0003.JPG";
+        image="https://raw.githubusercontent.com/wasabeef/art/master/chip.jpg";
+        mEditor.insertImageAsBase64(Uri.parse(image),"alt");
+        //mEditor.insertImage("https://raw.githubusercontent.com/wasabeef/art/master/chip.jpg", "dachshund", 320);
       }
     });
 
