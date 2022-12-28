@@ -272,19 +272,44 @@ RE.setLineHeight = function(height) {
     RE.editor.style.lineHeight = height;
 };
 
-RE.insertImage = function(url, alt) {
+RE.setBlockquote = function() {
+    document.execCommand('formatBlock', false, '<blockquote>');
+};
+
+RE.insertImage = function(url, alt="", width="", height="" ) {
     var img = document.createElement('img');
     img.setAttribute("src", url);
-    img.setAttribute("alt", alt);
+    if (alt != "") img.setAttribute("alt", alt);
+    if (width != "") img.setAttribute("width", width);
+    if (height != "") img.setAttribute("height", height);
     img.onload = RE.updateHeight;
 
     RE.insertHTML(img.outerHTML);
     RE.callback("input");
 };
 
-RE.setBlockquote = function() {
-    document.execCommand('formatBlock', false, '<blockquote>');
-};
+RE.insertVideo = function(url, width="", height="") {
+    var video = document.createElement('video');
+    video.setAttribute("src", url);
+    video.controls = true;
+    video.muted = false;
+    if (width != "") video.setAttribute("width", width);
+    if (height != "") video.setAttribute("height", height);
+    video.onload = RE.updateHeight;
+
+    RE.insertHTML(video.outerHTML);
+    RE.callback("input");
+}
+
+RE.insertAudio = function(url, alt) {
+    var html = '<audio src="' + url + '" controls></audio><br>';
+    RE.insertHTML(html);
+}
+
+RE.insertYoutubeVideo = function(url, width="100%", height="100%") {
+    var html = '<iframe width=' + width + '" height="' + height + '" src="' + url + '" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe><br>'
+    RE.insertHTML(html);
+}
 
 RE.insertHTML = function(html) {
     RE.restorerange();

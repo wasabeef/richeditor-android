@@ -442,7 +442,7 @@ public class RichEditor extends WebView implements ValueCallback<String> {
    */
   public void insertImage(String url, String alt, int width) {
     exec("javascript:RE.prepareInsert();");
-    exec("javascript:RE.insertImageW('" + url + "', '" + alt + "','" + width + "');");
+    exec("javascript:RE.insertImage('" + url + "', '" + alt + "','" + width + "');");
   }
 
   /**
@@ -456,7 +456,7 @@ public class RichEditor extends WebView implements ValueCallback<String> {
    */
   public void insertImage(String url, String alt, int width, int height) {
     exec("javascript:RE.prepareInsert();");
-    exec("javascript:RE.insertImageWH('" + url + "', '" + alt + "','" + width + "', '" + height + "');");
+    exec("javascript:RE.insertImage('" + url + "', '" + alt + "','" + width + "', '" + height + "');");
   }
 
   public void insertVideo(String url) {
