@@ -223,6 +223,14 @@
         android:src="@drawable/insert_hline" />
 
       <ImageButton
+        android:id="@+id/action_insert_section"
+        android:layout_width="48dp"
+        android:layout_height="48dp"
+        android:background="@null"
+        android:contentDescription="@null"
+        android:src="@drawable/insert_section" />
+
+      <ImageButton
         android:id="@+id/action_insert_image"
         android:layout_width="48dp"
         android:layout_height="48dp"

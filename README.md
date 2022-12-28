@@ -63,7 +63,8 @@ Supported Functions
 - [x] Ordered List (Numbers)
 - [x] (new) Get Selected Text
 - [x] (new) Get Selected Href
-- [x] (new) Insert Table
+- [x] (new) Table
+- [x] (new) Collapsible Section
 
 Attribute change of editor
 ---

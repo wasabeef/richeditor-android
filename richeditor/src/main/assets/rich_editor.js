@@ -316,6 +316,32 @@ RE.insertYoutubeVideo = function(url, width="100%", height="100%") {
     RE.insertHTML(html);
 }
 
+RE.insertCollapsibleSection = function(section, content) {
+    var d = document.createElement("button");
+        d.setAttribute("class", "collapsible");
+        d.innerHTML = section;
+        d.addEventListener("click", function() {
+          this.classList.toggle("active");
+          var content = this.nextElementSibling;
+          if (content.style.maxHeight){
+             content.style.maxHeight = null;
+          } else {
+             content.style.maxHeight = content.scrollHeight + "px";
+          }
+        });
+    var elements = document.querySelectorAll(":hover");
+    d=elements[elements.length - 1].appendChild(d);
+    var e=document.createElement("div");
+    e.setAttribute("class", "content");
+    e.innerHTML = '<p>' + content + '<br><br></p>';
+    elements[elements.length - 1].appendChild(e);
+
+    // next empty element
+    e=document.createElement("p");
+    e.innerHTML = '<br>';
+    elements[elements.length - 1].appendChild(e);
+}
+
 RE.insertHTML = function(html) {
     RE.restorerange();
     document.execCommand('insertHTML', false, html);

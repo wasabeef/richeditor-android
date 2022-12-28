@@ -427,6 +427,9 @@ public class RichEditor extends WebView implements ValueCallback<String> {
     exec("javascript:RE.insertHTML('<hr>')");
   }
 
+  public void insertCollapsibleSection(String section, String content) {
+    exec("javascript:RE.insertCollapsibleSection('"+section+"', '"+content+"');");
+  }
 
   public void insertImage(String url, String alt) {
     exec("javascript:RE.prepareInsert();");
@@ -501,7 +504,7 @@ public class RichEditor extends WebView implements ValueCallback<String> {
 
   public String insertCheckbox(String uuid) {
     if (uuid.isEmpty())
-        uuid = UUID.randomUUID().toString();;
+        uuid = UUID.randomUUID().toString();
     exec("javascript:RE.prepareInsert();");
     exec("javascript:RE.setCheckbox('"+ uuid +"')");
     return uuid;

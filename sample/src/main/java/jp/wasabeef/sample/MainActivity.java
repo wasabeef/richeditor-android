@@ -243,6 +243,14 @@ public class MainActivity extends AppCompatActivity {
       }
     });
 
+    findViewById(R.id.action_insert_section).setOnClickListener(new View.OnClickListener() {
+      @Override
+      public void onClick(View v) {
+        mEditor.insertCollapsibleSection("Section","content");
+      }
+    });
+
+
     findViewById(R.id.action_insert_image).setOnClickListener(new View.OnClickListener() {
       @Override
       public void onClick(View v) {
