@@ -54,6 +54,13 @@ public class MainActivity extends AppCompatActivity {
       }
     });
 
+    findViewById(R.id.action_remove_format).setOnClickListener(new View.OnClickListener() {
+      @Override
+      public void onClick(View v) {
+        mEditor.removeFormat();
+      }
+    });
+
     findViewById(R.id.action_bold).setOnClickListener(new View.OnClickListener() {
       @Override
       public void onClick(View v) {
