@@ -32,6 +32,7 @@ public class MainActivity extends AppCompatActivity {
     //mEditor.setInputEnabled(false);
 
     mPreview = (TextView) findViewById(R.id.preview);
+    mEditor.setHTML_asCallBack(true);
     mEditor.setOnTextChangeListener(new RichEditor.OnTextChangeListener() {
       @Override
       public void onTextChange(String text) {

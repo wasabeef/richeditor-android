@@ -1,5 +1,5 @@
 /**
- * Copyright (C) 2022 niendo
+ * Copyright (C) 2022 peter@niendo.de
  * Copyright (C) 2015 Wasabeef
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
@@ -24,6 +24,15 @@
 var RE = {};
 
 RE.editor = document.getElementById('editor');
+
+// in v2.0.0 each change, will raise a callback, which encodes and copy the complete HTML code back to java,
+// this is very resource eating.
+// with HTML_asCallBack=true, getHTML will be a normal callback
+RE.getHTML_asCallBack = false;
+
+RE.setHTML_asCallBack = function(value) {
+  RE.getHTML_asCallBack = Boolean(value);
+};
 
 // Not universally supported, but seems to work in iOS 7 and 8
 document.addEventListener("selectionchange", function() {
@@ -87,7 +96,11 @@ RE.runCallbackQueue = function() {
     }
 
     setTimeout(function() {
-        window.location.href = "re-callback://";
+        if (RE.getHTML_asCallBack == true) {
+           window.location.href = "re-callback://";
+        } else {
+           window.location.href = "re-callback://" + RE.getHtml();
+        }
     }, 0);
 };
 
@@ -103,24 +116,24 @@ RE.callback = function(method) {
 };
 
 RE.setHtml = function(contents) {
-    var tempWrapper = document.createElement('div');
-    tempWrapper.innerHTML = contents;
-    var images = tempWrapper.querySelectorAll("img");
+    RE.editor.innerHTML = decodeURIComponent(contents.replace(/\+/g, '%20'));;
+    var images = RE.editor.querySelectorAll("img");
 
     for (var i = 0; i < images.length; i++) {
         images[i].onload = RE.updateHeight;
     }
 
-    RE.editor.innerHTML = tempWrapper.innerHTML;
+    //RE.editor.innerHTML = tempWrapper.innerHTML;
     RE.updatePlaceholder();
+    RE.callback("input");
 };
 
 RE.getHtml = function() {
-    return RE.editor.innerHTML;
+   return encodeURIComponent(RE.editor.innerHTML);
 };
 
 RE.getText = function() {
-    return RE.editor.innerText;
+   return encodeURIComponent(RE.editor.innerText);
 };
 
 RE.setBaseTextColor = function(color) {
@@ -150,10 +163,6 @@ RE.updatePlaceholder = function() {
     }
 };
 
-RE.removeFormat = function() {
-    document.execCommand('removeFormat', false, null);
-};
-
 RE.setFontSize = function(size) {
     RE.editor.style.fontSize = size;
 };
@@ -165,6 +174,18 @@ RE.setBackgroundColor = function(color) {
 RE.setHeight = function(size) {
     RE.editor.style.height = size;
 };
+
+RE.setTextAlign = function(align) {
+    RE.editor.style.textAlign = align;
+}
+
+RE.setVerticalAlign = function(align) {
+    RE.editor.style.verticalAlign = align;
+}
+
+RE.setInputEnabled = function(inputEnabled) {
+    RE.editor.contentEditable = String(inputEnabled);
+}
 
 RE.undo = function() {
     document.execCommand('undo', false, null);
@@ -407,28 +428,6 @@ RE.restorerange = function() {
     selection.addRange(range);
 };
 
-RE.focus = function() {
-    var range = document.createRange();
-    range.selectNodeContents(RE.editor);
-    range.collapse(false);
-    var selection = window.getSelection();
-    selection.removeAllRanges();
-    selection.addRange(range);
-    RE.editor.focus();
-};
-
-RE.focusAtPoint = function(x, y) {
-    var range = document.caretRangeFromPoint(x, y) || document.createRange();
-    var selection = window.getSelection();
-    selection.removeAllRanges();
-    selection.addRange(range);
-    RE.editor.focus();
-};
-
-RE.blurFocus = function() {
-    RE.editor.blur();
-};
-
 // User editing table functionality
 RE.insertTable = function(width, height) {
     var table = document.createElement("table");
@@ -629,7 +628,33 @@ RE.enabledEditingItems = function(e) {
     window.location.href = "re-state://" + encodeURI(items.join(','));
 }
 
+RE.focus = function() {
+    var range = document.createRange();
+    range.selectNodeContents(RE.editor);
+    range.collapse(false);
+    var selection = window.getSelection();
+    selection.removeAllRanges();
+    selection.addRange(range);
+    RE.editor.focus();
+};
 
+RE.focusAtPoint = function(x, y) {
+    var range = document.caretRangeFromPoint(x, y) || document.createRange();
+    var selection = window.getSelection();
+    selection.removeAllRanges();
+    selection.addRange(range);
+    RE.editor.focus();
+};
+
+RE.blurFocus = function() {
+    RE.editor.blur();
+};
+
+RE.removeFormat = function() {
+    document.execCommand('removeFormat', false, null);
+};
+
+/*
 // Event Listeners
 RE.editor.addEventListener("input", RE.callback);
 RE.editor.addEventListener("keyup", function(e) {
@@ -639,3 +664,4 @@ RE.editor.addEventListener("keyup", function(e) {
     }
 });
 RE.editor.addEventListener("click", RE.enabledEditingItems);
+*/

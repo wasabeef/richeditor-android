@@ -77,6 +77,7 @@ Attribute change of editor
 - [x] Placeholder
 - [x] Load CSS
 - [x] State Callback
+- [x] (new) setHTML_asCallBack (don't encode & copy the complete HTML page on every change by callback) 
 
 **Milestone**
 
