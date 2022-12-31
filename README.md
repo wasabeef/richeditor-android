@@ -26,6 +26,7 @@ Supported Functions
 
 ![Toolbar](./art/demo.gif)
 
+- [x] (new?) Remove Format
 - [x] Bold
 - [x] Italic
 - [x] Subscript
@@ -159,7 +160,7 @@ editor.insertImage("https://raw.githubusercontent.com/wasabeef/art/master/twitte
 **Text Change Listener**
 ```java
 RichEditor editor = (RichEditor) findViewById(R.id.editor);
-editor. setOnTextChangeListener(new RichEditor.OnTextChangeListener() {
+editor.setOnTextChangeListener(new RichEditor.OnTextChangeListener() {
   @Override
   public void onTextChange(String text) {
     // Do Something
@@ -180,10 +181,10 @@ Applications using RichEditor for Android
 
 Please [ping](mailto:dadadada.chop@gmail.com) me or send a pull request if you would like to be added here.
 
-| Icon                                                                                                                                               | Application|
-|----------------------------------------------------------------------------------------------------------------------------------------------------| -------------|
-|  <img src="https://lh6.ggpht.com/6zKH_uQY1bxCwXL4DLo_uoFEOXdShi3BgmN6XRHlaJ-oA1svmq6y1PZkmO50nWQn2Lg=w300-rw" width="48" height="48" />            | [Ameba Ownd](https://play.google.com/store/apps/details?id=jp.co.cyberagent.madrid)|
-< <img src="https://lh3.googleusercontent.com/st_DiIlM148vzG23ccujtBzx0tMeb7cDC5fDmLSERS-Nr8M_F-PTw4W_jWJsH9mO_b4=w300-rw" width="48" height="48" /> | [ScorePal](https://play.google.com/store/apps/details?id=com.hfd.scorepal)|
+| Icon                                                                                                                                                 | Application                                                                         |
+|------------------------------------------------------------------------------------------------------------------------------------------------------|-------------------------------------------------------------------------------------|
+| <img src="https://lh6.ggpht.com/6zKH_uQY1bxCwXL4DLo_uoFEOXdShi3BgmN6XRHlaJ-oA1svmq6y1PZkmO50nWQn2Lg=w300-rw" width="48" height="48" />               | [Ameba Ownd](https://play.google.com/store/apps/details?id=jp.co.cyberagent.madrid) |
+| < <img src="https://lh3.googleusercontent.com/st_DiIlM148vzG23ccujtBzx0tMeb7cDC5fDmLSERS-Nr8M_F-PTw4W_jWJsH9mO_b4=w300-rw" width="48" height="48" /> | [ScorePal](https://play.google.com/store/apps/details?id=com.hfd.scorepal)          |
 
 Developed By
 -------

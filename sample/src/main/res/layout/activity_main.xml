@@ -30,6 +30,14 @@
         android:src="@drawable/redo" />
 
       <ImageButton
+        android:id="@+id/action_remove_format"
+        android:layout_width="48dp"
+        android:layout_height="48dp"
+        android:background="@null"
+        android:contentDescription="@null"
+        android:src="@drawable/remove_format" />
+
+      <ImageButton
         android:id="@+id/action_bold"
         android:layout_width="48dp"
         android:layout_height="48dp"

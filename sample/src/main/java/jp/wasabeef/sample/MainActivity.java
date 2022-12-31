@@ -54,10 +54,17 @@ public class MainActivity extends AppCompatActivity {
       }
     });
 
+    findViewById(R.id.action_remove_format).setOnClickListener(new View.OnClickListener() {
+      @Override
+      public void onClick(View v) {
+        mEditor.removeFormat();
+      }
+    });
+
     findViewById(R.id.action_bold).setOnClickListener(new View.OnClickListener() {
       @Override
       public void onClick(View v) {
-
+/*
 
         mEditor.setOnJSDataListener(new RichEditor.onJSDataListener() {
           @Override public void onDataReceived(String value) {
@@ -69,8 +76,8 @@ public class MainActivity extends AppCompatActivity {
 
         mEditor.getHtml();
 
-
-        //mEditor.setBold();
+*/
+        mEditor.setBold();
       }
     });
 
