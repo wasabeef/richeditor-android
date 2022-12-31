@@ -57,7 +57,20 @@ public class MainActivity extends AppCompatActivity {
     findViewById(R.id.action_bold).setOnClickListener(new View.OnClickListener() {
       @Override
       public void onClick(View v) {
-        mEditor.setBold();
+
+
+        mEditor.setOnJSDataListener(new RichEditor.onJSDataListener() {
+          @Override public void onDataReceived(String value) {
+            String temp;
+            if(!value.isEmpty())
+              temp=value;
+          }
+        });
+
+        mEditor.getHtml();
+
+
+        //mEditor.setBold();
       }
     });
 
