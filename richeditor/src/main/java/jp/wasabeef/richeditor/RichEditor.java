@@ -28,7 +28,6 @@ import java.net.URLDecoder;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Locale;
-import java.util.UUID;
 import java.util.concurrent.atomic.AtomicBoolean;
 
 /**
@@ -547,12 +546,11 @@ public class RichEditor extends WebView implements ValueCallback<String> {
     exec("javascript:RE.insertLink('" + href + "', '" + title + "');");
   }
 
-  public String insertCheckbox(String uuid) {
-    if (uuid.isEmpty())
-        uuid = UUID.randomUUID().toString();
+  public void insertCheckbox() {
+    //if (uuid.isEmpty())
+    //    uuid = UUID.randomUUID().toString();
     exec("javascript:RE.prepareInsert();");
-    exec("javascript:RE.setCheckbox('"+ uuid +"')");
-    return uuid;
+    exec("javascript:RE.setCheckbox()");
   }
 
   public void focusEditor() {

@@ -32,7 +32,7 @@ public class MainActivity extends AppCompatActivity {
     //mEditor.setInputEnabled(false);
 
     mPreview = (TextView) findViewById(R.id.preview);
-    mEditor.setHTML_asCallBack(true);
+    //mEditor.setHTML_asCallBack(true);
     mEditor.setOnTextChangeListener(new RichEditor.OnTextChangeListener() {
       @Override
       public void onTextChange(String text) {
@@ -312,7 +312,7 @@ public class MainActivity extends AppCompatActivity {
     findViewById(R.id.action_insert_checkbox).setOnClickListener(new View.OnClickListener() {
       @Override
       public void onClick(View v) {
-        mEditor.insertCheckbox("");
+        mEditor.insertCheckbox();
       }
     });
 

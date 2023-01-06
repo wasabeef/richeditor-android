@@ -254,27 +254,27 @@ RE.setUnorderedList = function() {
     document.execCommand('insertUnorderedList', false, null);
 };
 
-function createCheckbox(id) {
-    var el = document.querySelector("input[name='" + id + "']");
+function createCheckbox(node) {
     var d = document.createElement("input");
     d.setAttribute("type", "checkbox");
-    d.setAttribute("name", id);
-    if(el.checked) {
-        d.setAttribute("checked", null);
+    if(node.checked) {
+        d.setAttribute("checked", true);
     }
-    el.parentNode.insertBefore(d, el);
-    el.parentNode.removeChild(el);
-    el = document.querySelector("input[name='" + id + "']");
-    el.addEventListener("change", function() {createCheckbox(id);});
+    d.addEventListener("change", function() {createCheckbox(this);});
+
+    node.parentNode.insertBefore(d, node);
+    node.parentNode.removeChild(node);
 };
 
-RE.setCheckbox = function(id) {
+RE.setCheckbox = function() {
+    var elements = document.querySelectorAll(":hover");
     var el = document.createElement("input");
+    RE.insertHTML('&nbsp;');
     el.setAttribute("type", "checkbox");
-    el.setAttribute("name", id);
-    RE.insertHTML("&nbsp;" + el.outerHTML + "&nbsp;");
-    el = document.querySelector("input[name='" + id + "']");
-    el.addEventListener("change", function() {createCheckbox(id);});
+    el.addEventListener("change", function() {createCheckbox(this);});
+    elements[elements.length - 1].appendChild(el);
+    el.focus(); //sets focus to element
+    //focus should be behind the box...but i don't get it
     RE.callback("input");
 };
 
@@ -340,7 +340,7 @@ RE.insertYoutubeVideo = function(url, width="100%", height="100%") {
 RE.insertCollapsibleSection = function(section, content) {
     var d = document.createElement("button");
         d.setAttribute("class", "collapsible");
-        d.innerHTML = section;
+        d.innerHTML = "&nbsp;" + section;
         d.addEventListener("click", function() {
           this.classList.toggle("active");
           var content = this.nextElementSibling;
@@ -354,7 +354,7 @@ RE.insertCollapsibleSection = function(section, content) {
     d=elements[elements.length - 1].appendChild(d);
     var e=document.createElement("div");
     e.setAttribute("class", "content");
-    e.innerHTML = '<p>' + content + '<br><br></p>';
+    e.innerHTML = '<p> ' + content + '<br><br></p>';
     elements[elements.length - 1].appendChild(e);
 
     // next empty element
