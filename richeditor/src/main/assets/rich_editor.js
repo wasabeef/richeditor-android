@@ -306,7 +306,10 @@ RE.insertImage = function(url, alt="", width="", height="" ) {
     var img = document.createElement('img');
     img.setAttribute("src", url);
     if (alt != "") img.setAttribute("alt", alt);
-    if (width != "") img.setAttribute("width", width);
+    if (width != "")
+             img.setAttribute("width", width);
+        else
+             img.setAttribute("width", window.innerWidth);
     if (height != "") img.setAttribute("height", height);
     img.onload = RE.updateHeight;
 
@@ -319,7 +322,10 @@ RE.insertVideo = function(url, width="", height="") {
     video.setAttribute("src", url);
     video.controls = true;
     video.muted = false;
-    if (width != "") video.setAttribute("width", width);
+    if (width != "")
+          video.setAttribute("width", width);
+        else
+         video.setAttribute("width", window.innerWidth);
     if (height != "") video.setAttribute("height", height);
     video.onload = RE.updateHeight;
 
