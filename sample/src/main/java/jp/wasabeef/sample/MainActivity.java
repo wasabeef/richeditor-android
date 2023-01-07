@@ -305,7 +305,7 @@ public class MainActivity extends AppCompatActivity {
     findViewById(R.id.action_insert_link).setOnClickListener(new View.OnClickListener() {
       @Override
       public void onClick(View v) {
-        mEditor.insertLink("https://github.com/wasabeef", "wasabeef");
+        mEditor.insertLink("https://github.com/wasabeef", "https://github.com/wasabeef", "wasabeef");
       }
     });
 

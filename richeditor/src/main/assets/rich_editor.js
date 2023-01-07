@@ -370,6 +370,12 @@ RE.insertHTML = function(html) {
 
 RE.insertLink = function(url, text, title) {
     RE.restorerange();
+    document.execCommand("insertHTML",false,"<a href='"+url+"' title='"+title+"'>"+text+"</a>");
+    RE.callback();
+};
+
+RE.insertLinkSelection = function(url, text, title) {
+    RE.restorerange();
     var sel = document.getSelection();
     if (sel.toString().length == 0) {
         document.execCommand("insertHTML",false,"<a href='"+url+"' title='"+title+"'>"+text+"</a>");

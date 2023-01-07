@@ -541,9 +541,9 @@ public class RichEditor extends WebView implements ValueCallback<String> {
     exec("javascript:RE.insertYoutubeVideo('" + url + "', '" + width + "', '" + height + "');");
   }
 
-  public void insertLink(String href, String title) {
+  public void insertLink(String href, String text, String title) {
     exec("javascript:RE.prepareInsert();");
-    exec("javascript:RE.insertLink('" + href + "', '" + title + "');");
+    exec("javascript:RE.insertLink('" + href + "', '" + text + "', '" + title + "');");
   }
 
   public void insertCheckbox() {
