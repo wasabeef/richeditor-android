@@ -254,6 +254,15 @@ RE.setUnorderedList = function() {
     document.execCommand('insertUnorderedList', false, null);
 };
 
+RE.fixCheckbox = function() {
+var coll = document.querySelectorAll('input[type=checkbox]');
+var i;
+
+for (i = 0; i < coll.length; i++) {
+   coll[i].addEventListener("change", function() {createCheckbox(this);});
+  }
+}
+
 function createCheckbox(node) {
     var d = document.createElement("input");
     d.setAttribute("type", "checkbox");
@@ -343,19 +352,30 @@ RE.insertYoutubeVideo = function(url, width="100%", height="100%") {
     RE.insertHTML(html);
 }
 
-RE.insertCollapsibleSection = function(section, content) {
-    var d = document.createElement("button");
-        d.setAttribute("class", "collapsible");
-        d.innerHTML = "&nbsp;" + section;
-        d.addEventListener("click", function() {
-          this.classList.toggle("active");
-          var content = this.nextElementSibling;
+RE.fixCollapsibleSection = function() {
+var coll = document.getElementsByClassName("collapsible");
+var i;
+
+for (i = 0; i < coll.length; i++) {
+  coll[i].addEventListener("click", function() {CollapsibleSection(this);});
+  }
+}
+
+function CollapsibleSection(node) {
+          node.classList.toggle("active");
+          var content = node.nextElementSibling;
           if (content.style.maxHeight){
              content.style.maxHeight = null;
           } else {
              content.style.maxHeight = content.scrollHeight + "px";
           }
-        });
+        }
+
+RE.insertCollapsibleSection = function(section, content) {
+    var d = document.createElement("button");
+        d.setAttribute("class", "collapsible");
+        d.innerHTML = "&nbsp;" + section;
+        d.addEventListener("click", function() {CollapsibleSection(this);});
     var elements = document.querySelectorAll(":hover");
     d=elements[elements.length - 1].appendChild(d);
     var e=document.createElement("div");
