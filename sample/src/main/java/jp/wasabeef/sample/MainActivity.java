@@ -284,8 +284,29 @@ public class MainActivity extends AppCompatActivity {
     findViewById(R.id.action_insert_youtube).setOnClickListener(new View.OnClickListener() {
       @Override
       public void onClick(View v) {
-        mEditor.insertYoutubeVideo("https://www.youtube.com/embed/pS5peqApgUA");
+        // 1. get the selected text via callback
+        // 2. make the embedded video
+        mEditor.setOnJSDataListener(new RichEditor.onJSDataListener() {
+          @Override public void onDataReceived(String value) {
+            if(!value.isEmpty()) {
+              if(value.startsWith("https://www.youtube.com"))
+                value = value.replace("watch?v=","embed/");
+
+              // https://www.youtube.com/watch?v=3AeYHDZ2riI
+              // https://www.youtube.com/embed/3AeYHDZ2riI
+
+              mEditor.insertYoutubeVideo(value);
+            }
+            else
+              mEditor.insertHTML("Select a youtube link");
+          }
+        });
+        mEditor.getSelectedText();
+        //mEditor.insertYoutubeVideo("https://www.youtube.com/embed/pS5peqApgUA");
       }
+
+
+
     });
 
     findViewById(R.id.action_insert_audio).setOnClickListener(new View.OnClickListener() {

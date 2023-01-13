@@ -350,7 +350,7 @@ RE.insertAudio = function(url, alt) {
 }
 
 RE.insertYoutubeVideo = function(url, width="100%", height="100%") {
-    var html = '<iframe width=' + width + '" height="' + height + '" src="' + url + '" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe><br>'
+    var html = '<iframe width="' + width + '" height="' + height + '" src="' + url + '" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe><br>'
     RE.insertHTML(html);
 }
 
