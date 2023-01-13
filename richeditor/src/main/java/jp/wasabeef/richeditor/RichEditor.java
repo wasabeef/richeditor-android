@@ -209,6 +209,8 @@ public class RichEditor extends WebView implements ValueCallback<String> {
     }
     try {
       exec("javascript:RE.setHtml('" + URLEncoder.encode(contents, "UTF-8") + "');");
+      exec("javascript:RE.fixCheckbox();");
+      exec("javascript:RE.fixCollapsibleSection();");
     } catch (UnsupportedEncodingException e) {
       // No handling
     }
@@ -547,10 +549,8 @@ public class RichEditor extends WebView implements ValueCallback<String> {
   }
 
   public void insertCheckbox() {
-    //if (uuid.isEmpty())
-    //    uuid = UUID.randomUUID().toString();
     exec("javascript:RE.prepareInsert();");
-    exec("javascript:RE.setCheckbox()");
+    exec("javascript:RE.setCheckbox();");
   }
 
   public void focusEditor() {
