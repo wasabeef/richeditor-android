@@ -315,13 +315,13 @@ RE.insertImage = function(url, alt="", width="", height="" ) {
     var img = document.createElement('img');
     img.setAttribute("src", url);
     if (alt != "") img.setAttribute("alt", alt);
-    if (width != "")
-             img.setAttribute("width", width);
-        else
-             img.setAttribute("width", window.innerWidth);
-    if (height != "") img.setAttribute("height", height);
+    if (width == "auto")
+          img.setAttribute("id", "responsive-image");
+    else if (width != "") {
+          img.setAttribute("width", width);
+          if (height != "") img.setAttribute("height", height);
+    }
     img.onload = RE.updateHeight;
-
     RE.insertHTML(img.outerHTML);
     RE.callback("input");
 };
@@ -331,11 +331,13 @@ RE.insertVideo = function(url, width="", height="") {
     video.setAttribute("src", url);
     video.controls = true;
     video.muted = false;
-    if (width != "")
+
+    if (width == "auto")
+          video.setAttribute("width", "responsive-image");
+    else if (width != "") {
           video.setAttribute("width", width);
-        else
-         video.setAttribute("width", window.innerWidth);
-    if (height != "") video.setAttribute("height", height);
+          if (height != "") video.setAttribute("height", height);
+    }
     video.onload = RE.updateHeight;
 
     RE.insertHTML(video.outerHTML);

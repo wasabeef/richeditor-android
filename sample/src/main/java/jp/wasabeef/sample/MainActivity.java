@@ -275,9 +275,9 @@ public class MainActivity extends AppCompatActivity {
           "://" + getResources().getResourcePackageName(R.drawable.insert_image)
           + '/' + getResources().getResourceTypeName(R.drawable.insert_image) + '/' + getResources().getResourceEntryName(R.drawable.bg_color);
        //  image="https://upload.wikimedia.org/wikipedia/commons/thumb/d/d4/Hyoscyamus_niger_0003.JPG/449px-Hyoscyamus_niger_0003.JPG";
-        image="https://raw.githubusercontent.com/wasabeef/art/master/chip.jpg";
-        mEditor.insertImageAsBase64(Uri.parse(image),"alt");
-        //mEditor.insertImage("https://raw.githubusercontent.com/wasabeef/art/master/chip.jpg", "dachshund", 320);
+       // image="https://raw.githubusercontent.com/wasabeef/art/master/chip.jpg";
+        mEditor.insertImageAsBase64(Uri.parse(image),"alt","auto","");
+        //mEditor.insertImage("https://raw.githubusercontent.com/wasabeef/art/master/chip.jpg", "dachshund", "auto","");
       }
     });
 
@@ -298,7 +298,7 @@ public class MainActivity extends AppCompatActivity {
     findViewById(R.id.action_insert_video).setOnClickListener(new View.OnClickListener() {
       @Override
       public void onClick(View v) {
-        mEditor.insertVideo("https://test-videos.co.uk/vids/bigbuckbunny/mp4/h264/1080/Big_Buck_Bunny_1080_10s_10MB.mp4", 360);
+        mEditor.insertVideo("https://test-videos.co.uk/vids/bigbuckbunny/mp4/h264/1080/Big_Buck_Bunny_1080_10s_10MB.mp4", "360","");
       }
     });
 

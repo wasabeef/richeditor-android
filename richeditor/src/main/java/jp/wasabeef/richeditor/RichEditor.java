@@ -455,38 +455,21 @@ public class RichEditor extends WebView implements ValueCallback<String> {
     exec("javascript:RE.insertCollapsibleSection('"+section+"', '"+content+"');");
   }
 
-  public void insertImage(String url, String alt) {
-    exec("javascript:RE.prepareInsert();");
-    exec("javascript:RE.insertImage('" + url + "', '" + alt + "');");
-  }
-
   /**
-   * the image according to the specific width of the image automatically
-   *
-   * @param url
-   * @param alt
-   * @param width
-   */
-  public void insertImage(String url, String alt, int width) {
-    exec("javascript:RE.prepareInsert();");
-    exec("javascript:RE.insertImage('" + url + "', '" + alt + "','" + width + "');");
-  }
-
-  /**
-   * {@link RichEditor#insertImage(String, String)} will show the original size of the image.
+   * {@link RichEditor#insertImage(String, String, String, String)} will show the original size of the image.
    * So this method can manually process the image by adjusting specific width and height to fit into different mobile screens.
    *
    * @param url
    * @param alt
-   * @param width
+   * @param width Width of the Image; auto=100% page width
    * @param height
    */
-  public void insertImage(String url, String alt, int width, int height) {
+  public void insertImage(String url, String alt, String width, String height) {
     exec("javascript:RE.prepareInsert();");
     exec("javascript:RE.insertImage('" + url + "', '" + alt + "','" + width + "', '" + height + "');");
   }
 
-    public void insertImageAsBase64(Uri imageURI, String alt) {
+    public void insertImageAsBase64(Uri imageURI, String alt,String width, String height) {
     InputStream inputStream= null;
     try {
       inputStream = getContext().getContentResolver().openInputStream(imageURI);
@@ -504,21 +487,20 @@ public class RichEditor extends WebView implements ValueCallback<String> {
     String format="png";
     String tag = "data:image/" + format + ";charset=utf-8;base64,";
     exec("javascript:RE.prepareInsert();");
-    exec("javascript:RE.insertImage('" + tag + Utils.toBase64(bitmap, format) + "',"+alt+");");
+    exec("javascript:RE.insertImage('" + tag + Utils.toBase64(bitmap, format) + "','"+ alt + "','" + width + "', '" + height + "');");
     //exec("javascript:RE.insertImage('data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAUAAAAFCAYAAACNbyblAAAAHElEQVQI12P4//8/w38GIAXDIBKE0DHxgljNBAAO9TXL0Y4OHwAAAABJRU5ErkJggg==','alt');");
   }
 
-  public void insertVideo(String url) {
-    exec("javascript:RE.prepareInsert();");
-    exec("javascript:RE.insertVideo('" + url + "');");
-  }
-
-  public void insertVideo(String url, int width) {
-    exec("javascript:RE.prepareInsert();");
-    exec("javascript:RE.insertVideo('" + url + "', '" + width + "');");
-  }
-
-  public void insertVideo(String url, int width, int height) {
+  /**
+   * {@link RichEditor#insertVideo(String, String, String)} will show the original size of the video.
+   * So this method can manually process the image by adjusting specific width and height to fit into different mobile screens.
+   *
+   * @param url
+   * @param alt
+   * @param width Width of the video; auto=100% page width
+   * @param height
+   */
+  public void insertVideo(String url, String width, String height) {
     exec("javascript:RE.prepareInsert();");
     exec("javascript:RE.insertVideo('" + url + "', '" + width + "', '" + height + "');");
   }

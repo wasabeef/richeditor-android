@@ -74,6 +74,11 @@ input[type=checkbox] {
     margin-right: 9px;
 }
 
+#responsive-image {
+    width: 100%;
+    height: auto;
+}
+
 video {
     width: 100%  !important;
     height: auto !important;
