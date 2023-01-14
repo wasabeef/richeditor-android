@@ -360,11 +360,12 @@ RE.insertImage = function(url, alt="", width="", height="" ) {
     RE.callback("input");
 };
 
-RE.insertVideo = function(url, width="", height="") {
+RE.insertVideo = function(url, alt="", width="", height="") {
     var video = document.createElement('video');
     video.setAttribute("src", url);
     video.controls = true;
     video.muted = false;
+    if (alt != "") video.setAttribute("alt", alt);
 
     if (width == "auto")
           video.setAttribute("width", "responsive-image");

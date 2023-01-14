@@ -511,7 +511,7 @@ public class RichEditor extends WebView implements ValueCallback<String> {
   }
 
   /**
-   * {@link RichEditor#insertVideo(String, String, String)} will show the original size of the video.
+   * {@link RichEditor#insertVideo(String, String, String, String)} will show the original size of the video.
    * So this method can manually process the image by adjusting specific width and height to fit into different mobile screens.
    *
    * @param url
@@ -519,9 +519,9 @@ public class RichEditor extends WebView implements ValueCallback<String> {
    * @param width Width of the video; auto=100% page width
    * @param height
    */
-  public void insertVideo(String url, String width, String height) {
+  public void insertVideo(String url, String alt, String width, String height) {
     exec("javascript:RE.prepareInsert();");
-    exec("javascript:RE.insertVideo('" + url + "', '" + width + "', '" + height + "');");
+    exec("javascript:RE.insertVideo('" + url + "', '" + alt + "', '" + width + "' '" + height + "');");
   }
 
   public void insertAudio(String url) {
