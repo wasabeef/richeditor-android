@@ -86,6 +86,14 @@
         android:src="@drawable/underline" />
 
       <ImageButton
+        android:id="@+id/action_font_cursive"
+        android:layout_width="48dp"
+        android:layout_height="48dp"
+        android:background="@null"
+        android:contentDescription="@null"
+        android:src="@drawable/font_cursive" />
+
+      <ImageButton
         android:id="@+id/action_heading1"
         android:layout_width="48dp"
         android:layout_height="48dp"

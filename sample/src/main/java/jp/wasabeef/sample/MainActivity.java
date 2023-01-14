@@ -64,19 +64,6 @@ public class MainActivity extends AppCompatActivity {
     findViewById(R.id.action_bold).setOnClickListener(new View.OnClickListener() {
       @Override
       public void onClick(View v) {
-/*
-
-        mEditor.setOnJSDataListener(new RichEditor.onJSDataListener() {
-          @Override public void onDataReceived(String value) {
-            String temp;
-            if(!value.isEmpty())
-              temp=value;
-          }
-        });
-
-        mEditor.getHtml();
-
-*/
         mEditor.setBold();
       }
     });
@@ -113,6 +100,13 @@ public class MainActivity extends AppCompatActivity {
       @Override
       public void onClick(View v) {
         mEditor.setUnderline();
+      }
+    });
+
+    findViewById(R.id.action_font_cursive).setOnClickListener(new View.OnClickListener() {
+      @Override
+      public void onClick(View v) {
+        mEditor.setFontFamily("cursive");
       }
     });
 

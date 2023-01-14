@@ -137,9 +137,20 @@ public class RichEditor extends WebView implements ValueCallback<String> {
       e.printStackTrace();
     }
     if (!"null".equals(unescaped)) {
-       unescaped = unescaped.substring(1, unescaped.length() - 1)  // remove wrapping quotes
-        .replace("\\\\", "\\")        // unescape \\ -> \
-        .replace("\\\"", "\"");       // unescape \" -> "
+
+       if(unescaped.startsWith("[")) {
+         // Array
+         unescaped = unescaped.substring(2, unescaped.length() - 2)  // remove wrapping quotes
+           .replace("\\\\", "\\")        // unescape \\ -> \
+           .replace("\\\"", "\"")         // unescape \" -> "
+           .replace("\",\"", ";") ;         // replace "," -> ;
+
+       }  else {
+         unescaped = unescaped.substring(1, unescaped.length() - 1)  // remove wrapping quotes
+           .replace("\\\\", "\\")        // unescape \\ -> \
+           .replace("\\\"", "\"");       // unescape \" -> "
+
+       }
     }
 
     if (mJSDataListener != null) {
@@ -394,6 +405,14 @@ public class RichEditor extends WebView implements ValueCallback<String> {
     exec("javascript:RE.setTextBackgroundColor('" + color + "');");
   }
 
+  public void setFontFamily(String fontFamily) {
+    exec("javascript:RE.setFontFamily('" + fontFamily + "');");
+  }
+
+  public void getFontFamily() {
+    requestJSData("javascript:RE.getFontFamily();");
+  }
+
   public void setFontSize(int fontSize) {
     if (fontSize > 7 || fontSize < 1) {
       Log.e("RichEditor", "Font size should have a value between 1-7");
@@ -443,12 +462,12 @@ public class RichEditor extends WebView implements ValueCallback<String> {
 
   public void insertHTML(String text) {
     exec("javascript:RE.prepareInsert();");
-    exec("javascript:RE.insertHTML('" + text + "')");
+    exec("javascript:RE.insertHTML('" + text + "');");
   }
 
   public void insertHR_Line() {
     exec("javascript:RE.prepareInsert();");
-    exec("javascript:RE.insertHTML('<hr>')");
+    exec("javascript:RE.insertHTML('<hr>');");
   }
 
   public void insertCollapsibleSection(String section, String content) {

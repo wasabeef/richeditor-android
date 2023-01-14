@@ -233,6 +233,40 @@ RE.setTextBackgroundColor = function(color) {
     document.execCommand("styleWithCSS", null, false);
 };
 
+RE.setFontFamily = function(fontName){
+    document.execCommand('fontName', false, fontName);
+}
+
+RE.getFontFamily = function getFontFamily() {
+   var arr = [];
+  /*
+  sounds good - doesn't work
+  any ideas?
+  var it = document.fonts.entries();
+
+  var arr = [];
+  let done = false;
+
+  while (!done) {
+    const font = it.next();
+    if (!font.done) {
+      arr.push(font.value[0].family);
+    } else {
+      done = font.done;
+    }
+  }
+  */
+    arr.push('sans-serif');
+    arr.push('monospace');
+    arr.push('sans-serif');
+    arr.push('serif');
+    arr.push('cursive');
+    arr.push('fantasy');
+  // converted to set then arr to filter repetitive values
+  return [...new Set(arr)];
+}
+
+
 RE.setHeading = function(heading) {
     var sel = document.getSelection().getRangeAt(0).startContainer.parentNode;
     document.execCommand('formatBlock', false, sel.tagName === `H${heading}` ? '<p>' : `<h${heading}>`);

@@ -60,6 +60,7 @@ Supported Functions
 - [x] (new) Text Color (String)
 - [x] Text Background Color
 - [x] (new) Text Background Color (String)
+- [x] Font Family
 - [x] Text Font Size
 - [x] Unordered List (Bullets)
 - [x] Ordered List (Numbers)
@@ -79,10 +80,6 @@ Attribute change of editor
 - [x] Load CSS
 - [x] State Callback
 - [x] (new) setHTML_asCallBack (don't encode & copy the complete HTML page on every change by callback) 
-
-**Milestone**
-
-- [ ] Font Family
 
 Demo
 ---
