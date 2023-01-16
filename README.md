@@ -95,13 +95,19 @@ How do I use it?
 
 ##### Gradle
 ```groovy
-repositories {
-  mavenCentral()
-}
+~~repositories {~~
+~~  mavenCentral()~~
+~~}~~
 
 dependencies {
-  implementation 'jp.wasabeef:richeditor-android:2.0.0'
+  implementation files('../../richeditor-android/richeditor/build/outputs/aar/richeditor-debug.aar')
+  ~~implementation 'jp.wasabeef:richeditor-android:2.0.0'~~
 }
+
+settings.gradle:
+includeBuild('../richeditor-android')
+
+
 ```
 ### Default Setting for Editor
 ---
