@@ -30,7 +30,7 @@ public class MainActivity extends AppCompatActivity {
     //mEditor.setBackground("https://raw.githubusercontent.com/wasabeef/art/master/chip.jpg");
     mEditor.setPlaceholder("Insert text here...");
     //mEditor.setInputEnabled(false);
-
+    mEditor.LoadFont("Alita Brush","Alita Brush.ttf");
     mPreview = (TextView) findViewById(R.id.preview);
     //mEditor.setHTML_asCallBack(true);
     mEditor.setOnTextChangeListener(new RichEditor.OnTextChangeListener() {
@@ -106,7 +106,9 @@ public class MainActivity extends AppCompatActivity {
     findViewById(R.id.action_font_cursive).setOnClickListener(new View.OnClickListener() {
       @Override
       public void onClick(View v) {
-        mEditor.setFontFamily("cursive");
+       //  mEditor.setFontFamily("Alita Brush");
+       mEditor.setFontFamily("cursive");
+       // mEditor.getFontFamily();
       }
     });
 

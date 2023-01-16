@@ -237,12 +237,20 @@ RE.setFontFamily = function(fontName){
     document.execCommand('fontName', false, fontName);
 }
 
+RE.LoadFont = function LoadFont(name, url) {
+  let font = new FontFace(name, 'url("'+ url +'")');
+  font.load().then(function(loadedFont)
+  {
+      document.fonts.add(loadedFont);
+      //do something after the font is loaded
+  }).catch(function(error) {
+      RE.insertHTML(error)
+      // error occurred
+  });
+}
 RE.getFontFamily = function getFontFamily() {
    var arr = [];
-  /*
-  sounds good - doesn't work
-  any ideas?
-  var it = document.fonts.entries();
+   var it = document.fonts.entries();
 
   var arr = [];
   let done = false;
@@ -255,8 +263,6 @@ RE.getFontFamily = function getFontFamily() {
       done = font.done;
     }
   }
-  */
-    arr.push('sans-serif');
     arr.push('monospace');
     arr.push('sans-serif');
     arr.push('serif');

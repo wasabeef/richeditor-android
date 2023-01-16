@@ -78,6 +78,8 @@ Attribute change of editor
 - [x] Height
 - [x] Placeholder
 - [x] Load CSS
+- [x] (new) Load Font
+- [x] (new) getFontFamily
 - [x] State Callback
 - [x] (new) setHTML_asCallBack (don't encode & copy the complete HTML page on every change by callback) 
 

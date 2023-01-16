@@ -61,17 +61,14 @@ public class RichEditor extends WebView implements ValueCallback<String> {
   }
 
   public interface OnTextChangeListener {
-
-    void onTextChange(String text);
+        void onTextChange(String text);
   }
 
   public interface OnDecorationStateListener {
-
     void onStateChangeListener(String text, List<Type> types);
   }
 
   public interface AfterInitialLoadListener {
-
     void onAfterInitialLoad(boolean isReady);
   }
 
@@ -407,6 +404,10 @@ public class RichEditor extends WebView implements ValueCallback<String> {
 
   public void setFontFamily(String fontFamily) {
     exec("javascript:RE.setFontFamily('" + fontFamily + "');");
+  }
+
+  public void LoadFont(String name, String url) {
+    exec("javascript:RE.LoadFont('" + name + "','"+url+"');");
   }
 
   public void getFontFamily() {
