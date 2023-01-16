@@ -94,17 +94,23 @@ How do I use it?
 ### Setup
 
 ##### Gradle
-```groovy
+
 ~~repositories {~~
-~~  mavenCentral()~~
+   ~~mavenCentral()~~
 ~~}~~
+
+~~dependencies {~~
+  ~~implementation 'jp.wasabeef:richeditor-android:2.0.0'~~
+~~}~~
+
+```groovy
 
 dependencies {
   implementation files('../../richeditor-android/richeditor/build/outputs/aar/richeditor-debug.aar')
-  ~~implementation 'jp.wasabeef:richeditor-android:2.0.0'~~
 }
 
-settings.gradle:
+settings.gradle
+
 includeBuild('../richeditor-android')
 
 
