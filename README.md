@@ -60,7 +60,7 @@ Supported Functions
 - [x] (new) Text Color (String)
 - [x] Text Background Color
 - [x] (new) Text Background Color (String)
-- [x] Font Family
+- [x] (new) Font Family
 - [x] Text Font Size
 - [x] Unordered List (Bullets)
 - [x] Ordered List (Numbers)
