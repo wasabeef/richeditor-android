@@ -96,16 +96,17 @@ RE.runCallbackQueue = function() {
     }
 
     setTimeout(function() {
+        var callback_text = "re-callback://" + RE.getCommandQueue();
         if (RE.getHTML_asCallBack == true) {
-           window.location.href = "re-callback://";
+           window.location.href = callback_text;
         } else {
-           window.location.href = "re-callback://" + RE.getHtml();
+           window.location.href = callback_text + "HTML:" + RE.getHtml();
         }
     }, 0);
 };
 
 RE.getCommandQueue = function() {
-    var commands = JSON.stringify(RE.callbackQueue);
+    var commands = JSON.stringify( RE.callbackQueue );
     RE.callbackQueue = [];
     return commands;
 };
@@ -294,14 +295,6 @@ RE.setUnorderedList = function() {
     document.execCommand('insertUnorderedList', false, null);
 };
 
-RE.fixCheckbox = function() {
-var coll = document.querySelectorAll('input[type=checkbox]');
-var i;
-
-for (i = 0; i < coll.length; i++) {
-   coll[i].addEventListener("change", function() {createCheckbox(this);});
-  }
-}
 
 function createCheckbox(node) {
     var d = document.createElement("input");
@@ -316,13 +309,24 @@ function createCheckbox(node) {
 };
 
 RE.setCheckbox = function() {
-    var elements = document.querySelectorAll(":hover");
-    var el = document.createElement("input");
-    RE.insertHTML('&nbsp;');
+  var el = document.createElement("input");
     el.setAttribute("type", "checkbox");
-    el.addEventListener("change", function() {createCheckbox(this);});
-    elements[elements.length - 1].appendChild(el);
-    el.focus(); //sets focus to element
+    //el.setAttribute("name", id);
+    RE.insertHTML("&nbsp;" + el.outerHTML + "&nbsp;");
+    RE.setElementListener("checkbox");
+
+
+    //el = document.querySelector("input[name='" + id + "']");
+
+
+
+//    var elements = document.querySelectorAll(":hover");
+//    var el = document.createElement("input");
+//    RE.insertHTML('&nbsp;');
+//    el.setAttribute("type", "checkbox");
+//    el.addEventListener("change", function() {createCheckbox(this);});
+//    elements[elements.length - 1].appendChild(el);
+//    el.focus(); //sets focus to element
     //focus should be behind the box...but i don't get it
     RE.callback("input");
 };
@@ -395,13 +399,39 @@ RE.insertYoutubeVideo = function(url, width="100%", height="100%") {
     RE.insertHTML(html);
 }
 
-RE.fixCollapsibleSection = function() {
-var coll = document.getElementsByClassName("collapsible");
-var i;
+RE.setElementListener = function(element) {
+if (element=="section" || element=="") {
+  var coll = document.getElementsByClassName("collapsible");
+  var i;
 
-for (i = 0; i < coll.length; i++) {
-  coll[i].addEventListener("click", function() {CollapsibleSection(this);});
+  for (i = 0; i < coll.length; i++) {
+      coll[i].addEventListener("click", function() {CollapsibleSection(this);});
   }
+}
+
+if (element=="checkbox" || element=="") {
+  var coll = document.querySelectorAll('input[type=checkbox]');
+  var i;
+
+  for (i = 0; i < coll.length; i++) {
+     coll[i].addEventListener("change", function() {createCheckbox(this);});
+  }
+}
+
+if (element=="link" || element=="") {
+  var coll = document.querySelectorAll('a');
+  var i;
+
+  for (i = 0; i < coll.length; i++) {
+     coll[i].addEventListener("click", function() {
+        var ret = [];
+        ret.push(element);
+        ret.push(this.getAttribute("href"));
+        RE.callback(ret) ;
+        }
+     );
+  }
+}
 }
 
 function CollapsibleSection(node) {
@@ -418,7 +448,7 @@ RE.insertCollapsibleSection = function(section, content) {
     var d = document.createElement("button");
         d.setAttribute("class", "collapsible");
         d.innerHTML = "&nbsp;" + section;
-        d.addEventListener("click", function() {CollapsibleSection(this);});
+       // d.addEventListener("click", function() {CollapsibleSection(this);});
     var elements = document.querySelectorAll(":hover");
     d=elements[elements.length - 1].appendChild(d);
     var e=document.createElement("div");
@@ -426,10 +456,15 @@ RE.insertCollapsibleSection = function(section, content) {
     e.innerHTML = '<p> ' + content + '<br><br></p>';
     elements[elements.length - 1].appendChild(e);
 
+
+
     // next empty element
     e=document.createElement("p");
     e.innerHTML = '<br>';
     elements[elements.length - 1].appendChild(e);
+
+     RE.callback("input");
+     RE.setElementListener("section");
 }
 
 RE.insertHTML = function(html) {
@@ -440,7 +475,8 @@ RE.insertHTML = function(html) {
 RE.insertLink = function(url, text, title) {
     RE.restorerange();
     document.execCommand("insertHTML",false,"<a href='"+url+"' title='"+title+"'>"+text+"</a>");
-    RE.callback();
+    RE.setElementListener("link");
+    RE.callback("input");
 };
 
 RE.insertLinkSelection = function(url, text, title) {
@@ -458,7 +494,7 @@ RE.insertLinkSelection = function(url, text, title) {
         sel.removeAllRanges();
         sel.addRange(range);
     }
-    RE.callback();
+    RE.callback("input");
 };
 
 RE.prepareInsert = function() {

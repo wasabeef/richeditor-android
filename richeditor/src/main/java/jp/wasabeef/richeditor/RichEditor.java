@@ -217,8 +217,7 @@ public class RichEditor extends WebView implements ValueCallback<String> {
     }
     try {
       exec("javascript:RE.setHtml('" + URLEncoder.encode(contents, "UTF-8") + "');");
-      exec("javascript:RE.fixCheckbox();");
-      exec("javascript:RE.fixCollapsibleSection();");
+      exec("javascript:RE.setElementListener();");
     } catch (UnsupportedEncodingException e) {
       // No handling
     }
