@@ -225,13 +225,8 @@ public class RichEditor extends WebView implements ValueCallback<String> {
   }
 
   public String getHtml() {
-    if(HTML_asCallBack) {
       requestJSData("RE.getHtml()");
       return("data can only received by callback");
-    } else {
-      // only for compatibility
-      return mContents;
-    }
   }
 
   /// Text representation of the data that has been input into the editor view, if it has been loaded.
@@ -252,14 +247,6 @@ public class RichEditor extends WebView implements ValueCallback<String> {
     } else {
       return requestJSData("RE.getSelectedHref()");
     }
-  }
-
-  // in v2.0.0 each change, will raise a callback, which encodes and copy the complete HTML code back to java,
-  // this is very resource eating.
-  // with HTML_asCallBack=true, getHTML will be a normal callback
-  public void setHTML_asCallBack(Boolean value) {
-      HTML_asCallBack = value;
-      exec("javascript:RE.setHTML_asCallBack(" + value + ");");
   }
 
   /// Whether or not the selection has a type specifically of "Range".

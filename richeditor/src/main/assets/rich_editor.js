@@ -25,15 +25,6 @@ var RE = {};
 
 RE.editor = document.getElementById('editor');
 
-// in v2.0.0 each change, will raise a callback, which encodes and copy the complete HTML code back to java,
-// this is very resource eating.
-// with HTML_asCallBack=true, getHTML will be a normal callback
-RE.getHTML_asCallBack = false;
-
-RE.setHTML_asCallBack = function(value) {
-  RE.getHTML_asCallBack = Boolean(value);
-};
-
 // Not universally supported, but seems to work in iOS 7 and 8
 document.addEventListener("selectionchange", function() {
     RE.backuprange();
@@ -97,11 +88,7 @@ RE.runCallbackQueue = function() {
 
     setTimeout(function() {
         var callback_text = "re-callback://" + RE.getCommandQueue();
-        if (RE.getHTML_asCallBack == true) {
-           window.location.href = callback_text;
-        } else {
-           window.location.href = callback_text + "HTML:" + RE.getHtml();
-        }
+        window.location.href = callback_text;
     }, 0);
 };
 
@@ -762,6 +749,7 @@ RE.blurFocus = function() {
 };
 
 RE.removeFormat = function() {
+    document.execCommand('formatBlock', false, 'p');
     document.execCommand('removeFormat', false, null);
 };
 

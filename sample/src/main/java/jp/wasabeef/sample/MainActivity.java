@@ -1,8 +1,10 @@
 package jp.wasabeef.sample;
 
+import android.content.Intent;
 import android.graphics.Color;
 import android.net.Uri;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.widget.TextView;
 
@@ -32,11 +34,13 @@ public class MainActivity extends AppCompatActivity {
     //mEditor.setInputEnabled(false);
     mEditor.LoadFont("Alita Brush","Alita Brush.ttf");
     mPreview = (TextView) findViewById(R.id.preview);
-    //mEditor.setHTML_asCallBack(true);
     mEditor.setOnTextChangeListener(new RichEditor.OnTextChangeListener() {
       @Override
       public void onTextChange(String text) {
-        mPreview.setText(text);
+        mEditor.setOnJSDataListener(value -> {
+          mPreview.setText(value);
+        });
+        mEditor.getHtml();
       }
     });
 
