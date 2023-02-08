@@ -87,8 +87,7 @@ RE.runCallbackQueue = function() {
     }
 
     setTimeout(function() {
-        var callback_text = "re-callback://" + RE.getCommandQueue();
-        window.location.href = callback_text;
+        window.location.href = "re-callback://" + RE.getCommandQueue();
     }, 0);
 };
 
@@ -298,24 +297,9 @@ function createCheckbox(node) {
 RE.setCheckbox = function() {
   var el = document.createElement("input");
     el.setAttribute("type", "checkbox");
-    //el.setAttribute("name", id);
     RE.insertHTML("&nbsp;" + el.outerHTML + "&nbsp;");
     RE.setElementListener("checkbox");
-
-
-    //el = document.querySelector("input[name='" + id + "']");
-
-
-
-//    var elements = document.querySelectorAll(":hover");
-//    var el = document.createElement("input");
-//    RE.insertHTML('&nbsp;');
-//    el.setAttribute("type", "checkbox");
-//    el.addEventListener("change", function() {createCheckbox(this);});
-//    elements[elements.length - 1].appendChild(el);
-//    el.focus(); //sets focus to element
-    //focus should be behind the box...but i don't get it
-    RE.callback("input");
+    //RE.callback("input");
 };
 
 RE.setJustifyLeft = function() {
@@ -354,7 +338,7 @@ RE.insertImage = function(url, alt="", width="", height="" ) {
     }
     img.onload = RE.updateHeight;
     RE.insertHTML(img.outerHTML);
-    RE.callback("input");
+    //RE.callback("input");
 };
 
 RE.insertVideo = function(url, alt="", width="", height="") {
@@ -373,7 +357,7 @@ RE.insertVideo = function(url, alt="", width="", height="") {
     video.onload = RE.updateHeight;
 
     RE.insertHTML(video.outerHTML);
-    RE.callback("input");
+    //RE.callback("input");
 }
 
 RE.insertAudio = function(url, alt) {
@@ -412,8 +396,11 @@ if (element=="link" || element=="") {
   for (i = 0; i < coll.length; i++) {
      coll[i].addEventListener("click", function() {
         var ret = [];
-        ret.push(element);
-        ret.push(this.getAttribute("href"));
+        ret.push("click");
+        ret.push(["tagName",this.tagName]);
+        ret.push(["url",this.href]);
+        ret.push(["text",this.innerHTML]);
+        ret.push(["title",this.title]);
         RE.callback(ret) ;
         }
      );
@@ -450,7 +437,7 @@ RE.insertCollapsibleSection = function(section, content) {
     e.innerHTML = '<br>';
     elements[elements.length - 1].appendChild(e);
 
-     RE.callback("input");
+     //RE.callback("input");
      RE.setElementListener("section");
 }
 
@@ -463,7 +450,7 @@ RE.insertLink = function(url, text, title) {
     RE.restorerange();
     document.execCommand("insertHTML",false,"<a href='"+url+"' title='"+title+"'>"+text+"</a>");
     RE.setElementListener("link");
-    RE.callback("input");
+    //RE.callback("input");
 };
 
 RE.insertLinkSelection = function(url, text, title) {
@@ -481,7 +468,7 @@ RE.insertLinkSelection = function(url, text, title) {
         sel.removeAllRanges();
         sel.addRange(range);
     }
-    RE.callback("input");
+    //RE.callback("input");
 };
 
 RE.prepareInsert = function() {
@@ -537,7 +524,7 @@ RE.insertTable = function(width, height) {
     }
 
     RE.insertHTML(table.outerHTML);
-    RE.callback("input");
+    //RE.callback("input");
 };
 
 function getNearestTableAncestor(htmlElementNode) {

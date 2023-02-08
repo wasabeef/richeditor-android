@@ -155,10 +155,10 @@ public class RichEditor extends WebView implements ValueCallback<String> {
     }
   }
   
-   private void callback(String text) {
-    mContents = text.replaceFirst(CALLBACK_SCHEME, "");
+   private void callback(String value) {
+
     if (mTextChangeListener != null) {
-      mTextChangeListener.onTextChange(mContents);
+      mTextChangeListener.onTextChange(value.replaceFirst(CALLBACK_SCHEME, ""));
     }
   }
 
