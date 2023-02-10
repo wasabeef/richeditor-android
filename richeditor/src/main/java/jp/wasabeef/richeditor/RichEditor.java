@@ -60,6 +60,11 @@ public class RichEditor extends WebView implements ValueCallback<String> {
     //public void onActionFailure(Throwable throwableError);
   }
 
+  public interface onClickListener  {
+    public void onClick(String value);
+    //public void onActionFailure(Throwable throwableError);
+  }
+
   public interface OnTextChangeListener {
         void onTextChange(String text);
   }
@@ -75,10 +80,11 @@ public class RichEditor extends WebView implements ValueCallback<String> {
   private static final String SETUP_HTML = "file:///android_asset/rich_editor.html";
   private static final String CALLBACK_SCHEME = "re-callback://";
   private static final String STATE_SCHEME = "re-state://";
-  private static boolean HTML_asCallBack = false;
+  private static final String CLICK_SCHEME= "re-click://";
   private boolean isReady = false;
   private String mContents;
   private OnTextChangeListener mTextChangeListener;
+  private onClickListener mClickListener;
   private onJSDataListener mJSDataListener;
   private OnDecorationStateListener mDecorationStateListener;
   private AfterInitialLoadListener mLoadListener;
@@ -113,6 +119,10 @@ public class RichEditor extends WebView implements ValueCallback<String> {
     mTextChangeListener = listener;
   }
 
+  public void setOnClickListener(onClickListener listener) {
+    mClickListener = listener;
+  }
+
   public void setOnJSDataListener(onJSDataListener listener) {
     mJSDataListener = listener;
   }
@@ -135,19 +145,9 @@ public class RichEditor extends WebView implements ValueCallback<String> {
     }
     if (!"null".equals(unescaped)) {
 
-       if(unescaped.startsWith("[")) {
-         // Array
-         unescaped = unescaped.substring(2, unescaped.length() - 2)  // remove wrapping quotes
-           .replace("\\\\", "\\")        // unescape \\ -> \
-           .replace("\\\"", "\"")         // unescape \" -> "
-           .replace("\",\"", ";") ;         // replace "," -> ;
-
-       }  else {
          unescaped = unescaped.substring(1, unescaped.length() - 1)  // remove wrapping quotes
            .replace("\\\\", "\\")        // unescape \\ -> \
            .replace("\\\"", "\"");       // unescape \" -> "
-
-       }
     }
 
     if (mJSDataListener != null) {
@@ -159,6 +159,12 @@ public class RichEditor extends WebView implements ValueCallback<String> {
 
     if (mTextChangeListener != null) {
       mTextChangeListener.onTextChange(value.replaceFirst(CALLBACK_SCHEME, ""));
+    }
+  }
+
+  private void callback_click(String value) {
+    if (mClickListener != null) {
+      mClickListener.onClick(value.replaceFirst(CLICK_SCHEME, ""));
     }
   }
 
@@ -649,6 +655,9 @@ public class RichEditor extends WebView implements ValueCallback<String> {
         return true;
       } else if (TextUtils.indexOf(url, STATE_SCHEME) == 0) {
         stateCheck(decode);
+        return true;
+      } else if (TextUtils.indexOf(url, CLICK_SCHEME) == 0) {
+        callback_click(decode);
         return true;
       }
       return super.shouldOverrideUrlLoading(view, request);

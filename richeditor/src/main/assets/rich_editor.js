@@ -256,7 +256,7 @@ RE.getFontFamily = function getFontFamily() {
     arr.push('cursive');
     arr.push('fantasy');
   // converted to set then arr to filter repetitive values
-  return [...new Set(arr)];
+  return String(arr);
 }
 
 
@@ -396,12 +396,11 @@ if (element=="link" || element=="") {
   for (i = 0; i < coll.length; i++) {
      coll[i].addEventListener("click", function() {
         var ret = [];
-        ret.push("click");
-        ret.push(["tagName",this.tagName]);
-        ret.push(["url",this.href]);
-        ret.push(["text",this.innerHTML]);
-        ret.push(["title",this.title]);
-        RE.callback(ret) ;
+        ret.push({"tagName":this.tagName});
+        ret.push({"url":this.href});
+        ret.push({"text":this.innerHTML});
+        ret.push({"title":this.title});
+        window.location.href = "re-click://" + JSON.stringify(ret);
         }
      );
   }
