@@ -110,7 +110,7 @@ RE.setHtml = function(contents) {
         images[i].onload = RE.updateHeight;
     }
 
-    //RE.editor.innerHTML = tempWrapper.innerHTML;
+    RE.setElementListener("");
     RE.updatePlaceholder();
     RE.callback("input");
 };
@@ -397,7 +397,7 @@ if (element=="link" || element=="") {
      coll[i].addEventListener("click", function() {
         var ret = [];
         ret.push({"tagName":this.tagName});
-        ret.push({"url":this.href});
+        ret.push({"href":this.href});
         ret.push({"text":this.innerHTML});
         ret.push({"title":this.title});
         window.location.href = "re-click://" + JSON.stringify(ret);

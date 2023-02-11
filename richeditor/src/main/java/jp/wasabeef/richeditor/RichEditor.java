@@ -82,7 +82,6 @@ public class RichEditor extends WebView implements ValueCallback<String> {
   private static final String STATE_SCHEME = "re-state://";
   private static final String CLICK_SCHEME= "re-click://";
   private boolean isReady = false;
-  private String mContents;
   private OnTextChangeListener mTextChangeListener;
   private onClickListener mClickListener;
   private onJSDataListener mJSDataListener;
@@ -223,11 +222,9 @@ public class RichEditor extends WebView implements ValueCallback<String> {
     }
     try {
       exec("javascript:RE.setHtml('" + URLEncoder.encode(contents, "UTF-8") + "');");
-      exec("javascript:RE.setElementListener();");
     } catch (UnsupportedEncodingException e) {
       // No handling
     }
-    mContents = contents;
   }
 
   public String getHtml() {
