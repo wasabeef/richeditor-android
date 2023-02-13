@@ -16,7 +16,7 @@ public class MainActivity extends AppCompatActivity {
 
   private RichEditor mEditor;
   private TextView mPreview;
-
+  private int fontsize=4;
   @Override
   protected void onCreate(Bundle savedInstanceState) {
     super.onCreate(savedInstanceState);
@@ -34,6 +34,7 @@ public class MainActivity extends AppCompatActivity {
     //mEditor.setInputEnabled(false);
     mEditor.LoadFont("Alita Brush","Alita Brush.ttf");
     mPreview = (TextView) findViewById(R.id.preview);
+
     mEditor.setOnTextChangeListener(new RichEditor.OnTextChangeListener() {
       @Override
       public void onTextChange(String text) {
@@ -106,6 +107,18 @@ public class MainActivity extends AppCompatActivity {
         mEditor.setUnderline();
       }
     });
+
+    findViewById(R.id.action_fontsize).setOnClickListener(new View.OnClickListener() {
+      @Override
+      public void onClick(View v) {
+        if (fontsize==4) fontsize=7;
+          else
+          fontsize=4;
+        mEditor.setFontSize(fontsize);
+      }
+    });
+
+
 
     findViewById(R.id.action_font_cursive).setOnClickListener(new View.OnClickListener() {
       @Override
@@ -234,14 +247,14 @@ public class MainActivity extends AppCompatActivity {
     findViewById(R.id.action_insert_bullets).setOnClickListener(new View.OnClickListener() {
       @Override
       public void onClick(View v) {
-        mEditor.setBullets();
+        mEditor.setUnorderedList();
       }
     });
 
     findViewById(R.id.action_insert_numbers).setOnClickListener(new View.OnClickListener() {
       @Override
       public void onClick(View v) {
-        mEditor.setNumbers();
+        mEditor.setOrderedList();
       }
     });
 

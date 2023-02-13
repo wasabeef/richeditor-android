@@ -150,8 +150,9 @@ RE.updatePlaceholder = function() {
     }
 };
 
-RE.setFontSize = function(size) {
-    RE.editor.style.fontSize = size;
+RE.setFontSize = function(fontSize) {
+    document.execCommand("fontSize", false, fontSize);
+    //RE.editor.style.fontSize = size;
 };
 
 RE.setBackgroundColor = function(color) {
@@ -274,13 +275,14 @@ RE.setOutdent = function() {
 };
 
 RE.setOrderedList = function() {
+    // setNumbers
     document.execCommand('insertOrderedList', false, null);
 };
 
 RE.setUnorderedList = function() {
+    // setBullets
     document.execCommand('insertUnorderedList', false, null);
 };
-
 
 function createCheckbox(node) {
     var d = document.createElement("input");

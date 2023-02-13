@@ -442,13 +442,11 @@ public class RichEditor extends WebView implements ValueCallback<String> {
     exec("javascript:RE.setBlockquote();");
   }
 
-  public void setBullets() {
-    exec("javascript:RE.setBullets();");
-  }
+  public void setBullets() { setUnorderedList(); }
+  public void setUnorderedList() { exec("javascript:RE.setUnorderedList();"); }
 
-  public void setNumbers() {
-    exec("javascript:RE.setNumbers();");
-  }
+  public void setNumbers() { setOrderedList(); }
+  public void setOrderedList() { exec("javascript:RE.setOrderedList();"); }
 
   public void insertHTML(String text) {
     exec("javascript:RE.prepareInsert();");
