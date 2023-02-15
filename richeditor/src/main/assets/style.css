@@ -1,5 +1,5 @@
 /**
- * Copyright (C) 2015 peter@niendo.de
+ * Copyright (C) 2022-2023 peter@niendo.de
  * Copyright (C) 2015 Wasabeef
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
@@ -93,12 +93,12 @@ td{padding:5px 10px; height:35px;}
   background-color: #777;
   color: white;
   cursor: pointer;
-  padding: 18px;
+  padding: 10px;
   width: 100%;
   border: none;
   text-align: left;
   outline: none;
-  font-size: 22px;
+  font-size: 17px;
 }
 
 .active, .collapsible:hover {
@@ -118,9 +118,10 @@ td{padding:5px 10px; height:35px;}
 }
 
 .content {
-  padding: 0 18px;
+  padding: 0 15px;
   max-height: 0;
   overflow: hidden;
   transition: max-height 0.2s ease-out;
   background-color: #f1f1f1;
+  font-size: 12pt;
 }

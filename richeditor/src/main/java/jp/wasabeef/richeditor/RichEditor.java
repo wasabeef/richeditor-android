@@ -31,7 +31,7 @@ import java.util.Locale;
 import java.util.concurrent.atomic.AtomicBoolean;
 
 /**
- * Copyright (C) 2020 niendo
+ * Copyright (C) 2022-2023 niendo
  * Copyright (C) 2020 Wasabeef
  * <p>
  * Licensed under the Apache License, Version 2.0 (the "License");

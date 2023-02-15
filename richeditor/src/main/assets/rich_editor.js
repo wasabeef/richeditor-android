@@ -1,5 +1,5 @@
 /**
- * Copyright (C) 2022 peter@niendo.de
+ * Copyright (C) 2022-2023 peter@niendo.de
  * Copyright (C) 2015 Wasabeef
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
