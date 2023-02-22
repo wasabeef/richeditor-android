@@ -109,10 +109,9 @@ RE.setHtml = function(contents) {
     for (var i = 0; i < images.length; i++) {
         images[i].onload = RE.updateHeight;
     }
-
     RE.setElementListener("");
     RE.updatePlaceholder();
-    RE.callback("input");
+    RE.callback("loaded");
 };
 
 RE.getHtml = function() {
