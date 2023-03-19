@@ -49,6 +49,27 @@ RE.rangeOrCaretSelectionExists = function() {
     return false;
 };
 
+
+RE.selectedHtml = function() {
+    // https://stackoverflow.com/questions/5643635/how-to-get-selected-html-text-with-javascript
+    var html = "";
+    if (typeof window.getSelection != "undefined") {
+        var sel = window.getSelection();
+        if (sel.rangeCount) {
+            var container = document.createElement("div");
+            for (var i = 0, len = sel.rangeCount; i < len; ++i) {
+                container.appendChild(sel.getRangeAt(i).cloneContents());
+            }
+            html = container.innerHTML;
+        }
+    } else if (typeof document.selection != "undefined") {
+        if (document.selection.type == "Text") {
+            html = document.selection.createRange().htmlText;
+        }
+    }
+    return html;
+}
+
 // Returns selected text range
 RE.selectedText = function() {
     if (RE.rangeSelectionExists() == true) {

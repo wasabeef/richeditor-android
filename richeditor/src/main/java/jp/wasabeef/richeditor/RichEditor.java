@@ -144,9 +144,10 @@ public class RichEditor extends WebView implements ValueCallback<String> {
     }
     if (!"null".equals(unescaped)) {
 
-         unescaped = unescaped.substring(1, unescaped.length() - 1)  // remove wrapping quotes
-           .replace("\\\\", "\\")        // unescape \\ -> \
-           .replace("\\\"", "\"");       // unescape \" -> "
+      unescaped = unescaped.substring(1, unescaped.length() - 1)  // remove wrapping quotes
+        .replace("\\\\", "\\")        // unescape \\ -> \
+        .replace("\\\"", "\"")        // unescape \" -> "
+        .replace("\\u003C", "<");    // unescape \u003c" -> <
     }
 
     if (mJSDataListener != null) {
@@ -212,6 +213,7 @@ public class RichEditor extends WebView implements ValueCallback<String> {
         exec("javascript:RE.setTextAlign(\"center\")");
         break;
     }
+
     ta.recycle();
   }
 
@@ -239,6 +241,11 @@ public class RichEditor extends WebView implements ValueCallback<String> {
   /// Returns selected text
   public boolean getSelectedText() {
     return requestJSData("RE.selectedText()");
+  }
+
+  /// Returns HTML-Code from selected range
+  public boolean getSelectedHtml() {
+    return requestJSData("RE.selectedHtml()");
   }
 
   /// The href of the current selection, if the current selection's parent is an anchor tag.
