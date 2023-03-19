@@ -212,7 +212,6 @@ public class RichEditor extends WebView implements ValueCallback<String> {
         exec("javascript:RE.setTextAlign(\"center\")");
         break;
     }
-
     ta.recycle();
   }
 
