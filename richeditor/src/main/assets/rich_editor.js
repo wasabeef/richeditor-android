@@ -1,5 +1,6 @@
 /**
  * Copyright (C) 2022-2023 peter@niendo.de
+ * Copyright (C) 2017 Kishan Jadav
  * Copyright (C) 2015 Wasabeef
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
@@ -203,29 +204,114 @@ RE.redo = function() {
     document.execCommand('redo', false, null);
 };
 
-RE.setBold = function() {
-    document.execCommand('bold', false, null);
-};
+RE.setBold = function(shouldEnable) {
+    let isBold = document.queryCommandState('bold');
 
-RE.setItalic = function() {
+    if (!isBold && shouldEnable)
+    {
+        // Enable bold formatting
+        // -----------------------------
+        // If bold formatting is not enabled
+        // then toggle it to enable.
+        RE.toggleBold();
+
+    } else if (isBold && !shouldEnable)
+    {
+        // Disable bold formatting
+        // -----------------------------
+        // If bold formatting is enabled
+        // then toggle it to disable.
+        RE.toggleBold();
+    }
+}
+
+RE.toggleBold = function() {
+    document.execCommand('bold', false, null);
+}
+
+RE.setItalic = function(shouldEnable) {
+    let isItalic = document.queryCommandState('italic');
+
+    if (!isItalic && shouldEnable)
+    {
+        // Enable italic formatting
+        // -----------------------------
+        // If italic formatting is not enabled
+        // then toggle it to enable.
+        RE.toggleItalic();
+
+    } else if (isItalic && !shouldEnable)
+    {
+        // Disable italic formatting
+        // -----------------------------
+        // If italic formatting is enabled
+        // then toggle it to disable.
+        RE.toggleItalic();
+    }
+}
+
+RE.toggleItalic = function() {
     document.execCommand('italic', false, null);
-};
+}
 
 RE.setSubscript = function() {
     document.execCommand('subscript', false, null);
-};
+}
 
 RE.setSuperscript = function() {
     document.execCommand('superscript', false, null);
-};
+}
 
-RE.setStrikeThrough = function() {
+RE.setStrikeThrough = function(shouldEnable) {
+    let isStrikeThrough = document.queryCommandState('strikeThrough');
+
+    if (!isStrikeThrough && shouldEnable)
+    {
+        // Enable strikethrough formatting
+        // -----------------------------
+        // If strikethrough formatting is not enabled
+        // then toggle it to enable.
+        RE.toggleStrikeThrough();
+
+    } else if (isStrikeThrough && !shouldEnable)
+    {
+
+   // Disable strikethrough formatting
+        // -----------------------------
+        // If strikethrough formatting is enabled
+        // then toggle it to disable.
+        RE.toggleStrikeThrough();
+    }
+}
+
+RE.toggleStrikeThrough = function() {
     document.execCommand('strikeThrough', false, null);
-};
+}
 
-RE.setUnderline = function() {
+RE.setUnderline = function(shouldEnable) {
+    let isUnderline = document.queryCommandState('underline');
+
+    if (!isUnderline && shouldEnable)
+    {
+        // Enable underline formatting
+        // -----------------------------
+        // If underline formatting is not enabled
+        // then toggle it to enable.
+        RE.toggleUnderline();
+
+    } else if (isUnderline && !shouldEnable)
+    {
+        // Disable underline formatting
+        // -----------------------------
+        // If underline formatting is enabled
+        // then toggle it to disable.
+        RE.toggleUnderline();
+    }
+}
+
+RE.toggleUnderline = function() {
     document.execCommand('underline', false, null);
-};
+}
 
 RE.setTextColor = function(color) {
     RE.restorerange();

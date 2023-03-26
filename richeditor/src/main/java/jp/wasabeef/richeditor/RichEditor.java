@@ -32,6 +32,7 @@ import java.util.concurrent.atomic.AtomicBoolean;
 
 /**
  * Copyright (C) 2022-2023 niendo
+ * Copyright (C) 2017 Kishan Jadav
  * Copyright (C) 2020 Wasabeef
  * <p>
  * Licensed under the Apache License, Version 2.0 (the "License");
@@ -353,13 +354,20 @@ public class RichEditor extends WebView implements ValueCallback<String> {
   public void redo() {
     exec("javascript:RE.redo();");
   }
-
-  public void setBold() {
-    exec("javascript:RE.setBold();");
+  public void toggleBold() {
+    exec("javascript:RE.toggleBold();");
   }
 
-  public void setItalic() {
-    exec("javascript:RE.setItalic();");
+  public void setBold(boolean enabled) {
+    exec("javascript:RE.setBold(" + enabled + ");");
+  }
+
+  public void toggleItalic() {
+    exec("javascript:RE.toggleItalic();");
+  }
+
+  public void setItalic(boolean enabled) {
+    exec("javascript:RE.setItalic(" + enabled + ");");
   }
 
   public void setSubscript() {
@@ -370,12 +378,20 @@ public class RichEditor extends WebView implements ValueCallback<String> {
     exec("javascript:RE.setSuperscript();");
   }
 
-  public void setStrikeThrough() {
-    exec("javascript:RE.setStrikeThrough();");
+  public void toggleStrikeThrough() {
+    exec("javascript:RE.toggleStrikeThrough();");
   }
 
-  public void setUnderline() {
-    exec("javascript:RE.setUnderline();");
+  public void setStrikeThrough(boolean enabled) {
+    exec("javascript:RE.setStrikeThrough(" + enabled + ");");
+  }
+
+  public void toggleUnderline() {
+    exec("javascript:RE.toggleUnderline();");
+  }
+
+  public void setUnderline(boolean enabled) {
+    exec("javascript:RE.setUnderline(" + enabled + ");");
   }
 
   public void setTextColor(int color) {
