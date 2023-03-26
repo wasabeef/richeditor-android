@@ -6,7 +6,7 @@ buildscript {
     mavenCentral()
   }
   dependencies {
-    classpath 'com.android.tools.build:gradle:7.4.2'
+     classpath 'com.android.tools.build:gradle:7.4.2'
 
     // TODO: Close JCenter on May 1st https://jfrog.com/blog/into-the-sunset-bintray-jcenter-gocenter-and-chartcenter/
 //    classpath 'com.jfrog.bintray.gradle:gradle-bintray-plugin:1.8.5'
