@@ -368,6 +368,15 @@ RE.getFontFamily = function getFontFamily() {
 
 RE.setPre = function() {
       document.execCommand('formatBlock', false, '<pre>');
+      RE.setNewParagraph();
+
+}
+
+RE.setNewParagraph = function() {
+        var elements = document.querySelectorAll(":hover");
+        var e=document.createElement("p");
+        e.innerHTML = '<br>';
+        elements[elements.length - 1].appendChild(e);
 }
 
 RE.setHeading = function(heading) {
@@ -435,6 +444,7 @@ RE.setLineHeight = function(height) {
 
 RE.setBlockquote = function() {
     document.execCommand('formatBlock', false, '<blockquote>');
+    RE.setNewParagraph();
 };
 
 RE.insertImage = function(url, alt="", width="", height="" ) {
@@ -628,8 +638,8 @@ RE.insertTable = function(width, height) {
             var cell = row.insertCell();
         }
     }
-
     RE.insertHTML(table.outerHTML);
+    RE.setNewParagraph();
     //RE.callback("input");
 };
 
@@ -857,3 +867,11 @@ RE.editor.addEventListener("keyup", function(e) {
 });
 RE.editor.addEventListener("click", RE.enabledEditingItems);
 */
+
+//https://stackoverflow.com/questions/18552336/prevent-contenteditable-adding-div-on-enter-chrome
+RE.editor.addEventListener("keydown", function(e) {
+ if(e.keyCode===13){ //enter && shift
+   document.execCommand('insertLineBreak')
+   e.preventDefault(); //Prevent default browser behavior
+   }
+});
