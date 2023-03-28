@@ -870,8 +870,9 @@ RE.editor.addEventListener("click", RE.enabledEditingItems);
 
 //https://stackoverflow.com/questions/18552336/prevent-contenteditable-adding-div-on-enter-chrome
 RE.editor.addEventListener("keydown", function(e) {
- if(e.keyCode===13){ //enter && shift
-   document.execCommand('insertLineBreak')
+let isList=document.queryCommandState('insertOrderedList') || document.queryCommandState('insertUnorderedList');
+ if(e.keyCode===13 && !isList){ //enter && shift
+   document.execCommand('insertLineBreak');
    e.preventDefault(); //Prevent default browser behavior
    }
 });
