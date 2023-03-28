@@ -66,6 +66,13 @@ public class MainActivity extends AppCompatActivity {
       }
     });
 
+    findViewById(R.id.action_pre).setOnClickListener(new View.OnClickListener() {
+      @Override
+      public void onClick(View v) {
+        mEditor.setPre();
+      }
+    });
+
     findViewById(R.id.action_bold).setOnClickListener(new View.OnClickListener() {
       @Override
       public void onClick(View v) {

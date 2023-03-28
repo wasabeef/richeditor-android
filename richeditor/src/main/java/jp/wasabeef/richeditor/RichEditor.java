@@ -354,6 +354,11 @@ public class RichEditor extends WebView implements ValueCallback<String> {
   public void redo() {
     exec("javascript:RE.redo();");
   }
+
+  public void setPre() {
+    exec("javascript:RE.setPre();");
+  }
+
   public void toggleBold() {
     exec("javascript:RE.toggleBold();");
   }

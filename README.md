@@ -37,6 +37,7 @@ Supported Functions
 - [x] Justify Center
 - [x] Justify Right
 - [x] Blockquote
+- [x] (new) Pre-Section
 - [x] Heading 1
 - [x] Heading 2
 - [x] Heading 3

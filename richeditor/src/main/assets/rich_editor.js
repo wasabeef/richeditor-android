@@ -366,6 +366,9 @@ RE.getFontFamily = function getFontFamily() {
   return String(arr);
 }
 
+RE.setPre = function() {
+      document.execCommand('formatBlock', false, '<pre>');
+}
 
 RE.setHeading = function(heading) {
     var sel = document.getSelection().getRangeAt(0).startContainer.parentNode;
@@ -536,14 +539,10 @@ RE.insertCollapsibleSection = function(section, content) {
     e.setAttribute("class", "content");
     e.innerHTML = '<p> ' + content + '<br><br></p>';
     elements[elements.length - 1].appendChild(e);
-
-
-
     // next empty element
     e=document.createElement("p");
     e.innerHTML = '<br>';
     elements[elements.length - 1].appendChild(e);
-
      //RE.callback("input");
      RE.setElementListener("section");
 }
