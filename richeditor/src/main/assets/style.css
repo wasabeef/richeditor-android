@@ -16,6 +16,9 @@
 
 @charset "UTF-8";
 
+:root {
+    color-scheme: light dark;
+}
 
 html {
   height: 100%;
