@@ -15,7 +15,7 @@ dependencies {
   testImplementation 'junit:junit:4.13.2'
   //testImplementation 'org.robolectric:robolectric:4.9.2'
 }
-
+/*
 ext {
   bintrayRepo = 'maven'
   bintrayName = 'richeditor-android'
@@ -41,3 +41,4 @@ ext {
 // apply from: 'https://gist.githubusercontent.com/wasabeef/cf14805bee509baf7461974582f17d26/raw/install-v1.gradle'
 
 apply from: 'https://gist.githubusercontent.com/wasabeef/2f2ae8d97b429e7d967128125dc47854/raw/maven-central-v1.gradle'
+*/
