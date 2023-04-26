@@ -148,7 +148,9 @@ editor.setPlaceholder("Insert text here...");
 ```
 
 **Others**  
-Please refer the [samples](https://github.com/wasabeef/richeditor-android/blob/master/sample/src/main/java/jp/wasabeef/sample/MainActivity.java) for usage.
+Please refer
+the [samples](https://github.com/niendo1/richeditor-android/blob/master/sample/src/main/java/jp/wasabeef/sample/MainActivity.java)
+for usage.
 
 ### Functions for ContentEditable
 ---
@@ -187,7 +189,7 @@ for usage.
 
 Requirements
 --------------
-Android 4+
+Android 7+ (Level 24)
 
 Applications using RichEditor for Android
 ---
@@ -208,6 +210,8 @@ Daichi Furiya (Wasabeef) - <dadadada.chop@gmail.com>
 <img alt="Follow me on Twitter" src="https://raw.githubusercontent.com/wasabeef/art/master/twitter.png" width="75"/>
 </a>
 
+Peter Korf (niendo) - <peter@niendo.de>
+
 Thanks
 -------
 
@@ -216,6 +220,7 @@ Thanks
 License
 -------
 
+    Copyright (C) 2022-2023 niendo
     Copyright (C) 2020 Wasabeef
 
     Licensed under the Apache License, Version 2.0 (the "License");
