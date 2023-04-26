@@ -181,7 +181,9 @@ editor.setOnTextChangeListener(new RichEditor.OnTextChangeListener() {
 ```
 
 **Others**  
-Please refer the [samples](https://github.com/wasabeef/richeditor-android/blob/master/sample/src/main/java/jp/wasabeef/sample/MainActivity.java) for usage.
+Please refer
+the [samples](https://github.com/niendo1/richeditor-android/blob/master/sample/src/main/java/jp/wasabeef/sample/MainActivity.java)
+for usage.
 
 Requirements
 --------------
@@ -192,11 +194,11 @@ Applications using RichEditor for Android
 
 Please [ping](mailto:dadadada.chop@gmail.com) me or send a pull request if you would like to be added here.
 
-| Icon                                                                                                                                                 | Application                                                                         |
-|------------------------------------------------------------------------------------------------------------------------------------------------------|-------------------------------------------------------------------------------------|
-| <img src="https://lh6.ggpht.com/6zKH_uQY1bxCwXL4DLo_uoFEOXdShi3BgmN6XRHlaJ-oA1svmq6y1PZkmO50nWQn2Lg=w300-rw" width="48" height="48" />               | [Ameba Ownd](https://play.google.com/store/apps/details?id=jp.co.cyberagent.madrid) |
-| < <img src="https://lh3.googleusercontent.com/st_DiIlM148vzG23ccujtBzx0tMeb7cDC5fDmLSERS-Nr8M_F-PTw4W_jWJsH9mO_b4=w300-rw" width="48" height="48" /> | [ScorePal](https://play.google.com/store/apps/details?id=com.hfd.scorepal)          |
-
+| Icon                                                                                                                                               | Application                                                                         |
+|----------------------------------------------------------------------------------------------------------------------------------------------------|-------------------------------------------------------------------------------------|
+| <img src="https://lh6.ggpht.com/6zKH_uQY1bxCwXL4DLo_uoFEOXdShi3BgmN6XRHlaJ-oA1svmq6y1PZkmO50nWQn2Lg=w300-rw" width="48" height="48" />             | [Ameba Ownd](https://play.google.com/store/apps/details?id=jp.co.cyberagent.madrid) |
+| <img src="https://lh3.googleusercontent.com/st_DiIlM148vzG23ccujtBzx0tMeb7cDC5fDmLSERS-Nr8M_F-PTw4W_jWJsH9mO_b4=w300-rw" width="48" height="48" /> | [ScorePal](https://play.google.com/store/apps/details?id=com.hfd.scorepal)          |
+| <img src="https://github.com/niendo1/ImapNotes3/blob/master/fastlane/metadata/android/en-US/images/icon.png" width="48" height="48" />             | [ImapNotes3](https://f-droid.org/packages/de.niendo.ImapNotes3/)                    |
 Developed By
 -------
 Daichi Furiya (Wasabeef) - <dadadada.chop@gmail.com>
