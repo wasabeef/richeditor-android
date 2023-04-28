@@ -447,15 +447,19 @@ RE.setBlockquote = function() {
     RE.setNewParagraph();
 };
 
-RE.insertImage = function(url, alt="", width="", height="" ) {
+RE.insertImage = function(url, alt="", width="", height="", relative="false") {
     var img = document.createElement('img');
     img.setAttribute("src", url);
     if (alt != "") img.setAttribute("alt", alt);
-    if (width == "auto")
-          img.setAttribute("id", "responsive-image");
-    else if (width != "") {
+    if (relative == "true") {
+       if (width == "") width = "100";
+       if (height == "") height = width;
+       img.setAttribute("style","width: "+width+"%; height: "+height+"%");
+    } else {
+       if (width != "")
           img.setAttribute("width", width);
-          if (height != "") img.setAttribute("height", height);
+       if(height != "")
+          img.setAttribute("height", height);
     }
     img.onload = RE.updateHeight;
     RE.insertHTML(img.outerHTML);

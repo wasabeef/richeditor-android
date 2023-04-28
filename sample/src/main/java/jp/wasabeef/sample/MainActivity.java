@@ -296,8 +296,8 @@ public class MainActivity extends AppCompatActivity {
           + '/' + getResources().getResourceTypeName(R.drawable.insert_image) + '/' + getResources().getResourceEntryName(R.drawable.bg_color);
        //  image="https://upload.wikimedia.org/wikipedia/commons/thumb/d/d4/Hyoscyamus_niger_0003.JPG/449px-Hyoscyamus_niger_0003.JPG";
        // image="https://raw.githubusercontent.com/wasabeef/art/master/chip.jpg";
-        mEditor.insertImageAsBase64(Uri.parse(image),"alt","auto","");
-        //mEditor.insertImage("https://raw.githubusercontent.com/wasabeef/art/master/chip.jpg", "dachshund", "auto","");
+        //mEditor.insertImageAsBase64(Uri.parse(image),"alt","auto","");
+        mEditor.insertImage("https://raw.githubusercontent.com/wasabeef/art/master/chip.jpg", "dachshund", "","",true);
       }
     });
 

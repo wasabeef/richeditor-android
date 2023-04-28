@@ -490,17 +490,18 @@ public class RichEditor extends WebView implements ValueCallback<String> {
   }
 
   /**
-   * {@link RichEditor#insertImage(String, String, String, String)} will show the original size of the image.
+   * {@link RichEditor#insertImage(String, String, String, String, Boolean)} will show the original size of the image.
    * So this method can manually process the image by adjusting specific width and height to fit into different mobile screens.
    *
    * @param url
    * @param alt
-   * @param width Width of the Image; auto=100% page width
-   * @param height
+   * @param width    Width of the Image; if relative=true then 100 means 100% page width
+   * @param height   Height of the Image
+   * @param relative Image size is relative to page width
    */
-  public void insertImage(String url, String alt, String width, String height) {
+  public void insertImage(String url, String alt, String width, String height, Boolean relative) {
     exec("javascript:RE.prepareInsert();");
-    exec("javascript:RE.insertImage('" + url + "', '" + alt + "','" + width + "', '" + height + "');");
+    exec("javascript:RE.insertImage('" + url + "', '" + alt + "','" + width + "', '" + height + "', '" + relative.toString() + "');");
   }
 
     public void insertImageAsBase64(Uri imageURI, String alt,String width, String height) {
