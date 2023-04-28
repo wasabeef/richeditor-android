@@ -34,12 +34,12 @@ public final class Utils {
 
   public static String toBase64(Bitmap bitmap, String type) {
     ByteArrayOutputStream baos = new ByteArrayOutputStream();
-    if (type.equals("jpg") || type.equals("jpeg") )
-        bitmap.compress(Bitmap.CompressFormat.JPEG, 100, baos);
-    else if(type.equals("png"))
-        bitmap.compress(Bitmap.CompressFormat.PNG, 100, baos);
-    else if(type.equals("webp"))
-        bitmap.compress(Bitmap.CompressFormat.WEBP, 100, baos);
+    if (type.contains("jpg") || type.contains("jpeg"))
+      bitmap.compress(Bitmap.CompressFormat.JPEG, 100, baos);
+    else if (type.contains("png"))
+      bitmap.compress(Bitmap.CompressFormat.PNG, 100, baos);
+    else if (type.contains("webp"))
+      bitmap.compress(Bitmap.CompressFormat.WEBP, 100, baos);
 
     return Base64.encodeToString(baos.toByteArray(), Base64.NO_WRAP);
   }
