@@ -477,6 +477,9 @@ public class RichEditor extends WebView implements ValueCallback<String> {
 
   public void insertHTML(String text) {
     exec("javascript:RE.prepareInsert();");
+    text = text.replace("\n", "<br>")
+      .replace("\\", "\\\\")
+      .replace("\"", "\\\"");        // unescape \\ -> \
     exec("javascript:RE.insertHTML('" + text + "');");
   }
 

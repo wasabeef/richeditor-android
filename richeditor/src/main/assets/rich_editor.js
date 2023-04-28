@@ -68,13 +68,13 @@ RE.selectedHtml = function() {
             html = document.selection.createRange().htmlText;
         }
     }
-    return html;
+    return encodeURIComponent(html);
 }
 
 // Returns selected text range
 RE.selectedText = function() {
     if (RE.rangeSelectionExists() == true) {
-        return document.getSelection().toString();
+        return encodeURIComponent(document.getSelection().toString());
     }
     return "";
 };
@@ -125,7 +125,7 @@ RE.callback = function(method) {
 };
 
 RE.setHtml = function(contents) {
-    RE.editor.innerHTML = decodeURIComponent(contents.replace(/\+/g, '%20'));;
+    RE.editor.innerHTML = decodeURIComponent(contents.replace(/\+/g, '%20'));
     var images = RE.editor.querySelectorAll("img");
 
     for (var i = 0; i < images.length; i++) {
