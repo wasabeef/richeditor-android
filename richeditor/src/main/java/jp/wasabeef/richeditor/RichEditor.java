@@ -507,7 +507,7 @@ public class RichEditor extends WebView implements ValueCallback<String> {
     exec("javascript:RE.insertImage('" + url + "', '" + alt + "','" + width + "', '" + height + "', '" + relative.toString() + "');");
   }
 
-  public void insertImageAsBase64(Uri imageURI, String alt, String width, String height) {
+  public void insertImageAsBase64(Uri imageURI, String alt, String width, String height, Boolean relative) {
     InputStream inputStream = null;
     try {
       inputStream = getContext().getContentResolver().openInputStream(imageURI);
@@ -521,11 +521,10 @@ public class RichEditor extends WebView implements ValueCallback<String> {
     } catch (IOException e) {
       e.printStackTrace();
     }
-    //String format = getContext().getContentResolver().getType(imageURI).toLowerCase();
-    String format = "png";
-    String tag = "data:image/" + format + ";charset=utf-8;base64,";
+    String type = getContext().getContentResolver().getType(imageURI).toLowerCase();
+    String tag = "data:" + type + ";charset=utf-8;base64,";
     exec("javascript:RE.prepareInsert();");
-    exec("javascript:RE.insertImage('" + tag + Utils.toBase64(bitmap, format) + "','" + alt + "','" + width + "', '" + height + "');");
+    exec("javascript:RE.insertImage('" + tag + Utils.toBase64(bitmap, type) + "','" + alt + "','" + width + "', '" + height + "', '" + relative.toString() + "');");
     //exec("javascript:RE.insertImage('data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAUAAAAFCAYAAACNbyblAAAAHElEQVQI12P4//8/w38GIAXDIBKE0DHxgljNBAAO9TXL0Y4OHwAAAABJRU5ErkJggg==','alt');");
   }
 
