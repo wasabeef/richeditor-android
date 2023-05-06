@@ -453,8 +453,10 @@ RE.insertImage = function(url, alt="", width="", height="", relative="false") {
     if (alt != "") img.setAttribute("alt", alt);
     if (relative == "true") {
        if (width == "") width = "100";
-       if (height == "") height = width;
-       img.setAttribute("style","width: "+width+"%; height: "+height+"%");
+         if (height == "")
+             img.setAttribute("style","width: "+width+"%;");
+         else
+             img.setAttribute("style","width: "+width+"%; height: "+height+"%");
     } else {
        if (width != "")
           img.setAttribute("width", width);
