@@ -9,7 +9,9 @@ buildscript {
      classpath 'com.android.tools.build:gradle:8.2.0'
   }
 }
-
+plugins {
+  id 'maven-publish'
+}
 allprojects {
   repositories {
     google()
