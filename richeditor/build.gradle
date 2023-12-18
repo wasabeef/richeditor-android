@@ -26,27 +26,27 @@ dependencies {
   //testImplementation 'org.robolectric:robolectric:4.9.2'
 }
 
-//afterEvaluate {
-//  publishing {
-//    publications {
-//      release(MavenPublication) {
-//        from components.release
-//        groupId = 'com.github.niendo1' //This should be the name of the publishing account
-//        artifactId = 'richeditor-android' //This is the name you want to use for the published library.
-//        version = '0.9.0-SNAPSHOT'
+afterEvaluate {
+  publishing {
+    publications {
+      release(MavenPublication) {
+        from components.release
+        groupId = 'com.github.niendo1' //This should be the name of the publishing account
+        artifactId = 'richeditor-android' //This is the name you want to use for the published library.
+        version = '3.0.0pre0'
 
-//        repositories {
-//          maven {
-//            name = "GitHubPackages"
-//            url = uri("https://maven.pkg.github.com/niendo1/richeditor-android")
-//            credentials {
-//              username = project.findProperty("gpr.user") ?: System.getenv("USERNAME")
-//              password = project.findProperty("gpr.key") ?: System.getenv("TOKEN")
-//            }
-//          }
-//          }
-//        }
-//      }
-//    }
-//  }
+        repositories {
+          maven {
+            name = "GitHubPackages"
+            url = uri("https://maven.pkg.github.com/niendo1/richeditor-android")
+            credentials {
+              username = project.findProperty("gpr.user") ?: System.getenv("USERNAME")
+              password = project.findProperty("gpr.key") ?: System.getenv("TOKEN")
+            }
+          }
+          }
+        }
+      }
+    }
+  }
 
