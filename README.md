@@ -95,23 +95,16 @@ How do I use it?
 
 ##### Gradle
 
-~~repositories {~~
-   ~~mavenCentral()~~
-~~}~~
-
-~~dependencies {~~
-  ~~implementation 'jp.wasabeef:richeditor-android:2.0.0'~~
-~~}~~
-
-```groovy
-
-dependencies {
-  implementation files('../../richeditor-android/richeditor/build/outputs/aar/richeditor-debug.aar')
+repositories {
+   mavenCentral()
+   maven { url "https://jitpack.io" }
 }
 
-settings.gradle
+dependencies {
+  implementation 'com.github.jitpack:richeditor-android:3.0.0'
+}
 
-includeBuild('../richeditor-android')
+```groovy
 
 
 ```
