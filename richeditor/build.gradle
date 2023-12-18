@@ -1,5 +1,6 @@
 plugins {
   id 'com.android.library'
+  id 'maven-publish'
 }
 
 android {
@@ -33,7 +34,7 @@ afterEvaluate {
         from components.release
         groupId = 'com.github.niendo1' //This should be the name of the publishing account
         artifactId = 'richeditor-android' //This is the name you want to use for the published library.
-        version = '3.0.0pre0'
+        version = '3.0.0pre1'
 
         repositories {
           maven {
