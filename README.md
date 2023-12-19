@@ -1,9 +1,9 @@
-<p halign="center">
+<p align="center">
   <a href="https://pub.dev/packages/flutter_gen">
     <img src="https://github.com/niendo1/richeditor-android/raw/master/art/logo.png" width="480px"/>
   </a>
 </p>
-<p halign="center">
+<p align="center">
 <a href="https://android-arsenal.com/details/1/1696"><img src="https://img.shields.io/badge/Android%20Arsenal-richeditor--android-brightgreen.svg?style=flat"></a> 
 <a href="https://www.apache.org/licenses/LICENSE-2.0"><img src="https://img.shields.io/badge/license-Apache%202-blue.svg" /></a>
 <a href="https://jitpack.io/#niendo1/richeditor-android"><img src="https://jitpack.io/v/niendo1/richeditor-android.svg" /></a>
