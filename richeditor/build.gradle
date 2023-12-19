@@ -30,30 +30,12 @@ dependencies {
   //testImplementation 'org.robolectric:robolectric:4.9.2'
 }
 
-
-
-// WORKAROUND! If you comment this out gradle will report false duplicates
-//task sourcesJar(type: Jar) {
-//  duplicatesStrategy = 'exclude'
-//  from subprojects.android.sourceSets.main.allSource
-//}
-
-//task javadoc(type: Jar) {
-//  duplicatesStrategy = 'exclude'
-//  from subprojects.android.sourceSets.main.allSource
-//}
-
-//java {
-//  withJavadocJar()
-//  withSourcesJar()
-//}
-
 afterEvaluate {
   publishing {
     publications {
-
       release(MavenPublication) {
-//        artifact sourcesJar // Publish the output of the sourceJar task
+        from components.release
+        //artifact sourcesJar // Publish the output of the sourceJar task
         groupId = 'com.github.niendo1' //This should be the name of the publishing account
         artifactId = ARTIFACT_ID as String //'richeditor-android' //This is the name you want to use for the published library.
         version = VERSION_NAME as String
