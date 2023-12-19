@@ -1,21 +1,24 @@
-<p align="center">
+<p valign="center">
   <a href="https://pub.dev/packages/flutter_gen">
     <img src="https://github.com/wasabeef/richeditor-android/raw/master/art/logo.png" width="480px"/>
   </a>
 </p>
-<p align="center">
+<p valign="center">
   <a href="https://android-arsenal.com/details/1/1696">
     <img src="https://img.shields.io/badge/Android%20Arsenal-richeditor--android-brightgreen.svg?style=flat">
-  </a>
-  <a href="https://www.apache.org/licenses/LICENSE-2.0">
+  </a
+  ><a href="https://www.apache.org/licenses/LICENSE-2.0">
     <img src="https://img.shields.io/badge/license-Apache%202-blue.svg" />
-  </a>
-  <a href="https://search.maven.org/artifact/jp.wasabeef/richeditor-android">
-    <img src="https://maven-badges.herokuapp.com/maven-central/jp.wasabeef/richeditor-android/badge.svg" />
+  </a
+  ><a href="https://jitpack.io/#niendo1/richeditor-android">
+    <img src="https://jitpack.io/v/niendo1/richeditor-android.svg" />
+  </a
+  ><a href="https://javadoc.jitpack.io/com/github/niendo1/richeditor-android/latest/javadoc/">
+    <img src="https://github.com/wasabeef/richeditor-android/raw/master/art/javadoc.svg" />
   </a>
 </p>
 
-This is a fork, which tries to merge changes from [Andrew-Chen-Wang/RichEditorView](https://github.com/Andrew-Chen-Wang/RichEditorView) 
+~~This is a fork, which tries to merge changes from [Andrew-Chen-Wang/RichEditorView](https://github.com/Andrew-Chen-Wang/RichEditorView) 
 
 `RichEditor for Android` is a beautiful Rich Text `WYSIWYG Editor` for `Android`.
 
@@ -88,11 +91,6 @@ Demo
 
 ![Demo](./art/demo2.gif)
 
-Java Doc
----
-
-[![javadoc](https://javadoc.io/badge2/org.springframework/spring-core/javadoc.svg)](https://javadoc.jitpack.io/com/github/niendo1/richeditor-android/latest/javadoc/)
-
 How do I use it?
 ---
 
@@ -110,7 +108,8 @@ dependencies {
 }
 
 
-[![Release](https://jitpack.io/v/niendo1/richeditor-android.svg)] (https://jitpack.io/#niendo1/richeditor-android)
+
+
 
 ```groovy
 
