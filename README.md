@@ -1,21 +1,16 @@
 <p valign="center">
   <a href="https://pub.dev/packages/flutter_gen">
-    <img src="https://github.com/wasabeef/richeditor-android/raw/master/art/logo.png" width="480px"/>
+    <img src="https://github.com/niendo1/richeditor-android/raw/master/art/logo.png" width="480px"/>
   </a>
 </p>
 <p valign="center">
-  <a href="https://android-arsenal.com/details/1/1696">
-    <img src="https://img.shields.io/badge/Android%20Arsenal-richeditor--android-brightgreen.svg?style=flat">
-  </a
-  ><a href="https://www.apache.org/licenses/LICENSE-2.0">
-    <img src="https://img.shields.io/badge/license-Apache%202-blue.svg" />
-  </a
-  ><a href="https://jitpack.io/#niendo1/richeditor-android">
-    <img src="https://jitpack.io/v/niendo1/richeditor-android.svg" />
-  </a
-  ><a href="https://javadoc.jitpack.io/com/github/niendo1/richeditor-android/latest/javadoc/">
-    <img src="https://github.com/wasabeef/richeditor-android/raw/master/art/javadoc.svg" />
-  </a>
+  <a href="https://android-arsenal.com/details/1/1696"><img src="https://img.shields.io/badge/Android%20Arsenal-richeditor--android-brightgreen.svg?style=flat"></a>
+  
+  <a href="https://www.apache.org/licenses/LICENSE-2.0"><img src="https://img.shields.io/badge/license-Apache%202-blue.svg" /></a>
+
+  <a href="https://jitpack.io/#niendo1/richeditor-android"><img src="https://jitpack.io/v/niendo1/richeditor-android.svg" /></a>
+
+  <a href="https://javadoc.jitpack.io/com/github/niendo1/richeditor-android/latest/javadoc/"><img src="https://github.com/niendo1/richeditor-android/raw/master/art/javadoc.svg" /></a>
 </p>
 
 ~~This is a fork, which tries to merge changes from [Andrew-Chen-Wang/RichEditorView](https://github.com/Andrew-Chen-Wang/RichEditorView) 
@@ -106,10 +101,6 @@ repositories {
 dependencies {
   implementation 'com.github.jitpack:richeditor-android:3.0.0'
 }
-
-
-
-
 
 ```groovy
 
