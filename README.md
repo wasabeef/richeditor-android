@@ -109,6 +109,7 @@ dependencies {
   implementation 'com.github.jitpack:richeditor-android:3.0.0'
 }
 
+
 [![Release](https://jitpack.io/v/niendo1/richeditor-android.svg)] (https://jitpack.io/#niendo1/richeditor-android)
 
 ```groovy
