@@ -26,12 +26,24 @@ import java.io.ByteArrayOutputStream;
  * limitations under the License.
  */
 
+/**
+ * This class provides some converting functions.
+ *
+ */
 public final class Utils {
 
+  /**
+   * @throws InstantiationException
+   */
   private Utils() throws InstantiationException {
     throw new InstantiationException("This class is not for instantiation");
   }
 
+  /**
+   * @param bitmap
+   * @param type
+   * @return
+   */
   public static String toBase64(Bitmap bitmap, String type) {
     ByteArrayOutputStream baos = new ByteArrayOutputStream();
     if (type.contains("jpg") || type.contains("jpeg"))
@@ -44,6 +56,10 @@ public final class Utils {
     return Base64.encodeToString(baos.toByteArray(), Base64.NO_WRAP);
   }
 
+  /**
+   * @param drawable
+   * @return
+   */
   public static Bitmap toBitmap(Drawable drawable) {
     if (drawable instanceof BitmapDrawable) {
       return ((BitmapDrawable) drawable).getBitmap();
@@ -62,6 +78,11 @@ public final class Utils {
     return bitmap;
   }
 
+  /**
+   * @param context
+   * @param resId
+   * @return
+   */
   public static Bitmap decodeResource(Context context, int resId) {
     return BitmapFactory.decodeResource(context.getResources(), resId);
   }
