@@ -86,7 +86,7 @@ public class RichEditor extends WebView implements ValueCallback<String> {
   }
 
   /**
-   * The class implements this listener to receive notifications when clicks occure
+   * The class implements this listener to receive notifications when clicks occur
    * in the html editor
    * @todo
    */
@@ -167,7 +167,11 @@ public class RichEditor extends WebView implements ValueCallback<String> {
 
     applyAttributes(context, attrs);
   }
-
+  /**
+   * Creates and returns an instance of the protected inner class EditorWebViewClient.
+   *
+   * @return An instance of the EditorWebViewClient class.
+   */
   protected EditorWebViewClient createWebviewClient() {
     return new EditorWebViewClient();
   }
@@ -314,6 +318,28 @@ public class RichEditor extends WebView implements ValueCallback<String> {
     } catch (UnsupportedEncodingException e) {
       // No handling
     }
+  }
+
+  /**
+   * Requests JavaScript data from the WebView by executing the specified JavaScript command.
+   * This method uses the evaluateJavascript method to execute the provided JavaScript command
+   * and waits for the evaluation to finish before returning.
+   *
+   * @param cmdJS The JavaScript command to be executed in the WebView.
+   * @return true if the JavaScript command was successfully requested, false otherwise.
+   *
+   * @see <a href="https://stackoverflow.com/questions/38380246/espresso-how-to-call-evaluatejavascript-on-a-webview">
+   * Stack Overflow: Espresso - How to call evaluateJavascript on a WebView</a>
+   */
+  public boolean requestJSData(String cmdJS) {
+    // https://stackoverflow.com/questions/38380246/espresso-how-to-call-evaluatejavascript-on-a-webview
+    mEvaluateFinished.set(false);
+
+    // Execute the specified JavaScript command and set the evaluation flag
+    evaluateJavascript(cmdJS, this);
+
+    // Return true to indicate that the JavaScript command was successfully requested
+    return true;
   }
 
   /**
@@ -505,34 +531,42 @@ public class RichEditor extends WebView implements ValueCallback<String> {
   }
 
   /**
-   * @param px
+   * Sets width of the editor in pixels
+   * @param px new width
    */
   public void setEditorWidth(int px) {
     exec("javascript:RE.setWidth('" + px + "px');");
   }
 
   /**
-   * @param px
+   * Sets height of the editor in pixels
+   * @param px new height
    */
   public void setEditorHeight(int px) {
     exec("javascript:RE.setHeight('" + px + "px');");
   }
 
   /**
-   * @param placeholder
+   * Sets a hint in the empty editor
+   * <pre>
+   *   mEditor.setPlaceholder("Insert text here...");
+   * </pre>
+   * @param placeholder the text
    */
   public void setPlaceholder(String placeholder) {
     exec("javascript:RE.setPlaceholderText('" + placeholder + "');");
   }
 
   /**
-   * @param inputEnabled
+   * Make the editor writable
+   * @param inputEnabled true=writable, false=read only
    */
   public void setInputEnabled(Boolean inputEnabled) {
     exec("javascript:RE.setInputEnabled(" + inputEnabled + ")");
   }
 
   /**
+   * Loads an additional CSS file
    * @param cssFile
    */
   public void loadCSS(String cssFile) {
@@ -545,76 +579,77 @@ public class RichEditor extends WebView implements ValueCallback<String> {
   }
 
   /**
-   *
+   * reverts the last action
    */
   public void undo() {
     exec("javascript:RE.undo();");
   }
 
   /**
-   *
+   * reverts the last revert action
    */
   public void redo() {
     exec("javascript:RE.redo();");
   }
 
   /**
-   *
+   * set html tag <PRE> </PRE>
    */
   public void setPre() {
     exec("javascript:RE.setPre();");
   }
 
   /**
-   *
+   * toggle font attribute bold
    */
   public void toggleBold() {
     exec("javascript:RE.toggleBold();");
   }
 
   /**
-   *
+   * set font attribute bold
    */
   public void setBold(boolean enabled) {
     exec("javascript:RE.setBold(" + enabled + ");");
   }
 
   /**
-   *
+   * toggle font attribute Italic
    */
   public void toggleItalic() {
     exec("javascript:RE.toggleItalic();");
   }
 
   /**
-   *
+   * set font attribute Italic
    */
   public void setItalic(boolean enabled) {
     exec("javascript:RE.setItalic(" + enabled + ");");
   }
 
   /**
-   *
+   * set font attribute Sub script
    */
   public void setSubscript() {
     exec("javascript:RE.setSubscript();");
   }
 
   /**
-   *
+   * set font attribute super script
    */
   public void setSuperscript() {
     exec("javascript:RE.setSuperscript();");
   }
 
   /**
-   *
+   * toggle font attribute Strike Through
    */
   public void toggleStrikeThrough() {
     exec("javascript:RE.toggleStrikeThrough();");
   }
 
   /**
+   * set font attribute Strike Through
    * @param enabled
    */
   public void setStrikeThrough(boolean enabled) {
@@ -622,13 +657,14 @@ public class RichEditor extends WebView implements ValueCallback<String> {
   }
 
   /**
-   *
+   * toggle font attribute Under line
    */
   public void toggleUnderline() {
     exec("javascript:RE.toggleUnderline();");
   }
 
   /**
+   * set font attribute Under line
    * @param enabled
    */
   public void setUnderline(boolean enabled) {
@@ -636,6 +672,7 @@ public class RichEditor extends WebView implements ValueCallback<String> {
   }
 
   /**
+   * set text color by value
    * @param color
    */
   public void setTextColor(int color) {
@@ -643,6 +680,10 @@ public class RichEditor extends WebView implements ValueCallback<String> {
   }
 
   /**
+   * set text color by string
+   * <pre>
+   *   mEditor.setTextColor("red")
+   * </pre>
    * @param color
    */
   public void setTextColor(String color) {
@@ -651,6 +692,7 @@ public class RichEditor extends WebView implements ValueCallback<String> {
   }
 
   /**
+   * Sets Background color for text by number
    * @param color
    */
   public void setTextBackgroundColor(int color) {
@@ -659,7 +701,11 @@ public class RichEditor extends WebView implements ValueCallback<String> {
   }
 
   /**
-   * @param color
+   * Sets Background color for text by string
+   * <pre>
+   * mEditor.setTextColor("red")
+   * </pre>
+   * @param color as string
    */
   public void setTextBackgroundColor(String color) {
     exec("javascript:RE.prepareInsert();");
@@ -667,6 +713,9 @@ public class RichEditor extends WebView implements ValueCallback<String> {
   }
 
   /**
+   * set the font family
+   * @see #getFontFamily for a list of available font families
+   * @see #LoadFont to add new fonts
    * @param fontFamily
    */
   public void setFontFamily(String fontFamily) {
@@ -674,7 +723,9 @@ public class RichEditor extends WebView implements ValueCallback<String> {
   }
 
   /**
-   * @param name
+   * loads a new font file (for example ttf)
+   * @see #setFontFamily to access this font
+   * @param name to access this font
    * @param url
    */
   public void LoadFont(String name, String url) {
@@ -682,14 +733,16 @@ public class RichEditor extends WebView implements ValueCallback<String> {
   }
 
   /**
-   *
+   * gets a list of available fonts/font families
+   * @see #setFontFamily to access one of these fonts/font families
    */
   public void getFontFamily() {
     requestJSData("javascript:RE.getFontFamily();");
   }
 
   /**
-   * @param fontSize
+   * sets the font size
+   * @param fontSize in steps 1 tru 7
    */
   public void setFontSize(int fontSize) {
     if (fontSize > 7 || fontSize < 1) {
@@ -699,73 +752,81 @@ public class RichEditor extends WebView implements ValueCallback<String> {
   }
 
   /**
-   *
+   * removes all the formats for the actual selection
    */
   public void removeFormat() {
     exec("javascript:RE.removeFormat();");
   }
 
   /**
-   * @param heading
+   * Sets the selected text or cursor position to a specific heading level in the Rich Editor WebView.
+   *
+   * @param heading The heading level to set, where 1 is the highest (largest) heading and
+   *                larger values represent lower (smaller) headings.
    */
   public void setHeading(int heading) {
     exec("javascript:RE.setHeading('" + heading + "');");
   }
 
   /**
-   *
+   * Shifts the actual text selection or cursor position to the right in the Rich Editor WebView.
+   * This is used to create an indentation effect.
    */
   public void setIndent() {
     exec("javascript:RE.setIndent();");
   }
 
   /**
-   *
+   * Shifts the actual text selection or cursor position to the left in the Rich Editor WebView.
+   * This is used to remove indentation.
    */
   public void setOutdent() {
     exec("javascript:RE.setOutdent();");
   }
 
   /**
-   *
+   * Aligns the selected text or cursor position to the left in the Rich Editor WebView.
    */
   public void setAlignLeft() {
     exec("javascript:RE.setJustifyLeft();");
   }
 
   /**
-   *
+   * Aligns the selected text or cursor position to the center in the Rich Editor WebView.
    */
   public void setAlignCenter() {
     exec("javascript:RE.setJustifyCenter();");
   }
 
   /**
-   *
+   * Aligns the selected text or cursor position to the right in the Rich Editor WebView.
    */
   public void setAlignRight() {
     exec("javascript:RE.setJustifyRight();");
   }
 
   /**
-   *
+   * Applies blockquote styling to the selected text or cursor position in the Rich Editor WebView.
+   * This is used to create a blockquote effect.
    */
   public void setBlockquote() {
     exec("javascript:RE.setBlockquote();");
   }
 
   /**
-   *
+   * Sets the selected text or cursor position to use bullets in the Rich Editor WebView.
+   * This method is an alias for {@link #setUnorderedList()}.
    */
   public void setBullets() { setUnorderedList(); }
 
   /**
-   *
+   * Sets the selected text or cursor position to use an unordered list (bullets) in the Rich Editor WebView.
    */
   public void setUnorderedList() { exec("javascript:RE.setUnorderedList();"); }
 
   /**
-   *
+   * Sets the selected text or cursor position to use numbers in the Rich Editor WebView.
+   * This method is an alias for {@link #setOrderedList()}.
    */
   public void setNumbers() { setOrderedList(); }
 
@@ -775,6 +836,7 @@ public class RichEditor extends WebView implements ValueCallback<String> {
   public void setOrderedList() { exec("javascript:RE.setOrderedList();"); }
 
   /**
+   * Insert a HTML string into the Rich Editor WebView.
    * @param text
    */
   public void insertHTML(String text) {
@@ -786,7 +848,8 @@ public class RichEditor extends WebView implements ValueCallback<String> {
   }
 
   /**
-   *
+   * Inserts a horizontal rule (line) into the Rich Editor WebView.
+   * This method prepares the editor for insertion and then adds an HTML horizontal rule.
    */
   public void insertHR_Line() {
     exec("javascript:RE.prepareInsert();");
@@ -794,19 +857,21 @@ public class RichEditor extends WebView implements ValueCallback<String> {
   }
 
   /**
-   * @param section
-   * @param content
+   * Inserts a collapsible section into the Rich Editor WebView.
+   *
+   * @param section The title or label for the collapsible section.
+   * @param content The content to be included in the collapsible section.
    */
   public void insertCollapsibleSection(String section, String content) {
     exec("javascript:RE.insertCollapsibleSection('"+section+"', '"+content+"');");
   }
 
   /**
-   * {@link RichEditor#insertImage(String, String, String, String, Boolean)} will show the original size of the image.
+   * Inserts an image into the Rich Editor as link
    * So this method can manually process the image by adjusting specific width and height to fit into different mobile screens.
    *
-   * @param url
-   * @param alt
+   * @param url      The URI of the image to be inserted.
+   * @param alt      The alternative text for the image.
    * @param width    Width of the Image; if relative=true then 100 means 100% page width
    * @param height   Height of the Image
    * @param relative Image size is relative to page width
@@ -817,15 +882,15 @@ public class RichEditor extends WebView implements ValueCallback<String> {
   }
 
   /**
-   * {@link RichEditor#insertImageAsBase64(Uri, String, String, String, Boolean, Integer)} will show the original size of the image.
-   * So this method can manually process the image by adjusting specific width and height to fit into different mobile screens.
+   * Inserts an image into the Rich Editor WebView using Base64 encoding from the provided image URI.
+   * This method allows manual processing of the image, adjusting width and height to fit different mobile screens.
    *
-   * @param imageURI
-   * @param alt
-   * @param width        Width of the Image; if relative=true then 100 means 100% page width
-   * @param height       Height of the Image
-   * @param relative     Image size is relative to page width
-   * @param inSampleSize Shrink Image size
+   * @param imageURI      The URI of the image to be inserted.
+   * @param alt           The alternative text for the image.
+   * @param width         The width of the image; if relative is true, 100 means 100% page width.
+   * @param height        The height of the image.
+   * @param relative      Indicates if the image size is relative to the page width.
+   * @param inSampleSize  Shrink the image size.
    */
   public void insertImageAsBase64(Uri imageURI, String alt, String width, String height, Boolean relative, Integer inSampleSize) {
     InputStream inputStream = null;
@@ -851,7 +916,7 @@ public class RichEditor extends WebView implements ValueCallback<String> {
   }
 
   /**
-   * {@link RichEditor#insertVideo(String, String, String, String)} will show the original size of the video.
+   * Will show the original size of the video.
    * So this method can manually process the image by adjusting specific width and height to fit into different mobile screens.
    *
    * @param url
@@ -865,7 +930,10 @@ public class RichEditor extends WebView implements ValueCallback<String> {
   }
 
   /**
-   * @param url
+   * Inserts an audio element into the Rich Editor WebView at the current cursor position or selection.
+   *
+   * @param url The URL of the audio file to be inserted.
+   * @param optProperties additional properties like 'autoplay, loop'
    */
   public void insertAudio(String url) {
     exec("javascript:RE.prepareInsert();");
@@ -910,7 +978,7 @@ public class RichEditor extends WebView implements ValueCallback<String> {
   }
 
   /**
-   *
+   * Inserts a check box
    */
   public void insertCheckbox() {
     exec("javascript:RE.prepareInsert();");
@@ -918,7 +986,7 @@ public class RichEditor extends WebView implements ValueCallback<String> {
   }
 
   /**
-   *
+   * Set focus
    */
   public void focusEditor() {
     requestFocus();
@@ -926,6 +994,7 @@ public class RichEditor extends WebView implements ValueCallback<String> {
   }
 
   /**
+   * Set focus on point
    * @param x
    * @param y
    */
@@ -935,7 +1004,7 @@ public class RichEditor extends WebView implements ValueCallback<String> {
   }
 
   /**
-   *
+   * Clears the focus and blurs the editor
    */
   public void clearFocusEditor() {
     exec("javascript:RE.blurFocus();");
@@ -958,10 +1027,12 @@ public class RichEditor extends WebView implements ValueCallback<String> {
   }
 
   /**
-   * @param col
-   * @param row
+   * Inserts a table with the specified number of columns and rows into the Rich Editor WebView.
+   * This method executes JavaScript commands to prepare for table insertion and insert the table.
+   *
+   * @param col The number of columns in the table.
+   * @param row The number of rows in the table.
    */
-  // MARK: Table functionalities
   public void insertTable(Integer col, Integer row) {
     exec("javascript:RE.prepareInsert()");
     exec("javascript:RE.insertTable("+ col.toString() + "," + row.toString() + ")");
@@ -976,28 +1047,32 @@ public class RichEditor extends WebView implements ValueCallback<String> {
   }
 
   /**
-   *
+   * Adds a new row to the table in the Rich Editor WebView.
+   * This method executes a JavaScript command to add a new row to the table.
    */
   public void addRowToTable() {
     exec("javascript:RE.addRowToTable()");
   }
 
   /**
-   *
+   * Deletes the currently selected row from the table in the Rich Editor WebView.
+   * This method executes a JavaScript command to delete the currently selected row from the table.
    */
   public void deleteRowFromTable() {
     exec("javascript:RE.deleteRowFromTable()");
   }
 
   /**
-   *
+   * Adds a new column to the table in the Rich Editor WebView.
+   * This method executes a JavaScript command to add a new column to the table.
    */
   public void addColumnToTable() {
     exec("javascript:RE.addColumnToTable()");
   }
 
   /**
-   *
+   * Deletes the currently selected column from the table in the Rich Editor WebView.
+   * This method executes a JavaScript command to delete the currently selected column from the table.
    */
   public void deleteColumnFromTable() {
     exec("javascript:RE.deleteColumnFromTable()");
@@ -1012,21 +1087,17 @@ public class RichEditor extends WebView implements ValueCallback<String> {
   }
 
   /**
-   * @param cmdJS
-   * @return
-   */
-  public boolean requestJSData(String cmdJS) {
-    // https://stackoverflow.com/questions/38380246/espresso-how-to-call-evaluatejavascript-on-a-webview
-    mEvaluateFinished.set(false);
-
-     evaluateJavascript(cmdJS, this);
-     return true;
-  }
-
-  /**
-   *
+   * A custom WebViewClient to handle page loading events for the RichEditor.
+   * This class extends the WebViewClient and provides additional functionality
+   * when a page has finished loading.
    */
   protected class EditorWebViewClient extends WebViewClient {
+    /**
+     * Called when the page has finished loading in the WebView.
+     *
+     * @param view The WebView that has finished loading the page.
+     * @param url  The URL of the page that has finished loading.
+     */
     @Override
     public void onPageFinished(WebView view, String url) {
       isReady = url.equalsIgnoreCase(SETUP_HTML);
