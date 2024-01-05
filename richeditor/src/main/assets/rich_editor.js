@@ -468,32 +468,84 @@ RE.insertImage = function(url, alt="", width="", height="", relative="false") {
     //RE.callback("input");
 };
 
-RE.insertVideo = function(url, alt="", width="", height="") {
-    var video = document.createElement('video');
-    video.setAttribute("src", url);
+RE.insertVideo = function(src, alt="", width="", height="", relative="false", optProperties="") {
+   if (optProperties == "") {
+      optProperties = "controls muted";
+   }
+   var size = "xx";
+   if (relative == "true") {
+       if (width == "") width = "100";
+         if (height == "")
+             size = 'style="width:'+width+'%;"';
+         else
+             size = 'style="width:'+width+'%; height: '+height+'%;"';
+    } else {
+       if (width != "")
+          size = 'width="' + width + '"';
+       if(height != "")
+          size = size + ' height="' + height + '"';
+    }
+
+    var html = '<video alt="' + alt + '" '+ size + ' src="' + src + '" ' + optProperties + '></video><br>'
+    RE.insertHTML(html);
+
+/*    var video = document.createElement('video');
+    video.setAttribute("src", src );
     video.controls = true;
     video.muted = false;
+    //video.autoplay = true;
     if (alt != "") video.setAttribute("alt", alt);
-
-    if (width == "auto")
-          video.setAttribute("width", "responsive-image");
-    else if (width != "") {
+    if (relative == "true") {
+       if (width == "") width = "100";
+         if (height == "")
+             video.setAttribute("style","width: "+width+"%;");
+         else
+             video.setAttribute("style","width: "+width+"%; height: "+height+"%");
+    } else {
+       if (width != "")
           video.setAttribute("width", width);
-          if (height != "") video.setAttribute("height", height);
+       if(height != "")
+          video.setAttribute("height", height);
     }
+//    if (width == "auto")
+//          video.setAttribute("width", "responsive-image");
+//    else if (width != "") {
+//          video.setAttribute("width", width);
+//          if (height != "") video.setAttribute("height", height);
+//    }
     video.onload = RE.updateHeight;
 
-    RE.insertHTML(video.outerHTML);
+    //RE.insertHTML(video.outerHTML);
+    var elements = document.querySelectorAll(":hover");
+      elements[elements.length - 1].appendChild(video);
     //RE.callback("input");
+*/
 }
 
-RE.insertAudio = function(url, alt) {
-    var html = '<audio src="' + url + '" controls></audio><br>';
+RE.insertAudio = function(url, optProperties="") {
+   if (optProperties == "") {
+      optProperties = "controls";
+   }
+    var html = '<audio src="' + url + '" ' + optProperties +'></audio><br>';
     RE.insertHTML(html);
 }
 
-RE.insertYoutubeVideo = function(url, width="100%", height="100%") {
-    var html = '<iframe width="' + width + '" height="' + height + '" src="' + url + '" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe><br>'
+RE.insertIFrame = function(src, name="", width="", height="", relative="false", optProperties="") {
+   var size = ''
+   if (relative == "true") {
+       if (width == "") width = "100";
+         if (height == "")
+             size = 'style="width:'+width+'%;"';
+         else
+             size = 'style="width:'+width+"%; height: "+height+'%"';
+    } else {
+       if (width != "")
+          size = 'width="' + width + '"';
+       if(height != "")
+          size = size + ' height="' + height + '"';
+    }
+
+    var html = '<iframe name="' + name + '" '+ size + ' src="' + src + '" ' + optProperties + '></iframe><br>'
     RE.insertHTML(html);
 }
 
@@ -570,7 +622,7 @@ RE.insertHTML = function(html) {
 
 RE.insertLink = function(url, text, title) {
     RE.restorerange();
-    document.execCommand("insertHTML",false,"<a href='"+url+"' title='"+title+"'>"+text+"</a>");
+    RE.insertHTML("<a href='"+url+"' title='"+title+"'>"+text+"</a>");
     RE.setElementListener("link");
     //RE.callback("input");
 };
@@ -579,7 +631,7 @@ RE.insertLinkSelection = function(url, text, title) {
     RE.restorerange();
     var sel = document.getSelection();
     if (sel.toString().length == 0) {
-        document.execCommand("insertHTML",false,"<a href='"+url+"' title='"+title+"'>"+text+"</a>");
+        RE.insertHTML("<a href='"+url+"' title='"+title+"'>"+text+"</a>");
     } else if (sel.rangeCount) {
         var el = document.createElement("a");
         el.setAttribute("href", url);

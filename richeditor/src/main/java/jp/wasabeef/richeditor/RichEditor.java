@@ -300,6 +300,31 @@ public class RichEditor extends WebView implements ValueCallback<String> {
     ta.recycle();
   }
 
+  private void load(String trigger) {
+    if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.KITKAT) {
+      evaluateJavascript(trigger, null);
+    } else {
+      loadUrl(trigger);
+    }
+  }
+
+
+  private String convertHexColorString(int color) {
+    return String.format("#%06X", (0xFFFFFF & color));
+  }
+
+  protected void exec(final String trigger) {
+    if (isReady) {
+      load(trigger);
+    } else {
+      postDelayed(new Runnable() {
+        @Override public void run() {
+          exec(trigger);
+        }
+      }, 100);
+    }
+  }
+
   /**
    * Load html text in the the editor.
    * <pre>
@@ -831,7 +856,7 @@ public class RichEditor extends WebView implements ValueCallback<String> {
   public void setNumbers() { setOrderedList(); }
 
   /**
-   *
+   * Sets the selected text or cursor position to use an ordered list (numbers) in the Rich Editor WebView.
    */
   public void setOrderedList() { exec("javascript:RE.setOrderedList();"); }
 
@@ -919,14 +944,16 @@ public class RichEditor extends WebView implements ValueCallback<String> {
    * Will show the original size of the video.
    * So this method can manually process the image by adjusting specific width and height to fit into different mobile screens.
    *
-   * @param url
-   * @param alt
-   * @param width Width of the video; auto=100% page width
+   * @param url           The URI of the video to be inserted.
+   * @param alt           The alternative text for the video.
+   * @param width         The width of the video; if relative is true, 100 means 100% page width
+   * @param relative      Indicates if the video is relative to the page width.   *
+   * @param optProperties additional properties like 'autoplay muted controls loop'
    * @param height
    */
-  public void insertVideo(String url, String alt, String width, String height) {
+  public void insertVideo(String url, String alt, String width, String height, Boolean relative, String optProperties) {
     exec("javascript:RE.prepareInsert();");
-    exec("javascript:RE.insertVideo('" + url + "', '" + alt + "', '" + width + "' '" + height + "');");
+    exec("javascript:RE.insertVideo('" + url + "', '" + alt + "', '" + width + "','" + height + "', '" + relative.toString() + "', '" + optProperties + "');");
   }
 
   /**
@@ -935,42 +962,48 @@ public class RichEditor extends WebView implements ValueCallback<String> {
    * @param url The URL of the audio file to be inserted.
    * @param optProperties additional properties like 'autoplay, loop'
    */
-  public void insertAudio(String url) {
+  public void insertAudio(String url, String optProperties) {
     exec("javascript:RE.prepareInsert();");
-    exec("javascript:RE.insertAudio('" + url + "');");
+    exec("javascript:RE.insertAudio('" + url + "', '" + optProperties + "');");
   }
 
   /**
-   * @param url
+   * Embeds another HTML page (iframe) into the current one (like for YouTube video into the Rich Editor WebView with the specified URL, width, and height.
+   * This method executes JavaScript commands to prepare for video insertion and inserts the YouTube video.
+   *
+   * @param src    The src URL (for example https://www.openstreetmap.org/export/embed.html?bbox=12.236022949218752%2C51.28886912565582%2C12.462615966796877%2C51.39363622420581&layer=opnvkarte)
+   * @param name   alternative text, if the embedded page can not be shown.
+   * @param width  The width of the  embedded page.
+   * @param height The height of the embedded page.
+   * @param relative      Indicates if the frame size is relative to the page width.
+   * @param optProperties additional properties like 'title="test", allow-forms'
    */
-  public void insertYoutubeVideo(String url) {
+  public void insertIFrame(String src, String name, String width, String height, Boolean relative, String optProperties) {
     exec("javascript:RE.prepareInsert();");
-    exec("javascript:RE.insertYoutubeVideo('" + url + "');");
+    exec("javascript:RE.insertIFrame('" + src + "', '" + name + "', '" + "', '" + width + "', '" + height + "', '" + relative.toString() + "', '" + optProperties + "');");
   }
 
   /**
-   * @param url
-   * @param width
+   * Inserts a YouTube video into the Rich Editor WebView with the specified URL, width, and height.
+   * This method executes JavaScript commands to prepare for video insertion and inserts the YouTube video.
+   * @see #insertIFrame
+   * @param src      The YouTube video URL. (for example https://www.youtube.com/embed/3AeYHDZ2riI)
+   * @param width    The width of the video player.
+   * @param height   The height of the video player.
+   * @param relative Indicates if the frame size is relative to the page width.
    */
-  public void insertYoutubeVideo(String url, int width) {
-    exec("javascript:RE.prepareInsert();");
-    exec("javascript:RE.insertYoutubeVideo('" + url + "', '" + width + "');");
+  public void insertYoutubeVideo(String src, String width, String height, Boolean relative) {
+    String optProperties="frameborder=\"0\" allow=\"accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; fullscreen\"";
+    exec("javascript:RE.insertIFrame('" + src + "', '', '" + width + "', '" + height + "', '" + relative.toString() + "', '" + optProperties + "');");
   }
 
   /**
-   * @param url
-   * @param width
-   * @param height
-   */
-  public void insertYoutubeVideo(String url, int width, int height) {
-    exec("javascript:RE.prepareInsert();");
-    exec("javascript:RE.insertYoutubeVideo('" + url + "', '" + width + "', '" + height + "');");
-  }
-
-  /**
-   * @param href
-   * @param text
-   * @param title
+   * Inserts a hyperlink into the Rich Editor WebView with the specified href, text, and title.
+   * This method executes JavaScript commands to prepare for link insertion and inserts the link.
+   *
+   * @param href  The URL to link to.
+   * @param text  The text to display as the link.
+   * @param title The title of the link (optional, can be null).
    */
   public void insertLink(String href, String text, String title) {
     exec("javascript:RE.prepareInsert();");
@@ -1008,22 +1041,6 @@ public class RichEditor extends WebView implements ValueCallback<String> {
    */
   public void clearFocusEditor() {
     exec("javascript:RE.blurFocus();");
-  }
-
-  private String convertHexColorString(int color) {
-    return String.format("#%06X", (0xFFFFFF & color));
-  }
-
-  protected void exec(final String trigger) {
-    if (isReady) {
-      load(trigger);
-    } else {
-      postDelayed(new Runnable() {
-        @Override public void run() {
-           exec(trigger);
-        }
-      }, 100);
-    }
   }
 
   /**
@@ -1076,14 +1093,6 @@ public class RichEditor extends WebView implements ValueCallback<String> {
    */
   public void deleteColumnFromTable() {
     exec("javascript:RE.deleteColumnFromTable()");
-  }
-
-  private void load(String trigger) {
-    if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.KITKAT) {
-      evaluateJavascript(trigger, null);
-    } else {
-      loadUrl(trigger);
-    }
   }
 
   /**

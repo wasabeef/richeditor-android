@@ -79,11 +79,11 @@ input[type=checkbox] {
     height: auto;
 }
 
-video {
+/*video {
     width: 100%  !important;
     height: auto !important;
 }
-
+*/
 table {overflow-x: scroll;}
 th, td {max-width: 200px; min-width:50px;}
 table, td, th{border-collapse:collapse; border:1px solid #777;}

@@ -311,37 +311,36 @@ public class MainActivity extends AppCompatActivity {
             if(!value.isEmpty()) {
               if(value.startsWith("https://www.youtube.com"))
                 value = value.replace("watch?v=","embed/");
-
-              // https://www.youtube.com/watch?v=3AeYHDZ2riI
-              // https://www.youtube.com/embed/3AeYHDZ2riI
-
-              mEditor.insertYoutubeVideo(value);
+                // https://www.youtube.com/watch?v=3AeYHDZ2riI
+                // https://www.youtube.com/embed/3AeYHDZ2riI
+              mEditor.insertYoutubeVideo(value,"","",true);
             }
             else
-              mEditor.insertHTML("Select a youtube link");
+              mEditor.insertHTML("Select a youtube link like: https://www.youtube.com/watch?v=3AeYHDZ2riI");
           }
         });
         mEditor.getSelectedText();
         //mEditor.insertYoutubeVideo("https://www.youtube.com/embed/pS5peqApgUA");
       }
-
-
-
     });
 
     findViewById(R.id.action_insert_audio).setOnClickListener(new View.OnClickListener() {
       @Override
       public void onClick(View v) {
-        mEditor.insertAudio("https://file-examples-com.github.io/uploads/2017/11/file_example_MP3_5MG.mp3");
+        mEditor.insertAudio("https://file-examples-com.github.io/uploads/2017/11/file_example_MP3_5MG.mp3", "");
       }
     });
 
     findViewById(R.id.action_insert_video).setOnClickListener(new View.OnClickListener() {
       @Override
       public void onClick(View v) {
-        mEditor.insertVideo("https://test-videos.co.uk/vids/bigbuckbunny/mp4/h264/1080/Big_Buck_Bunny_1080_10s_10MB.mp4","TestVideo" ,"360","");
+        mEditor.insertVideo("https://freetestdata.com/wp-content/uploads/2022/02/Free_Test_Data_10MB_MP4.mp4","TestVideo" ,"100","",true,"controls muted loop");
+
       }
     });
+
+
+
 
     findViewById(R.id.action_insert_link).setOnClickListener(new View.OnClickListener() {
       @Override
