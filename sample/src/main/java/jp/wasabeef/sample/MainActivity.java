@@ -297,7 +297,7 @@ public class MainActivity extends AppCompatActivity {
        //  image="https://upload.wikimedia.org/wikipedia/commons/thumb/d/d4/Hyoscyamus_niger_0003.JPG/449px-Hyoscyamus_niger_0003.JPG";
        // image="https://raw.githubusercontent.com/wasabeef/art/master/chip.jpg";
         //mEditor.insertImageAsBase64(Uri.parse(image),"alt","auto","");
-        mEditor.insertImage("https://raw.githubusercontent.com/wasabeef/art/master/chip.jpg", "dachshund", "","",true);
+        mEditor.insertImage("https://raw.githubusercontent.com/wasabeef/art/master/chip.jpg", "dachshund", "75%","",true);
       }
     });
 
@@ -334,7 +334,7 @@ public class MainActivity extends AppCompatActivity {
     findViewById(R.id.action_insert_video).setOnClickListener(new View.OnClickListener() {
       @Override
       public void onClick(View v) {
-        mEditor.insertVideo("https://freetestdata.com/wp-content/uploads/2022/02/Free_Test_Data_10MB_MP4.mp4","TestVideo" ,"100","",true,"controls muted loop");
+        mEditor.insertVideo("https://freetestdata.com/wp-content/uploads/2022/02/Free_Test_Data_10MB_MP4.mp4","TestVideo" ,"100%","",true,"controls muted loop");
 
       }
     });

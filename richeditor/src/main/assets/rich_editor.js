@@ -454,9 +454,9 @@ RE.insertImage = function(url, alt="", width="", height="", relative="false") {
     if (relative == "true") {
        if (width == "") width = "100";
          if (height == "")
-             img.setAttribute("style","width: "+width+"%;");
+             img.setAttribute("style","width: "+width+";");
          else
-             img.setAttribute("style","width: "+width+"%; height: "+height+"%");
+             img.setAttribute("style","width: "+width+"; height: "+height+";");
     } else {
        if (width != "")
           img.setAttribute("width", width);
@@ -472,13 +472,13 @@ RE.insertVideo = function(src, alt="", width="", height="", relative="false", op
    if (optProperties == "") {
       optProperties = "controls muted";
    }
-   var size = "xx";
+   var size = "";
    if (relative == "true") {
        if (width == "") width = "100";
          if (height == "")
-             size = 'style="width:'+width+'%;"';
+             size = 'style="width:'+width+';"';
          else
-             size = 'style="width:'+width+'%; height: '+height+'%;"';
+             size = 'style="width:'+width+'; height: '+height+';"';
     } else {
        if (width != "")
           size = 'width="' + width + '"';
@@ -498,9 +498,9 @@ RE.insertVideo = function(src, alt="", width="", height="", relative="false", op
     if (relative == "true") {
        if (width == "") width = "100";
          if (height == "")
-             video.setAttribute("style","width: "+width+"%;");
+             video.setAttribute("style","width: "+width+";");
          else
-             video.setAttribute("style","width: "+width+"%; height: "+height+"%");
+             video.setAttribute("style","width: "+width+"; height: "+height+"");
     } else {
        if (width != "")
           video.setAttribute("width", width);
@@ -535,9 +535,9 @@ RE.insertIFrame = function(src, name="", width="", height="", relative="false", 
    if (relative == "true") {
        if (width == "") width = "100";
          if (height == "")
-             size = 'style="width:'+width+'%;"';
+             size = 'style="width:'+width+';"';
          else
-             size = 'style="width:'+width+"%; height: "+height+'%"';
+             size = 'style="width:'+width+"; height: "+height+';"';
     } else {
        if (width != "")
           size = 'width="' + width + '"';

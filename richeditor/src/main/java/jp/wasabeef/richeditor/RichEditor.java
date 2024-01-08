@@ -431,7 +431,7 @@ public class RichEditor extends WebView implements ValueCallback<String> {
   /**
    * Whether or not the selection has a type specifically of "Range".
    * Data comes via callback.
-   * @see #getHtml
+   * @see #getHtml()
    * @return
    */
   public boolean hasRangeSelection() {
@@ -618,7 +618,7 @@ public class RichEditor extends WebView implements ValueCallback<String> {
   }
 
   /**
-   * set html tag <PRE> </PRE>
+   * set html tag <code>PRE</code>
    */
   public void setPre() {
     exec("javascript:RE.setPre();");
@@ -840,7 +840,7 @@ public class RichEditor extends WebView implements ValueCallback<String> {
 
   /**
    * Sets the selected text or cursor position to use bullets in the Rich Editor WebView.
-   * This method is an alias for {@link #setUnorderedList()}.
+   * This method is an alias for {@see #setUnorderedList()}.
    */
   public void setBullets() { setUnorderedList(); }
 
@@ -851,7 +851,7 @@ public class RichEditor extends WebView implements ValueCallback<String> {
 
   /**
    * Sets the selected text or cursor position to use numbers in the Rich Editor WebView.
-   * This method is an alias for {@link #setOrderedList()}.
+   * This method is an alias for {@see #setOrderedList()}.
    */
   public void setNumbers() { setOrderedList(); }
 
@@ -862,6 +862,10 @@ public class RichEditor extends WebView implements ValueCallback<String> {
 
   /**
    * Insert a HTML string into the Rich Editor WebView.
+   * Example to insert a not breakable space:
+   * <pre>
+   *   mEditor.insertHTML("&nbsp";)
+   * </pre>
    * @param text
    */
   public void insertHTML(String text) {
@@ -894,11 +898,20 @@ public class RichEditor extends WebView implements ValueCallback<String> {
   /**
    * Inserts an image into the Rich Editor as link
    * So this method can manually process the image by adjusting specific width and height to fit into different mobile screens.
+   * Example to insert
+   * <pre>
+   *   // inserts an image with 90% page width
+   *   mEditor.insertImage("https://.. .jpg", "Example", "90%", "", true);
+   *   // inserts an image with 50% of its own width
+   *   mEditor.insertImage("https://.. .jpg", "Example", "50%", "", false);
+   * </pre>
    *
    * @param url      The URI of the image to be inserted.
    * @param alt      The alternative text for the image.
-   * @param width    Width of the Image; if relative=true then 100 means 100% page width
-   * @param height   Height of the Image
+   * @param width    Width of the Image; if relative=true then 100% means 100% page width.
+   *                  Can be empty, must be specified in units (px or %)
+   * @param height   Height of the Image (with units).
+   *                  Can be empty, must be specified in units (px or %)
    * @param relative Image size is relative to page width
    */
   public void insertImage(String url, String alt, String width, String height, Boolean relative) {
@@ -912,9 +925,11 @@ public class RichEditor extends WebView implements ValueCallback<String> {
    *
    * @param imageURI      The URI of the image to be inserted.
    * @param alt           The alternative text for the image.
-   * @param width         The width of the image; if relative is true, 100 means 100% page width.
+   * @param width         The width of the image; if relative=true then 100% means 100% page width.
+   *                       Can be empty, must be specified in units (px or %)
    * @param height        The height of the image.
-   * @param relative      Indicates if the image size is relative to the page width.
+   *                       Can be empty, must be specified in units (px or %)
+   * @param relative      Image size is relative to page width
    * @param inSampleSize  Shrink the image size.
    */
   public void insertImageAsBase64(Uri imageURI, String alt, String width, String height, Boolean relative, Integer inSampleSize) {
@@ -946,8 +961,11 @@ public class RichEditor extends WebView implements ValueCallback<String> {
    *
    * @param url           The URI of the video to be inserted.
    * @param alt           The alternative text for the video.
-   * @param width         The width of the video; if relative is true, 100 means 100% page width
-   * @param relative      Indicates if the video is relative to the page width.   *
+   * @param width         The width of the video; if relative=true then 100% means 100% page width.
+   *                       Can be empty, must be specified in units (px or %)
+   * @param height        The height of the image.
+   *                       Can be empty, must be specified in units (px or %)
+   * @param relative      Video size is relative to page width
    * @param optProperties additional properties like 'autoplay muted controls loop'
    * @param height
    */
@@ -973,9 +991,11 @@ public class RichEditor extends WebView implements ValueCallback<String> {
    *
    * @param src    The src URL (for example https://www.openstreetmap.org/export/embed.html?bbox=12.236022949218752%2C51.28886912565582%2C12.462615966796877%2C51.39363622420581&layer=opnvkarte)
    * @param name   alternative text, if the embedded page can not be shown.
-   * @param width  The width of the  embedded page.
-   * @param height The height of the embedded page.
-   * @param relative      Indicates if the frame size is relative to the page width.
+   * @param width         The width of the frame; if relative=true then 100% means 100% page width.
+   *                       Can be empty, must be specified in units (px or %)
+   * @param height        The height of the image.
+   *                       Can be empty, must be specified in units (px or %)
+   * @param relative      Frame size is relative to page width
    * @param optProperties additional properties like 'title="test", allow-forms'
    */
   public void insertIFrame(String src, String name, String width, String height, Boolean relative, String optProperties) {
@@ -988,9 +1008,11 @@ public class RichEditor extends WebView implements ValueCallback<String> {
    * This method executes JavaScript commands to prepare for video insertion and inserts the YouTube video.
    * @see #insertIFrame
    * @param src      The YouTube video URL. (for example https://www.youtube.com/embed/3AeYHDZ2riI)
-   * @param width    The width of the video player.
-   * @param height   The height of the video player.
-   * @param relative Indicates if the frame size is relative to the page width.
+   * @param width         The width of the video; if relative=true then 100% means 100% page width
+   *                       Can be empty, must be specified in units (px or %)
+   * @param height        The height of the image
+   *                       Can be empty, must be specified in units (px or %)
+   * @param relative      Video size is relative to page width
    */
   public void insertYoutubeVideo(String src, String width, String height, Boolean relative) {
     String optProperties="frameborder=\"0\" allow=\"accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; fullscreen\"";
@@ -1003,7 +1025,7 @@ public class RichEditor extends WebView implements ValueCallback<String> {
    *
    * @param href  The URL to link to.
    * @param text  The text to display as the link.
-   * @param title The title of the link (optional, can be null).
+   * @param title The title of the link (optional, can be empty).
    */
   public void insertLink(String href, String text, String title) {
     exec("javascript:RE.prepareInsert();");
