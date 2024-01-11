@@ -51,6 +51,7 @@ import java.util.concurrent.atomic.AtomicBoolean;
 /**
  * This class provides the HTML-Editor.
  *
+ *  Note: The behavior may vary between different Android, Java and webView versions
  */
 public class RichEditor extends WebView implements ValueCallback<String> {
 
@@ -901,17 +902,19 @@ public class RichEditor extends WebView implements ValueCallback<String> {
    * Example to insert
    * <pre>
    *   // inserts an image with 90% page width
-   *   mEditor.insertImage("https://.. .jpg", "Example", "90%", "", true);
+   *   mEditor.insertImage("https://raw.githubusercontent.com/wasabeef/art/master/chip.jpg", "Example", "90%", "", true);
    *   // inserts an image with 50% of its own width
-   *   mEditor.insertImage("https://.. .jpg", "Example", "50%", "", false);
+   *   mEditor.insertImage("https://raw.githubusercontent.com/wasabeef/art/master/chip.jpg", "Example", "50%", "", false);
+   *   // inserts an image 100px X 100px
+   *   mEditor.insertImage("https://raw.githubusercontent.com/wasabeef/art/master/chip.jpg", "dachshund", "100","100",false);
    * </pre>
    *
    * @param url      The URI of the image to be inserted.
    * @param alt      The alternative text for the image.
    * @param width    Width of the Image; if relative=true then 100% means 100% page width.
-   *                  Can be empty, must be specified in units (px or %)
+   *                  Can be empty, if not specified in units (px or %) its px
    * @param height   Height of the Image (with units).
-   *                  Can be empty, must be specified in units (px or %)
+   *                  Can be empty, if not specified in units (px or %) its px
    * @param relative Image size is relative to page width
    */
   public void insertImage(String url, String alt, String width, String height, Boolean relative) {
@@ -922,15 +925,15 @@ public class RichEditor extends WebView implements ValueCallback<String> {
   /**
    * Inserts an image into the Rich Editor WebView using Base64 encoding from the provided image URI.
    * This method allows manual processing of the image, adjusting width and height to fit different mobile screens.
-   *
+   * Examples:
    * @param imageURI      The URI of the image to be inserted.
    * @param alt           The alternative text for the image.
    * @param width         The width of the image; if relative=true then 100% means 100% page width.
-   *                       Can be empty, must be specified in units (px or %)
+   *                       Can be empty, if not specified in units (px or %) its px
    * @param height        The height of the image.
-   *                       Can be empty, must be specified in units (px or %)
+   *                       Can be empty, if not specified in units (px or %) its px
    * @param relative      Image size is relative to page width
-   * @param inSampleSize  Shrink the image size.
+   * @param inSampleSize  Shrink the image size by this factor.
    */
   public void insertImageAsBase64(Uri imageURI, String alt, String width, String height, Boolean relative, Integer inSampleSize) {
     InputStream inputStream = null;
@@ -962,9 +965,9 @@ public class RichEditor extends WebView implements ValueCallback<String> {
    * @param url           The URI of the video to be inserted.
    * @param alt           The alternative text for the video.
    * @param width         The width of the video; if relative=true then 100% means 100% page width.
-   *                       Can be empty, must be specified in units (px or %)
+   *                       Can be empty, if not specified in units (px or %) its px
    * @param height        The height of the image.
-   *                       Can be empty, must be specified in units (px or %)
+   *                       Can be empty, if not specified in units (px or %) its px
    * @param relative      Video size is relative to page width
    * @param optProperties additional properties like 'autoplay muted controls loop'
    * @param height
@@ -992,9 +995,9 @@ public class RichEditor extends WebView implements ValueCallback<String> {
    * @param src    The src URL (for example https://www.openstreetmap.org/export/embed.html?bbox=12.236022949218752%2C51.28886912565582%2C12.462615966796877%2C51.39363622420581&layer=opnvkarte)
    * @param name   alternative text, if the embedded page can not be shown.
    * @param width         The width of the frame; if relative=true then 100% means 100% page width.
-   *                       Can be empty, must be specified in units (px or %)
+   *                       Can be empty, if not specified in units (px or %) its px
    * @param height        The height of the image.
-   *                       Can be empty, must be specified in units (px or %)
+   *                       Can be empty, if not specified in units (px or %) its px
    * @param relative      Frame size is relative to page width
    * @param optProperties additional properties like 'title="test", allow-forms'
    */
@@ -1009,9 +1012,9 @@ public class RichEditor extends WebView implements ValueCallback<String> {
    * @see #insertIFrame
    * @param src      The YouTube video URL. (for example https://www.youtube.com/embed/3AeYHDZ2riI)
    * @param width         The width of the video; if relative=true then 100% means 100% page width
-   *                       Can be empty, must be specified in units (px or %)
+   *                       Can be empty, if not specified in units (px or %) its px
    * @param height        The height of the image
-   *                       Can be empty, must be specified in units (px or %)
+   *                       Can be empty, if not specified in units (px or %) its px
    * @param relative      Video size is relative to page width
    */
   public void insertYoutubeVideo(String src, String width, String height, Boolean relative) {

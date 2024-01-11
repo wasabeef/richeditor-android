@@ -452,16 +452,19 @@ RE.insertImage = function(url, alt="", width="", height="", relative="false") {
     img.setAttribute("src", url);
     if (alt != "") img.setAttribute("alt", alt);
     if (relative == "true") {
-       if (width == "") width = "100";
+       if (width == "") width = "100%";
          if (height == "")
              img.setAttribute("style","width: "+width+";");
          else
              img.setAttribute("style","width: "+width+"; height: "+height+";");
     } else {
-       if (width != "")
-          img.setAttribute("width", width);
-       if(height != "")
-          img.setAttribute("height", height);
+       // for % of image size, width must be empty!
+       if ((width.search("%") != -1) && (height == "")) {
+          height = width;
+          width = "";
+       }
+       img.setAttribute("width", width);
+       img.setAttribute("height", height);
     }
     img.onload = RE.updateHeight;
     RE.insertHTML(img.outerHTML);
@@ -474,7 +477,7 @@ RE.insertVideo = function(src, alt="", width="", height="", relative="false", op
    }
    var size = "";
    if (relative == "true") {
-       if (width == "") width = "100";
+       if (width == "") width = "100%";
          if (height == "")
              size = 'style="width:'+width+';"';
          else
@@ -496,7 +499,7 @@ RE.insertVideo = function(src, alt="", width="", height="", relative="false", op
     //video.autoplay = true;
     if (alt != "") video.setAttribute("alt", alt);
     if (relative == "true") {
-       if (width == "") width = "100";
+       if (width == "") width = "100%";
          if (height == "")
              video.setAttribute("style","width: "+width+";");
          else
@@ -533,7 +536,7 @@ RE.insertAudio = function(url, optProperties="") {
 RE.insertIFrame = function(src, name="", width="", height="", relative="false", optProperties="") {
    var size = ''
    if (relative == "true") {
-       if (width == "") width = "100";
+       if (width == "") width = "100%";
          if (height == "")
              size = 'style="width:'+width+';"';
          else
