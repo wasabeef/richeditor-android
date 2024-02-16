@@ -93,15 +93,53 @@ How do I use it?
 
 ##### Gradle
 
-```groovy
+```gradle
 repositories {
    mavenCentral()
    maven { url "https://jitpack.io" }
 }
 
 dependencies {
-  implementation 'com.github.jitpack:richeditor-android:3.0.0'
+  implementation 'com.github.niendo1:richeditor-android:3.0.0'
 }
+```
+
+##### Maven
+
+```xml
+<repositories>
+  <repository>
+  <id>jitpack.io</id>
+		    <url>https://jitpack.io</url>
+		</repository>
+  </repositories>
+```
+
+```xml
+<dependency>
+	    <groupId>com.github.niendo1</groupId>
+        <artifactId>richeditor-android</artifactId>
+	    <version>3.0.0</version>
+</dependency>
+
+```
+
+##### leiningen
+
+```leiningen
+
+:repositories [["jitpack" "https://jitpack.io"]]
+:dependencies [[com.github.niendo1/richeditor-android "3.0.0"]]
+
+```
+
+##### sbt
+
+```sbt
+
+resolvers += "jitpack" at "https://jitpack.io"
+libraryDependencies += "com.github.niendo1" % "richeditor-android" % "3.0.0"
+
 ```
 
 ### Default Setting for Editor
