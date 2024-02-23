@@ -867,14 +867,18 @@ public class RichEditor extends WebView implements ValueCallback<String> {
    * <pre>
    *   mEditor.insertHTML("&nbsp";)
    * </pre>
-   * @param text
+   * @param contents string with html content
    */
-  public void insertHTML(String text) {
-    exec("javascript:RE.prepareInsert();");
-    text = text.replace("\n", "<br>")
-      .replace("\\", "\\\\")
-      .replace("\"", "\\\"");        // unescape \\ -> \
-    exec("javascript:RE.insertHTML('" + text + "');");
+  public void insertHTML(String contents) {
+    if (contents == null) {
+       contents = "";
+    }
+    try {
+      exec("javascript:RE.prepareInsert();");
+      exec("javascript:RE.insertHTML('" + URLEncoder.encode(contents, "UTF-8") + "');");
+    } catch (UnsupportedEncodingException e) {
+      // No handling
+    }
   }
 
   /**
