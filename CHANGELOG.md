@@ -1,18 +1,22 @@
 Change Log
 ==========
 
-Version 3.0.1 *(2024-)*
+Version 3.0.1 *(2024-02-26)*
 ----------------------------
 
 Bugfix:
-- insertHTML now according to setHTML 
+- insertHTML now according to setHTML
+
+Update:
+- gradle:8.2.2
+- Compile / Target SDK Version 3x -> 34
 
 
 Version 3.0.0 *(2024-01-11)*
 ----------------------------
 
 Feature:
-- New version, new author: lot of changes
+- New version, new author: lots of changes
 
 Version 2.0.0 *(2020-09-16)*
 ----------------------------
