@@ -338,7 +338,7 @@ RE.LoadFont = function LoadFont(name, url) {
       document.fonts.add(loadedFont);
       //do something after the font is loaded
   }).catch(function(error) {
-      RE.insertHTML(error)
+      RE._insertHTML(error)
       // error occurred
   });
 }
@@ -417,7 +417,7 @@ function createCheckbox(node) {
 RE.setCheckbox = function() {
   var el = document.createElement("input");
     el.setAttribute("type", "checkbox");
-    RE.insertHTML("&nbsp;" + el.outerHTML + "&nbsp;");
+    RE._insertHTML("&nbsp;" + el.outerHTML + "&nbsp;");
     RE.setElementListener("checkbox");
     //RE.callback("input");
 };
@@ -467,7 +467,7 @@ RE.insertImage = function(url, alt="", width="", height="", relative="false") {
        img.setAttribute("height", height);
     }
     img.onload = RE.updateHeight;
-    RE.insertHTML(img.outerHTML);
+    RE._insertHTML(img.outerHTML);
     //RE.callback("input");
 };
 
@@ -490,7 +490,7 @@ RE.insertVideo = function(src, alt="", width="", height="", relative="false", op
     }
 
     var html = '<video alt="' + alt + '" '+ size + ' src="' + src + '" ' + optProperties + '></video><br>'
-    RE.insertHTML(html);
+    RE._insertHTML(html);
 
 /*    var video = document.createElement('video');
     video.setAttribute("src", src );
@@ -518,7 +518,7 @@ RE.insertVideo = function(src, alt="", width="", height="", relative="false", op
 //    }
     video.onload = RE.updateHeight;
 
-    //RE.insertHTML(video.outerHTML);
+    //RE._insertHTML(video.outerHTML);
     var elements = document.querySelectorAll(":hover");
       elements[elements.length - 1].appendChild(video);
     //RE.callback("input");
@@ -530,7 +530,7 @@ RE.insertAudio = function(url, optProperties="") {
       optProperties = "controls";
    }
     var html = '<audio src="' + url + '" ' + optProperties +'></audio><br>';
-    RE.insertHTML(html);
+    RE._insertHTML(html);
 }
 
 RE.insertIFrame = function(src, name="", width="", height="", relative="false", optProperties="") {
@@ -549,7 +549,7 @@ RE.insertIFrame = function(src, name="", width="", height="", relative="false", 
     }
 
     var html = '<iframe name="' + name + '" '+ size + ' src="' + src + '" ' + optProperties + '></iframe><br>'
-    RE.insertHTML(html);
+    RE._insertHTML(html);
 }
 
 RE.setElementListener = function(element) {
@@ -618,14 +618,19 @@ RE.insertCollapsibleSection = function(section, content) {
      RE.setElementListener("section");
 }
 
-RE.insertHTML = function(html) {
+RE._insertHTML = function(html) {
     RE.restorerange();
     document.execCommand('insertHTML', false, html);
 };
 
+RE.insertHTML = function(contents) {
+    RE.restorerange();
+    document.execCommand('insertHTML', false, decodeURIComponent(contents.replace(/\+/g, '%20'));
+};
+
 RE.insertLink = function(url, text, title) {
     RE.restorerange();
-    RE.insertHTML("<a href='"+url+"' title='"+title+"'>"+text+"</a>");
+    RE._insertHTML("<a href='"+url+"' title='"+title+"'>"+text+"</a>");
     RE.setElementListener("link");
     //RE.callback("input");
 };
@@ -634,7 +639,7 @@ RE.insertLinkSelection = function(url, text, title) {
     RE.restorerange();
     var sel = document.getSelection();
     if (sel.toString().length == 0) {
-        RE.insertHTML("<a href='"+url+"' title='"+title+"'>"+text+"</a>");
+        RE._insertHTML("<a href='"+url+"' title='"+title+"'>"+text+"</a>");
     } else if (sel.rangeCount) {
         var el = document.createElement("a");
         el.setAttribute("href", url);
@@ -699,7 +704,7 @@ RE.insertTable = function(width, height) {
             var cell = row.insertCell();
         }
     }
-    RE.insertHTML(table.outerHTML);
+    RE._insertHTML(table.outerHTML);
     RE.setNewParagraph();
     //RE.callback("input");
 };
