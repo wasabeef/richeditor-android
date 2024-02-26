@@ -1,5 +1,5 @@
 /**
- * Copyright (C) 2022-2023 peter@niendo.de
+ * Copyright (C) 2022-2024 peter@niendo.de
  * Copyright (C) 2017 Kishan Jadav
  * Copyright (C) 2015 Wasabeef
  *
@@ -625,7 +625,7 @@ RE._insertHTML = function(html) {
 
 RE.insertHTML = function(contents) {
     RE.restorerange();
-    document.execCommand('insertHTML', false, decodeURIComponent(contents.replace(/\+/g, '%20'));
+    document.execCommand('insertHTML', false, decodeURIComponent(contents.replace(/\+/g, '%20')));
 };
 
 RE.insertLink = function(url, text, title) {
