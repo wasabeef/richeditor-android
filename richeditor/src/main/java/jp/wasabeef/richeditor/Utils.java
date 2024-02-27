@@ -26,20 +26,40 @@ import java.io.ByteArrayOutputStream;
  * limitations under the License.
  */
 
+/**
+ * This class provides some converting functions.
+ *
+ */
 public final class Utils {
 
+  /**
+   * @throws InstantiationException
+   */
   private Utils() throws InstantiationException {
     throw new InstantiationException("This class is not for instantiation");
   }
 
-  public static String toBase64(Bitmap bitmap) {
+  /**
+   * @param bitmap
+   * @param type
+   * @return
+   */
+  public static String toBase64(Bitmap bitmap, String type) {
     ByteArrayOutputStream baos = new ByteArrayOutputStream();
-    bitmap.compress(Bitmap.CompressFormat.PNG, 100, baos);
-    byte[] bytes = baos.toByteArray();
+    if (type.contains("jpg") || type.contains("jpeg"))
+      bitmap.compress(Bitmap.CompressFormat.JPEG, 100, baos);
+    else if (type.contains("png"))
+      bitmap.compress(Bitmap.CompressFormat.PNG, 100, baos);
+    else if (type.contains("webp"))
+      bitmap.compress(Bitmap.CompressFormat.WEBP, 100, baos);
 
-    return Base64.encodeToString(bytes, Base64.NO_WRAP);
+    return Base64.encodeToString(baos.toByteArray(), Base64.NO_WRAP);
   }
 
+  /**
+   * @param drawable
+   * @return
+   */
   public static Bitmap toBitmap(Drawable drawable) {
     if (drawable instanceof BitmapDrawable) {
       return ((BitmapDrawable) drawable).getBitmap();
@@ -58,11 +78,13 @@ public final class Utils {
     return bitmap;
   }
 
+  /**
+   * @param context
+   * @param resId
+   * @return
+   */
   public static Bitmap decodeResource(Context context, int resId) {
     return BitmapFactory.decodeResource(context.getResources(), resId);
   }
 
-  public static long getCurrentTime() {
-    return System.currentTimeMillis();
-  }
 }

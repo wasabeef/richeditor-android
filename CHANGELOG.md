@@ -1,6 +1,23 @@
 Change Log
 ==========
 
+Version 3.0.1 *(2024-02-26)*
+----------------------------
+
+Bugfix:
+- insertHTML now according to setHTML
+
+Update:
+- gradle:8.2.2
+- Compile / Target SDK Version 3x -> 34
+
+
+Version 3.0.0 *(2024-01-11)*
+----------------------------
+
+Feature:
+- New version, new author: lots of changes
+
 Version 2.0.0 *(2020-09-16)*
 ----------------------------
 
@@ -14,7 +31,7 @@ Update:
 
 Bugfix:
 - Fixed placeholder [#240](https://github.com/wasabeef/richeditor-android/pull/240)
-- Fixed typp [#194](https://github.com/wasabeef/richeditor-android/pull/194)
+- Fixed typo [#194](https://github.com/wasabeef/richeditor-android/pull/194)
 - Fixed Url decoding [#123](https://github.com/wasabeef/richeditor-android/pull/123)
 - Fixed shouldOverrideUrlLoading [#133](https://github.com/wasabeef/richeditor-android/pull/133)
 - Use encodeURIComponent() [#145](https://github.com/wasabeef/richeditor-android/pull/145)

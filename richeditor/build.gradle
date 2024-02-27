@@ -1,44 +1,54 @@
-apply plugin: 'com.android.library'
+plugins {
+  id 'com.android.library'
+  id 'maven-publish'
+}
 
 android {
-  compileSdkVersion COMPILE_SDK_VERSION as int
-
+  compileSdk COMPILE_SDK_VERSION as int
   defaultConfig {
     minSdkVersion MIN_SDK_VERSION as int
     targetSdkVersion TARGET_SDK_VERSION as int
-    versionCode VERSION_CODE as int
-    versionName VERSION_NAME
+  }
+  namespace 'jp.wasabeef.richeditor'
+  publishing {
+    singleVariant("release") {
+      withSourcesJar()
+      withJavadocJar()
+    }
+  }
+
+  buildTypes {
+    release {
+      minifyEnabled false
+    }
   }
 }
 
-
 dependencies {
-  testImplementation "junit:junit:4.13"
-  testImplementation "org.robolectric:robolectric:4.3.1"
+  testImplementation 'junit:junit:4.13.2'
+  //testImplementation 'org.robolectric:robolectric:4.9.2'
 }
 
-ext {
-  bintrayRepo = 'maven'
-  bintrayName = 'richeditor-android'
-  bintrayUserOrg = 'wasabeef'
-  publishedGroupId = 'jp.wasabeef'
-  libraryName = 'richeditor-android'
-  artifact = 'richeditor-android'
-  libraryDescription = 'RichEditor for Android is a beautiful Rich Text WYSIWYG Editor'
-  siteUrl = 'https://github.com/richeditor-android'
-  gitUrl = 'https://github.com/richeditor-android.git'
-  issueUrl = 'https://github.com/richeditor-android/issues'
-  libraryVersion = VERSION_NAME
-  developerId = 'wasabeef'
-  developerName = 'Wasabeef'
-  developerEmail = 'dadadada.chop@gmail.com'
-  licenseName = 'The Apache Software License, Version 2.0'
-  licenseUrl = 'http://www.apache.org/licenses/LICENSE-2.0.txt'
-  allLicenses = ["Apache-2.0"]
-}
+afterEvaluate {
+  publishing {
+    publications {
+      release(MavenPublication) {
+        from components.release
+        groupId = 'com.github.niendo1' //This should be the name of the publishing account
+        artifactId = ARTIFACT_ID as String //'richeditor-android' //This is the name you want to use for the published library.
+        version = VERSION_NAME as String
+        repositories {
+          maven {
+            name = "GitHubPackages"
+            url = uri("https://maven.pkg.github.com/niendo1/richeditor-android")
+            credentials {
+              username = project.findProperty("gpr.user") ?: System.getenv("USERNAME")
+              password = project.findProperty("gpr.key") ?: System.getenv("TOKEN")
+            }
+          }
+          }
+        }
+      }
+    }
+  }
 
-// TODO: Close JCenter on May 1st https://jfrog.com/blog/into-the-sunset-bintray-jcenter-gocenter-and-chartcenter/
-// apply from: 'https://gist.githubusercontent.com/wasabeef/cf14805bee509baf7461974582f17d26/raw/bintray-v1.gradle'
-// apply from: 'https://gist.githubusercontent.com/wasabeef/cf14805bee509baf7461974582f17d26/raw/install-v1.gradle'
-
-apply from: 'https://gist.githubusercontent.com/wasabeef/2f2ae8d97b429e7d967128125dc47854/raw/maven-central-v1.gradle'

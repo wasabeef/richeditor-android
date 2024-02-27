@@ -1,7 +1,7 @@
 apply plugin: 'com.android.application'
 
 android {
-  compileSdkVersion COMPILE_SDK_VERSION as int
+  compileSdk 34
 
   defaultConfig {
     minSdkVersion MIN_SDK_VERSION as int
@@ -17,18 +17,17 @@ android {
   buildTypes {
     debug {
       debuggable true
-      zipAlignEnabled true
       signingConfig signingConfigs.debug
     }
     release {
       debuggable false
-      zipAlignEnabled true
       minifyEnabled true
       proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
       shrinkResources true
       signingConfig signingConfigs.release
     }
   }
+  namespace 'jp.wasabeef.sample'
 }
 
 repositories {
@@ -37,5 +36,5 @@ repositories {
 
 dependencies {
   implementation project(':richeditor')
-  implementation "androidx.appcompat:appcompat:1.2.0"
+  implementation "androidx.appcompat:appcompat:1.6.1"
 }

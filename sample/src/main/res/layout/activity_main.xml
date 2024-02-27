@@ -30,6 +30,14 @@
         android:src="@drawable/redo" />
 
       <ImageButton
+        android:id="@+id/action_remove_format"
+        android:layout_width="48dp"
+        android:layout_height="48dp"
+        android:background="@null"
+        android:contentDescription="@null"
+        android:src="@drawable/remove_format" />
+
+      <ImageButton
         android:id="@+id/action_bold"
         android:layout_width="48dp"
         android:layout_height="48dp"
@@ -76,6 +84,22 @@
         android:background="@null"
         android:contentDescription="@null"
         android:src="@drawable/underline" />
+
+      <ImageButton
+        android:id="@+id/action_font_cursive"
+        android:layout_width="48dp"
+        android:layout_height="48dp"
+        android:background="@null"
+        android:contentDescription="@null"
+        android:src="@drawable/font_cursive" />
+
+      <ImageButton
+        android:id="@+id/action_fontsize"
+        android:layout_width="48dp"
+        android:layout_height="48dp"
+        android:background="@null"
+        android:contentDescription="@null"
+        android:src="@drawable/fontsize" />
 
       <ImageButton
         android:id="@+id/action_heading1"
@@ -207,6 +231,38 @@
         android:src="@drawable/blockquote" />
 
       <ImageButton
+        android:id="@+id/action_pre"
+        android:layout_width="48dp"
+        android:layout_height="48dp"
+        android:background="@null"
+        android:contentDescription="@null"
+        android:src="@drawable/pre" />
+
+      <ImageButton
+        android:id="@+id/action_insert_html"
+        android:layout_width="48dp"
+        android:layout_height="48dp"
+        android:background="@null"
+        android:contentDescription="@null"
+        android:src="@drawable/insert_html" />
+
+      <ImageButton
+        android:id="@+id/action_insert_hrline"
+        android:layout_width="48dp"
+        android:layout_height="48dp"
+        android:background="@null"
+        android:contentDescription="@null"
+        android:src="@drawable/insert_hline" />
+
+      <ImageButton
+        android:id="@+id/action_insert_section"
+        android:layout_width="48dp"
+        android:layout_height="48dp"
+        android:background="@null"
+        android:contentDescription="@null"
+        android:src="@drawable/insert_section" />
+
+      <ImageButton
         android:id="@+id/action_insert_image"
         android:layout_width="48dp"
         android:layout_height="48dp"
@@ -253,6 +309,46 @@
         android:background="@null"
         android:contentDescription="@null"
         android:src="@android:drawable/checkbox_on_background" />
+
+      <ImageButton
+        android:id="@+id/action_insert_table_2x2"
+        android:layout_width="48dp"
+        android:layout_height="48dp"
+        android:background="@null"
+        android:contentDescription="@null"
+        android:src="@drawable/insert_table_2x2" />
+
+      <ImageButton
+        android:id="@+id/action_insert_row"
+        android:layout_width="48dp"
+        android:layout_height="48dp"
+        android:background="@null"
+        android:contentDescription="@null"
+        android:src="@drawable/insert_row" />
+
+      <ImageButton
+        android:id="@+id/action_insert_column"
+        android:layout_width="48dp"
+        android:layout_height="48dp"
+        android:background="@null"
+        android:contentDescription="@null"
+        android:src="@drawable/insert_column" />
+
+      <ImageButton
+        android:id="@+id/action_delete_row"
+        android:layout_width="48dp"
+        android:layout_height="48dp"
+        android:background="@null"
+        android:contentDescription="@null"
+        android:src="@drawable/delete_row" />
+
+      <ImageButton
+        android:id="@+id/action_delete_column"
+        android:layout_width="48dp"
+        android:layout_height="48dp"
+        android:background="@null"
+        android:contentDescription="@null"
+        android:src="@drawable/delete_column" />
 
     </LinearLayout>
   </HorizontalScrollView>

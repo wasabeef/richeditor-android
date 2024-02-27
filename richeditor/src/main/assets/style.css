@@ -1,5 +1,6 @@
 /**
- * Copyright (C) 2020 Wasabeef
+ * Copyright (C) 2022-2023 peter@niendo.de
+ * Copyright (C) 2015 Wasabeef
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -16,28 +17,112 @@
 
 @charset "UTF-8";
 
+:root {
+    color-scheme: light dark;
+}
 
 html {
-  height: 100%;
+    height: 100%;
 }
 
 body {
-  overflow: scroll;
-  display: table;
-  table-layout: fixed;
-  width: 100%;
-  min-height:100%;
+    min-height: 100%;
+    overflow: auto;
+    font: -apple-system-body;
+}
+
+body, h1, p, ul, ol {
+    margin: 0;
+}
+
+div {
+    display: block;
+    position: static;
 }
 
 #editor {
-  display: table-cell;
-  outline: 0px solid transparent;
-  background-repeat: no-repeat;
-  background-position: center;
-  background-size: cover;
+    -webkit-user-select: auto !important;
+    -webkit-tap-highlight-color: rgba(0, 0, 0, 0);
 }
 
-#editor[placeholder]:empty:not(:focus):before {
-  content: attr(placeholder);
-  opacity: .5;
+#editor:focus {
+    outline: 0px solid transparent;
+}
+
+@media (prefers-color-scheme: dark) {
+    body, #editor {
+    }
+}
+
+.placeholder[placeholder]:after {
+    content: attr(placeholder);
+    position: absolute;
+    top: 0px;
+    color: #cccccc;
+}
+
+#editor {
+    min-height: 100%;
+    height: 100%;
+    overflow: auto;
+    display: block;
+    font-size: 12pt;
+}
+
+input[type=checkbox] {
+    transform: scale(1.4);
+    margin-right: 9px;
+}
+
+/* #responsive-image {
+    width: 100%;
+    height: auto;
+}
+
+video {
+    width: 100%  !important;
+    height: auto !important;
+}
+*/
+
+table {overflow-x: scroll;}
+th, td {max-width: 200px; min-width:50px;}
+table, td, th{border-collapse:collapse; border:1px solid #777;}
+td{padding:5px 10px; height:35px;}
+
+.collapsible {
+  background-color: #777;
+  color: white;
+  cursor: pointer;
+  padding: 10px;
+  width: 100%;
+  border: none;
+  text-align: left;
+  outline: none;
+  font-size: 17px;
+}
+
+.active, .collapsible:hover {
+  background-color: #555;
+}
+
+.collapsible:after {
+  content: '\002B';
+  color: white;
+  font-weight: bold;
+  float: right;
+  margin-left: 5px;
+}
+
+.active:after {
+  content: "\2212";
+}
+
+.content {
+  padding: 0 15px;
+  max-height: 0;
+  overflow: hidden;
+  transition: max-height 0.2s ease-out;
+  background-color: #f1f1f1;
+  font-size: 12pt;
 }
